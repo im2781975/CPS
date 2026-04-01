@@ -94,3 +94,156 @@ int main() {
     }
     cout << maxLen << "\n";
 }
+using namespace std;
+void main(){
+    int n, sum = 0, cnt = 0, cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n; i++){
+        sum += arr[i];
+        if(sum < 0){
+            cnt++; 
+            sum = 0;
+        }
+    }
+    cout << cnt;
+}
+using namespace std;
+void main(){
+    int n; cin >> n;
+    int arr[n], tmp[n];
+    int cur = 0, maxi = 0;
+    for(int i = 0; i < n; i++)
+        cin >> arr[i] >> tmp[i];
+    for(int i = 0; i < n; i++){
+        cur -= arr[i] + tmp[i];
+        if(cur > maxi)
+            maxi = cur;
+    }
+    cout << maxi;
+}
+using namespace std;
+void main(){
+    int n; cin >> n;
+    int res[10000], cnt = 0;
+    for(int i = 0; i < n; i++){
+        int x; cin >> x;
+        while(x > 0){
+            int pos = 1;
+            while(pos * 10 <= x){
+                pos *= 10;
+            }
+            res[cnt++] = pos;
+            x -= pos;
+        }
+    }
+    cout << cnt << "\n";
+    for(int i = 0; i < cnt; i++)
+        cout << res[i] << " ";
+}
+using namespace std;
+void main(){
+    int n; cin >> n;
+    vector <int> vec;
+    int val = 1;
+    while(n > 0){
+        int dig = n % 10;
+        if(dig != 0)
+            vec.push_back(dig * val);
+        n /= 10;
+        val *= 10;
+    }
+    cout << vec.size();
+    for(int i = 0; i < vec.size(); i++)
+        cout << vec[i] << " ";
+}
+using namespace std;
+int main(){
+    int n, cnt = 0; cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n; i++){
+        if(arr[i] == 1)
+            cnt++;
+    }
+    (cnt == 0) ? cout << "Easy" : cout << "Hard";
+}
+using namespace std;
+int main(){
+    int n, cntMin = 0, cntMax = 0;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    int maxi = arr[0];
+    int mini = arr[0];
+    for(int i = 1; i < n; i++){
+        if(arr[i] > maxi){
+            cntMax++;
+            maxi = arr[i];
+        }
+        if(arr[i] < mini){
+            cntMin++;
+            mini = arr[i];
+        }
+    }
+    cout << cntMax + cntMin;
+}
+using namespace std;
+void main(){
+    int num; cin >> num;
+    int cnt = 0;
+    while(num != 0){
+        int rem = num % 10;
+        num /= 10;
+        if(rem == 4 || rem == 7)
+            cnt++;
+    }
+    if(cnt == 4 || cnt == 7)
+        cout << "Yes";
+    else
+        cout << "No";
+}
+using namespace std;
+void main(){
+    int n; cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n - 2; i++){
+        if(arr[i] != arr[i + 1] && arr[i + 1] != arr[i + 2]){
+            cout << i + 2;
+            break;
+        }
+        if(arr[i] != arr[i + 1] && arr[i + 1] == arr[i + 2])
+            cout << i + 1;
+            break;
+    }
+}
+using namespace std;
+void main(){
+    string str, res; cin >> str;
+    int len = str.length();
+    if(len > 10)
+        res = str[0] + to_string(len - 2) + str[len - 1];
+    else
+        res = str;
+    cout << res;
+}
+using namespace std;
+void main(){
+    string str; cin >> str;
+    int x = str.length();
+    for(int i = 0; i < x - 1; i++){
+        for(int j = 0; j < x - i - 1; j++){
+            if(str[j] != '+'){
+                char tmp = str[j];
+                str[j] = str[j + 2]; 
+                str[j + 2] = tmp;
+            }
+        }
+    }
+    cout << str;
+}
