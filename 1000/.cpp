@@ -257,4 +257,105 @@ void Hello(int n) {
         cout << min(best, seg) << " ";
     }
 }
-
+void digsubtract() {
+    string str, ing; cin >> str >> ing;
+    reverse(str.begin(), str.end());
+    reverse(ing.begin(), ing.end());
+    int n = str.length(), m = ing.length();
+    string res;
+    for(int i = 0, j = 0; i < n; i++, j++) {
+        if(j < m - 1 && ing[j] < '9' && ing[j + 1] == '0') {
+            int ans = 10 - (str[i] - '0') + (ing[j] - '0');
+            res += (ans > 9) ? "01" : string(1, '0' + ans);
+            j++;
+        }
+        else {
+            int a = ing[j] - '0', b = str[i] - '0';
+            int diff = a - b;
+            if(diff < 0) {
+                diff += 10;
+                if(j + 1 < m) ing[j + 1]--;
+            }
+            res += '0' + diff;
+        }
+    }
+    reverse(res.begin(), res.end());
+    for(char ch : res) {
+        if(ch < '0' || ch > '9') {
+            cout << -1; return;
+        }
+    }
+    // Remove leading zeros
+    size_t i = 0;
+    while(i < res.size() && res[i] == '0') i++;
+    if(i == res.size()) cout << '0';
+    else cout << str.substr(i);
+}
+// creates an n×n grid with exactly k rooks ('R') placed on the main diagonal, but only on even-numbered rows.
+void placerooks(int n, int k) {
+    if(k > (n + 1) / 2) {
+        cout << -1; return;
+    }
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j)
+            cout << (i % 2 == 0 && j == i && k-- > 0 ? 'R' : '.');
+    }
+}
+// Maximum number of elements with distinct abs values can select from the array.
+void GoodBye(int n) {
+    vector <int> vec(101);
+    for(int i = 0; i < n; i++) {
+        int x; cin >> x; vec[abs(x)]++;
+    }
+    int cnt = 0;
+    for(int i = 0; i <= 100; i++)
+        cnt += min(vec[i], i == 0 ? 1 : 2);
+    cout << cnt;
+}
+// Divide numbers 1 to (n×k) into n groups of exactly k numbers each, such that every group has an even sum.
+void Dividegrp(int n, int k) {
+    if(k == 1) {
+        cout << "YES";
+        for(int i = 1; i <= n; ++i)
+            cout << i << " ";
+        return;
+    }
+    if((n * k) % 2 || n % k) {
+        cout << "No"; return;
+    }
+    cout << "Yes";
+    for(int grp = 1; grp <= n; grp++) {
+        for(int i = 0; i < k; i++) {
+            int num = (grp - 1) * k + i + 1;
+            cout << (num % 2 == 0 ? num * 2 : num) << " ";
+        }
+        cout << " ";
+    }
+}
+// Balanced bracket assignment
+void Balbracket() {
+    int t; cin >> t; string res; 
+    map <int, int> cntL, cntR;
+    for(int test = 0; test < t; ++test) {
+        int n; cin >> n;
+        int posL = posR = 0;
+        string moves;
+        for(int i = 0; i < n; i++) {
+            int a; cin >> a;
+            if(cntL[a] < cntR[a] || posL == n / 2) {
+                cntL[a]++; posL++;
+                moves += 'L';
+            }
+            else {
+                cntR[a]++; posR++;
+                moves += 'R';
+            }
+        }
+        res += moves + ' ';
+    }
+    for(auto& p : cntL) {
+        if(cntR[p.first] != p.second) {
+            cout << "NO"; return;
+        }
+    }
+}
