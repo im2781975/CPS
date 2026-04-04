@@ -359,3 +359,121 @@ void Balbracket() {
         }
     }
 }
+void isAlike(string str, string ing) {
+    bool flag = true;
+    for(int i = 0; i < str.length(); i++) {
+        if(str[i] >= 97) str[i] -= 32;
+        if(ing[i] >= 97) ing[i] -= 32;
+        if(str[i] != ing[i]) {
+            flag = false; break;
+        }
+    }
+    cout << (flag) ? "YES" : "NO";
+}
+void findmin(string str) {
+    int b = count(str.begin(), str.end(), 'b');
+    int n = count(str.begin(), str.end(), 'n');
+    int o = count(str.begin(), str.end(), 'o'); /*
+    for (char c : str) {
+        if (islower(c)) freq[c - 'a']++;
+    }
+    int b = freq['b' - 'a'], o = freq['o' - 'a'], n = freq['n' - 'a']; */
+    if(b < 2 || n < 2 || o < 2) cout << 0;
+    else cout << min({b, o, n}) - 1;
+}
+void Bubble(vector <pair <int, int>> &arr) { /*
+    vector <pair <int, int>> data = {{3, 2}, {1, 4}, {4, 1}, {2, 3}};
+    Bubble(data, 4); */
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = 0; j < n - 1 - i; j++) {
+            if(arr[j].first > arr[j + 1].first) swap(arr[j], arr[j + 1]);
+        }
+    }
+}
+void Quicksort(int *arr, int left, int right) {
+    if(left >= right) return;
+    int piv = arr[left];
+    int i = left, j = right;
+    while(i <= j) {
+        while(arr[i] < piv) i++;
+        while(arr[j] > piv) j--;
+        if(i <= j) swap(arr[i++], arr[j--]);
+    }
+    Quicksort(arr, left, j);
+    Quicksort(arr, i, right);
+}
+//How much we can divide a rod into a equal part
+void cntparts(int n) {
+    if(n == 1) cout << "0 1";
+    else {
+        int d = 2, parts = n / 2;
+        for(int x : {3, 5, 7}) {
+            if(n % x == 0 && n / x > parts)
+                parts = n / x, d = x;
+        }
+        cout << parts << " " << n - parts << endl;
+    }
+}
+// Checks if three numbers arr[0], arr[1], arr[2] can form a right-angled triangle with arr[2] as hypotenuse.
+void IsrightAngled(int *arr) {
+    (arr[0] == arr[1] == arr[2] - 1 && arr[0] + arr[1] > arr[2]) cout << "Yes" : cout << "No"; /*
+    int a, b, c; cin >> a >> b >> c;
+    cout << (a == b && a == c - 1 && 2*a > c ? "Yes" : "No") << " "; */
+}
+// Counts dots in pentagonal pattern
+void cntdots(int x) {
+    cout << (x * x * (x * x + 1)) / 2 << " ";
+}
+// generates all combinations of 5 indices (0,1,2,3,4) where consecutive indices 
+// differ by at most 1, then finds the maximum sum of arr[][]
+const int x = 5;
+void findsum() {
+    int arr[x][x];
+    for(int i = 0; i < x; i++) {
+        for(int j = 0; j < x; i++) arr[i][j] = i + j;
+    }
+    int maxi = INT_MIN, cnt = 0;
+    for(int i = 0; i <= 1; i++) 
+    for(int j = i; j <= 2; j++)
+    for(int k = j; k <= 3; k++)
+    for(int l = k; l <= 4; l++) {
+        int sum = arr[0][0] + arr[1][i] + arr[2][j] + arr[3][k] + arr[4][l];
+        if(sum > maxi) maxi = sum;
+        cnt++;
+    }
+    cout << maxi << " " << cnt << endl;
+}
+// count how many numbers within range [a,b]do not contain the digit '4' & '26'
+void cntrange() {
+    const int x = 1e5;
+    vector <int> prefix(x + 1, 0);
+    for(int i = 1; i <= x; i++) {
+        int tmp = i, valid = 1;
+        while(tmp) {
+            int d = tmp % 10;
+            if (d == 4 || (d == 2 && (tmp / 10) % 10 == 6)) {
+                valid = 0; break;
+            }
+            tmp /= 10;
+        }
+        prefix[i] = prefix[i - 1] + valid;
+    }
+    int a, b;
+    while (cin >> a >> b, a || b) {
+        if (a > b) swap(a, b);
+        cout << prefix[b] - prefix[a - 1] << " ";
+} 
+//convert the string in (int, char) pair
+vector <pair <int, char>> process(string str) {
+    vector <pair <int, char>> res;
+    int pos = 0;
+    while(pos < str.length()) {
+        int len = 0, start = pos;
+        while(pos < str.length() && isdigit(str[pos])) {
+            len = len * 10 + (str[pos] - '0'); pos++;
+        }
+        if(start == pos) len = 1;
+        if(pos < str.length()) res.push_back({len, str[pos]}), pos++;
+    }
+    return res;
+}
