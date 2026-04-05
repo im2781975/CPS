@@ -136,4 +136,38 @@ void cntunqDup(int n) {
     }
     cout << seg << " " << longestDup << endl;
 }
-
+//find the maximum gap between adj elements in an array after removing one element 
+// in a way that minimizes the maximum gap between the remaining adj elements. 
+void maxgap(int n, vector <int> arr) {
+    int mindiff = INT_MAX, pos = -1;
+    for(int i = 2; i < n; i++) {
+        int diff = arr[i] - arr[i - 2];
+        if(diff < mindiff) {
+            mindiff = diff; pos = i - 1;
+        }
+    }
+    int maxgap = 0;
+    for(int i = 0; i < n - 1; i++) {
+        if(i == pos && i + 1 < n) {
+            maxgap = max(maxgap, arr[i + 2] - arr[i]); i++;
+        }
+        else maxgap = max(maxgap, arr[i + 1] - arr[i]);
+    }
+    cout << maxgap;
+}
+// calculate the total exercise done for each muscle group over the n days 
+//and determine which muscle group has the maximum exercise.
+void exercise(int n, vector <int> exercise) {
+    int chest = biceps = back = 0;
+    for(int i = 0; i < 3; i++) {
+        switch(i % 3) {
+            case 0: chest += exercise[i]; break;
+            case 1: biceps += exercise[i]; break; 
+            case 2: back += exercise[i]; break;
+        }
+    }
+    int maxVal = max({chest, biceps, back});
+    if(maxVal == chest) cout << chest;
+    else if(maxVal == biceps) cout << biceps;
+    else cout << back;
+}
