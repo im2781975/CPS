@@ -171,3 +171,152 @@ void exercise(int n, vector <int> exercise) {
     else if(maxVal == biceps) cout << biceps;
     else cout << back;
 }
+// calculate sum of the first two integers in each triplet, find and print the largest sum decreased by 1
+void maxsum(int n) {
+    int maxi = INT_MIN;
+    for(int i = 0; i < n; i++) {
+        int a, b; cin >> a >> b;
+        maxi = max(maxi, a + b);
+    }
+    cout << maxi - 1 << endl;
+}
+void maxsum(int n) {
+    int maxi = INT_MIN, sum = 0;
+    for(int i = 0; i < n; i++) {
+        int a, b; cin >> a >> b;
+        sum = -(a + b); maxi = max(maxi, sum);
+    }
+    cout << maxi << endl;
+}
+//sum of prime numbers
+const int x = 1e5;
+bool vis[x]; int prime[x], cnt = 0;
+void printprime() {
+    for(int i = 2; i < x; ++i) vis[i] = true;
+    for(int i = 2; i < x; ++i) {
+        if(vis[i]) {
+            prime[cnt++] = i;
+            for(int j = i * 2; j < x; j += i) vis[j] = false;
+        }
+    }
+    int sum = 0;
+    for(int i = 0; i < 25; i++) sum += prime[i];
+    cout << sum << endl;
+}
+// find and print the 1-based index of the unique element in
+void findunqIdx(int *arr, int n) {
+    int unqIdx = -1;
+    if(arr[0] != arr[1]) 
+        unqIdx = (arr[1] == arr[2]) ? 0 : 1;
+    else {
+        for(int i = 2; i < n; ++i) {
+            if(arr[i] != arr[0]) {
+                unqIdx = i; break;
+            }
+        }
+    }
+    cout << unqIdx + 1;
+}
+//Sum consecutive integer Diffrence
+void sumdiff(int a, int b, int c) {
+    int arr[3] = {a, b, c}; sort(arr, arr + 3);
+    cout << abs(arr[1] - arr[0]) + abs(arr[2] - arr[1]);
+}
+// finding the minimum steps to make two integers equal using only +1 or -1 operations.
+void cntstep(int n) {
+    while(n--) {
+        int a, b; cin >> a >> b;
+        int diff = abs(a - b);
+        cout << (diff % 2 == 0 ? 1 : 2) << endl;
+    }
+}
+//Find the nxt number which contain unique digits
+bool Isdistinct(int num) {
+    set <int> digits;
+    while(num > 0) {
+        int dig = num % 10;
+        if(digits.count(dig)) return false;
+        digits.insert(dig); num /= 10;
+    } return true;
+}
+void isdistinct(int n) {
+    while(++n) {
+        int x = n, mask = 0;
+        bool unq = true;
+        while(x > 0) {
+            int d = x % 10;
+            if(mask && (1 << d)) {
+                unq = false; break;
+            }
+            mask |= 1 << d; x /= 10;
+        }
+        if(unq) cout << n << endl;
+    }
+}
+// determine if all the levels from 1 to n are covered by the unique elements present in two given arrays
+void removedup(int n) {
+    int a, b; cin >> a >> b;
+    set <int> lev;
+    for(int i = 0; i < a; i++) {
+        int x; cin >> x;
+        lev.insert(x - 1);
+    }
+    for(int i = 0; i < b; i++) {
+        int x; cin >> x;
+        lev.insert(x - 1);
+    }
+    cout << (lev.size() == n ? "Become the Guy." : "No one"); /*
+    bool lev[n + 1];
+    for(int i = 0; i < a; i++) lev[i] = true;
+    for(int i = 0; i < b; i++) lev[i] = true;
+    for(int i = 1; i <= n; i++){
+        if(!Levels[i]) return 0;
+    }
+    cout << "Become the Guy"; */
+}
+//calculate and display 2^num to find the sum of the digits of the resulting number
+int multTwo(int n) {
+    vector <int> dig = {1};
+    for(int i = 0; i < n; i++) {
+        int curr = 0;
+        for(auto &d : dig) {
+            int x = d * 2 + curr;
+            d = x % 10; curr = x / 10;
+        }
+        while(curr) {
+            dig.push_back(curr % 10); curr /= 10;
+        }
+    }
+    int sum = 0;
+    for(int i = dig.size() - 1; i >= 0; i--) {
+        sum += dig[i]; cout << dig[i] << endl;
+    }
+    cout << sum << " ";
+}
+void checkdiag(vector <vector <char>> grid, int n) {
+    int diag = grid[0][0];
+    for(int i = 0; i < n; i++) {
+        if(grid[i][i] != diag || grid[i][n - i - 1] != diag) {
+            cout << "NO"; return 0;
+        }
+    }
+    char Offdiag = grid[0][1];
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            if(i != j && i + j != n - 1) {
+                if(grid[i][j] != Offdiag) {
+                    cout << "NO"; return 0;
+                }
+            }
+        }
+    } cout << "Yes";
+}
+// fill a string with alternating 'B' and 'W' characters.
+void fillchar(int r, int c) {
+    for(int i = 0; i < r; i++) {
+        string str(c, ' '); cin >> str;
+        for(int j = 0; j < c; j++)
+            str[j] = (str[j] == '.' ? ((i + j) % 2 ? 'W' : 'B') : str[j]);
+        cout << str << endl;
+    }
+}
