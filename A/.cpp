@@ -10,6 +10,18 @@ void knapsack(int n, int cap) {
     }
     cout << cap - arr[cap];
 }
+const int x = 10010;
+int wt[x], item[x], dp[x][x];
+void knapsack(int n, int W) {
+    for(int i = 1; i <= n; i++) cin >> wt[i] >> item[i];
+    for(int i = 1; i <= n; i++) {
+        for(int j = 0; j < W; j++) {
+            dp[i][j] = dp[i - 1][j];
+            if(j >= wt[i]) dp[i][j] = max(dp[i][j], dp[i - 1][j - wt[i]] + item[i]);
+        }
+    }
+    cout << dp[n][W];
+}
 void pascaltriangle(int n) { /*
     vector <int> prv = {1}; cout << "1 ";
     for(int i = 1; i < n; i++) {
