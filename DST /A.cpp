@@ -477,8 +477,6 @@ vector <pair <int, char>> process(string str) {
     }
     return res;
 }
-#include<bits/stdc++.h>
-using namespace std;
 // find the minimal unused capacity of a knapsack of size cap given n items of various sizes. 
 void knapsack(int n, int cap) {
     vector <int> arr(cap + 1, 0);
