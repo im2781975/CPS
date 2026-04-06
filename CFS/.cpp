@@ -1,3 +1,16 @@
+
+// 490A
+void teamOlympiad(int n) {
+    vector <vector <int>> team(3);
+    for(int i = 1; i <= n; i++) {
+        cin >> t; t--;
+        team[t].push_back(i);
+    }
+    int k = min({team[0].size(), team[1].size(), team[2].size()});
+    for(int i = 0; i < k; i++) 
+        cout << team[0][i] << " " << team[1][i] << " " << team[2][i] << endl;
+}
+
 https://codeforces.com/problemset/problem/26/A
 // A. Almost Prime
 using namespace std;
