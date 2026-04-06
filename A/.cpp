@@ -354,3 +354,13 @@ void collatz(){
         cout << x << " ";
     }
 }
+// determine two values for each citizen: minimum & maximum distance to any other citizen.
+void linelandmail(int n) {
+    vector <int> arr(n); int mx, mn;
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    for(int i = 0; i < n; i++) {
+        int mx = max(abs(arr[i] - arr[0]), abs(arr[i] - arr[n - 1]));
+        int mn = (i == 0 ? arr[1] - arr[0] : i == n - 1 ? arr[n - 1] - arr[n - 2] : min(arr[i] - arr[i - 1], arr[i + 1] - arr[i]));
+        cout << mx << " " << mn << endl;
+    }
+}
