@@ -332,3 +332,25 @@ void fillchar(int r, int c) {
         cout << str << endl;
     }
 }
+//an arr represent the number of additional sockets available from various devices 
+//Each device can contribute a certain number of additional sockets.
+//determine how many devices need to use to ensure that you have enough sockets to accommodate a given number of devices
+void cntDevice() {
+    int supply, socket, device; cin >> supply >> socket >> device;
+    vector <int> arr(supply);
+    for(int i = 0; i < supply; i++) cin >> arr[i];
+    if(socket >= device) return cout << 0, 0;
+    sort(arr.rbegin(), arr.rend());
+    for(int i = 0; i < supply; i++) {
+        socket += arr[i] - 1;
+        if(socket >= device) return cout << i + 1, 0;
+    }
+    cout << -1;
+}
+void collatz(){
+    int n, x; cin >> n >> x;
+    for(int i = 0; i < n; i++){
+        (x % 2 == 0) ? x /= 2 : x = 3 * x + 1;
+        cout << x << " ";
+    }
+}
