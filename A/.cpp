@@ -101,3 +101,119 @@ void cntsteps(int n, int m) {
     }
     cout << forward << " " << backward << endl;
 }
+int binpow(int a, int b, int mod) {
+    int res = 1; a %= mod;
+    while(b > 0) {
+        if(b & 1) res = res * a % mod;
+        a = a * a % mod; b >>= 1
+    } return res;
+}
+int nCr(int n, int p, int r) {
+    if(r < 0 || r > n) return 0;
+    if(r == 0 || r == n) return 1;
+    int fact = 1, factr = 1, factnr = 1;
+    for(int i = 1; i <= n; i++) fact = fact * i % p;
+    for(int i = 1; i <= r; i++) factr = factr * i % p;
+    for(int i = 1; i <= n - r; i++) factnr = factnr * i % p;
+    int x = binpow(factr, p - 2, p);
+    int y = binpow(factnr, p - 2, p);
+    return (fact * x % p) * y % p;
+}
+const int x = 100100; bool prime[x];
+void isprime() {
+    for(int i = 2; i < x; i++) prime[i] = true;
+    prime[0] = prime[1] = true;
+    for(int p = 2; p < x; p++) {
+        if(prime[p]) {
+            for(int i = p * p; i < x; i += p) prime[i] = false;
+        }
+    }
+}
+void primefactor(int n, vector <int> &vec) {
+    while(n % 2 == 0) {
+        vec.push_back(2); n /= 2;
+    }
+    for(int i = 3; 1LL * i * i <= n; i += 2) {
+        while(n % i == 0) {
+            vec.push_back(i); n /= i;
+        }
+    }
+    if(n > 2) vec.push_back(n);
+}
+void primefactors(int n) {
+    if(n <= 1) return;
+    vector <int> vec(n + 1, 0);
+    for(int i = 2; i <= n; i += 2) vec[i] = 2;
+    for(int i = 3; i <= n; i += 2) {
+        if(vec[i] == 0) {
+            vec[i] = i;
+            for(int j = i * i; j <= n; j += i) {
+                if(vec[j] == 0) vec[j] = i;
+            }
+        }
+    }/*
+    vector<int> res;
+    while (n != 1) {
+        res.push_back(Factor[x]);
+        n /= Factor[x];
+    } 
+    for(auto x : res) cout << x << " "; */
+    map <int, int> factor;
+    int x = n;
+    while(x > 1) {
+        int p = vec[x]; factor[p]++; x /= p;
+    }
+    for(auto [p, power] : factor) cout << p << " " << power << endl;
+}
+int smallestDiv(int n) {
+    if(n % 2 == 0) return 2;
+    for(int i = 3; i * i <= n; i += 2) {
+        if(n % i == 0) return i;
+    }
+    return n;
+}
+vector <pair <int, int>> findsubarr(int *arr, int n) {
+    int sum = 0;
+    unordered_map <int, vector <int>> mp;
+    vector <pair <int, int>> vec;
+    for(int i = 0; i < n; i++) {
+        sum += arr[i];
+        if(sum == 0) vec.push_back({0, i});
+        if(mp.count(sum)) {
+            for(int idx : mp[sum]) vec.push_back({idx + 1, i});
+        }
+        mp[sum].push_back(i);
+    }
+    return vec;
+}
+int cntdisjoint(vector <pair <int, int>> vec) {
+    int cnt = 1, prv = -1;
+    for(auto it : vec) {
+        if(it.first > prv) {
+            cnt++; prv = it.second;
+        }
+    } return cnt;
+}
+// the length of the longest increasing subsequence (LIS) in vec.
+int longestsubseq(vector <int> vec) {
+    vector <int> res;
+    for(int x : vec) {
+        auto it = upper_bound(vec.begin(), vec.end(), x);
+        if(it == res.end()) res.push_back(x);
+        else *it = x;
+    } return res.size();
+}
+bool iskthbit(int n, int k){ return n & (1 << k); }
+// count subarrays whose XOR equals m using prefix XOR and a hash map.
+int subarrXor(int *arr, int n, int m) {
+    int cnt = 0, cxor = 0;
+    unordered_map <int, int> mp;
+    for(int i = 0; i < n; i++) {
+        cxor ^= arr[i];
+        if(cxor == m) cnt++;
+        int tmp = cxor ^ m;
+        if(mp.count(tmp)) cnt += mp[tmp];
+        mp[cxor]++;
+    }
+    return cnt;
+}
