@@ -1,5 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
+string intToString(int n){ return to_string(n); }
+int stringToInt(string str){ return stoi(str); }
+string tobinary(int n) {
+    if(n == 0) return "0";
+    string res = "";
+    while(n > 0) {
+        res = char('0' + (n % 2)) + res; n /= 2;
+    } /*
+    int arr[100], i = 0;
+    while(n > 0) {
+        arr[i] = n % 2; n /= 2; i++;
+    }
+    string res = "";
+    for(int j = i - 1; j >= 0; j--) res += char('0' + arr[j]); */
+    return res;
+}
+void revstr(string &str){
+    int len = str.size();
+    for(int i = 0; i < len / 2; i++)
+        swap(str[i], str[n - i - 1]);
+}
 //Processes q queries on a sorted vector type 1 finds first element ≥ k Or type 2 finds first element > k
 void bound(vector <int> vec) {
     sort(vec.begin(), vec.end()); 
