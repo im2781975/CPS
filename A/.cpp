@@ -382,3 +382,147 @@ void mincost(int n, vector <int> vec) {
     for(int i = 2; i < vec.size(); i += 3) sum -= vec[i];
     cout << sum;
 }
+int flipbits(int x) {
+    int flipp = 0, pos = 0;
+    while(x) {
+        if(x % 2 == 0) flipp += (1 << pos);
+        x /= 2; pos++;
+    } return flipp;
+}
+int bitsum(int n) {
+    int totalsum = 0;
+    while(n > 0) {
+        int val = flipbits(n), tmp = n;
+        if((tmp && (tmp + 1)) == 0) tmp--;
+        int partialsum = tmp * (tmp + 1) / 2 - val * (val - 1) % 2;
+        totalsum += 2 * partialsum;
+        n = val - 1;
+    } cout << totalsum << endl;
+}
+// Find the longest prefix of the string that can be ‘zeroed out’ with 
+// at most k operation‑cost, using a carry‑like digit‑increment trick
+int calculate(int mid, string str) {
+    int add = 0;
+    for(int i = mid; i >= 0; i--) {
+        int x = ((str[i] - '0') + add) % 10;
+        if(x == 0) continue;
+        add += 10 - x;
+    } return add;
+}
+void longestprefix(int n, int k, string str) {
+    int l = 0, r = n - 1, res = 0;
+    while(l <= r) {
+        int mid = (l + r) / 2;
+        if(calculate(mid, str) > k) r = mid - 1;
+        else res = mid + 1, l = mid + 1;
+    } cout << res << " ";
+}
+void compute(int n) {
+    if(n <= 3) cout << "-3", return;
+    int res = n;
+    if(n % 2 == 0) res += n / 2;
+    else res += (n - 1) / 2;
+    cout << res; /*
+    int curr = 2;
+    for(int i = 0; i < n; i++) {
+        cout << curr << " ";
+        if(i % 2 == 0) curr++;
+        else curr += 3;
+    } */
+}
+vector <int> Incrsubseq(vector <int> vec) {
+    vector <int> res;
+    for(int i = 0; i < vec.size(); i++) {
+        if(res.empty() || res.back() <= vec[i]) res.push_back(vec[i]);
+        else {
+            int bnd = upper_bound(res.begin(), res.end(), vec[i]) - res.begin();
+            res[bnd] = vec[i];
+        }
+    }
+    return res.size();
+}
+int Incrsubseq(vector <int> vec) {
+    multiset <int> st;
+    for(int x : vec) {
+        st.insert(x);
+        auto it = st.upper_bound(x);
+        if(it != st.end()) st.erase(it);
+    } return (int)st.size();
+}
+// minimum cost to transform str to ing by flipping zeros
+void mincost(int n, string str, string ing) {
+    vector <int> vec(n + 1, 0), grp(n + 1, 0);
+    for(int i = n - 1; i >= 0; i--) {
+        vec[i] = vec[i + 1] + (str[i] == '0');
+        grp[i] = grp[i + 1] + (ing[i] == '0');
+    }
+    vector <vector <int>> dp(n + 1, vector <int> (n + 1, 1e8));
+    dp[n][n] = 0;
+    for(int j = n - 1; j >= 0; j--) {
+        dp[n][j] = dp[n][j + 1];
+        if(ing[j] == '1') dp[n][j] += vec[n] + grp[j];
+    }
+    for(int i = n - 1; i >= 0; i--) {
+        for(int j = n - 1; j >= 0; j--) {
+            if (str[i] == '1')
+                dp[i][j] = min(dp[i][j], dp[i + 1][j + 1] + vec[i] + grp[j]);
+        }
+    }
+    cout << dp[0][0];
+}
+// computes the avg of the n−1 smallest values and adds back the largest val
+void computeavg(int n, vector <float> vec) {
+    sort(vec.rbegin(), vec.rend());
+    int sum = 0;
+    for(int i = 1; i < n; i++) sum += vec[i];
+    cout << sum / (n - 1) + vec[0];
+}
+void printchar(int n) {
+    for(int i = 0; i < n; i++) cout << 'a' + (i % 26) << " ";
+}
+// computes the GCD of all elements in the array except those in that range.
+void computeGCD(int *prefix, int *arr, int *suffix, int n) {
+    prefix[0] = arr[0];
+    for(int i = 1; i < n; i++) 
+        prefix[i] = gcd(prefix[i - 1], arr[i]);
+    suffix[n - 1] = arr[n - 1];
+    for(int i = n - 2; i >= 0; i--)
+        suffix[i] = gcd(suffix[i + 1], arr[i]);
+}
+int calculate(int l, int r, int *prefix, int *suffix, int n) { /*
+    computeGCD(prefix.data(), arr.data(), suffix.data(), n);
+    while (q--) {
+        int l, r; cin >> l >> r;
+        cout << calculate(l, r, prefix.data(), suffix.data(), n) << " ";
+    } */
+    if(l == 0) return suffix[r + 1];
+    if(r == n - 1) return prefix[l - 1];
+    return gcd(suffix[r + 1], prefix[l - 1]);
+}
+void framework(int row, int col, int n) {
+    for(int i = 0; i < row; i++) {
+        int start = i + 1, step = col + 1;
+        cout << start << " ";
+        for(int j = 1; j < col; j++) {
+            start += step; cout << start << " ";
+        }
+    } cout << endl; /*
+    for(int i = 0; i < col; i++) cout << i + 1 << " ";
+    int face = 2 + n;
+    for(int i = 1; i < row; i++) {
+        int x = face; cout << x << " ";
+        for(int j = 1; j < col; j++) {
+            x += i + 1, cout << x << " ";
+        }
+        face += row + 1;
+    } cout << " "; */
+}
+int leftrotation(int n, int pos, int *arr) {
+    pos %= n;
+    for(int r = 0; r < pos; r++) {
+        int tmp = arr[0];
+        for(int i = 0; i < n - 1; i++) arr[i] = arr[i + 1];
+        arr[n - 1] = tmp;
+    }
+    for (int i = 0; i < n; i++) cout << arr[i] << " ";
+}
