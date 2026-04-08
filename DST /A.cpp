@@ -692,6 +692,24 @@ void printprime() {
     for(int i = 0; i < 25; i++) sum += prime[i];
     cout << sum << endl;
 }
+int lcm(int a, int b){ return (a * (b / __gcd(a, b))); }
+int gcd(int a, int b) {
+    if(b == 0) return a;
+    return gcd(b, a % b);
+}
+bool Isprime(int n) {
+    if(n <= 1) return false;
+    for(int i = 2; i <= sqrt(n); i++) {
+        if(n % i == 0) return false;
+    }
+    return true;
+}
+bool Isperfect(int x) {
+    if(x >= 0) {
+        int n = sqrt(x); return(n * n == x);
+    }
+    return false;
+}
 // find and print the 1-based index of the unique element in
 void findunqIdx(int *arr, int n) {
     int unqIdx = -1;
