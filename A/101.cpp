@@ -1,4 +1,3 @@
-u
 using namespace std;
 int dp(int n){
     if(n == 1 || n == 2)
