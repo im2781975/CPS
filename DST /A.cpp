@@ -498,6 +498,26 @@ vector <pair <int, char>> process(string str) {
     }
     return res;
 }
+const int N = 502, W = 2001;
+int val[N], wt[N], dp[N][W], items[N];
+void knapsack(int n, int k) {
+    for(int i = 1; i <= n; i++) cin >> wt[i] >> val[i];
+    for(int cap = 0; cap <= k; cap++) dp[0][cap] = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int cap = 0; cap <= k; cap++) {
+            if (cap >= wt[i])
+                dp[i][cap] = max(dp[i - 1][cap], dp[i - 1][cap - wt[i]] + val[i]);
+            else dp[i][cap] = dp[i - 1][cap];
+        }
+    }
+    int idx = 0, remcap = k;
+    for(int i = n; i > 0; i--) {
+        if(dp[i][remcap] == dp[i - 1][remcap]) continue;
+        items[idx++] = i; remcap -= wt[i];
+    }
+    sort(items, items + idx);
+    for (int i = 0; i < idx; i++) cout << items[i] << " ";
+} 
 // find the minimal unused capacity of a knapsack of size cap given n items of various sizes. 
 void knapsack(int n, int cap) {
     vector <int> arr(cap + 1, 0);
