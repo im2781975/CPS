@@ -526,3 +526,92 @@ int leftrotation(int n, int pos, int *arr) {
     }
     for (int i = 0; i < n; i++) cout << arr[i] << " ";
 }
+#include<bits/stdc++.h>
+using namespace std;
+// Compute a recurrence‑based integer sequence using memoized recursion
+int tmp[1e5];
+int dp(int n) {
+    if(n == 1 || n == 2) return 1;
+    if(n == 3) return 2;
+    if(tmp[n] != 0) return tmp[n];
+    return tmp[n] = tmp(n - 1) + tmp(n - 3);
+}
+// Counts how many times team 'B' appears.
+void appear() {
+    int a = 0, b = 0;
+    for(int i = 0; i < 6; i++) {
+        char ch; cin >> ch;
+        if(ch == 'A') a++;
+        else if(ch == 'B') b++;
+    }
+    if (b >= 3) cout << 100;
+    else if (b == 2) cout << 70;
+    else cout << 40;
+}
+// find positions where character differs from two previous
+void findpos(string str) {
+    if(str[0] != str[1]) cout << (str[0] != str[2] ? "1" : "2");
+    for(int i = 2; i < str.length(); i++) {
+        if(str[i] != str[i - 1] && str[i] != str[i - 2]) cout << i + 1 << " ";
+    }
+}
+// builds a forward‑difference table and outputs only the first column of that table.
+void difftable(int n) {
+    int arr[100][100], tmp[100][100];
+    for(int i = 0; i < n; i++) cin >> arr[0][i];
+    for(int i = 0; i < n; i++) tmp[0][i] = arr[0][i];
+    for(int j = 1; j < n; j++) {
+        for(int i = 0; i < n; i++)
+            tmp[j][i] = tmp[j - 1][i + 1] - tmp[j - 1][i];
+    }
+    for(int i = 0; i < n; i++) cout << tmp[i][0] << " ";
+}
+const int mod = 1000000007;  
+int mulMod(int a, int b){ return 1LL * a * b % mod; }
+int powerMod(int x, int y) {
+    if (y == 0) return 1;
+    int res = powerMod(x, y / 2);
+    res = mulMod(res, res);
+    if (y & 1) res = mulMod(res, x);
+    return res;
+}
+// There are n machines, and machine i takes arr[i] seconds to produce one unit of a product. 
+// computes how long it takes to produce the next unit after the first m units are completed.
+int Bsearch(int *arr, int trg, int high) {
+    // cout << Bsearch(m + 1, max_time) - Bsearch(m, max_time) << " ";
+    int low = 0, res = high; // time
+    while(low <= high) {
+        int mid = (low + high) / 2;
+        int total = 0;
+        // total units produced by all machines in time `mid`
+        for(int i = 0; i < n; i++) {
+            total += mid / arr[i];
+            if(total < trg) low = mid + 1;
+            else {
+                res = mid; high = mid - 1;
+            }
+        }
+    }
+    return res;
+}
+// shift each uppercase‑like letter in the input string backward by 2 positions in the alphabet
+void shiftchar(string str) {
+    for(auto ch : str) {
+        if(ch != ' ') {
+            if(ch - 2 < 'A') ch += 24;
+            else ch -= 2;
+        } cout << ch;
+    }
+}
+// check whether the second sequence of n numbers appears as a subsequence in the first array arr, in order
+void check(int n, int *arr) {
+    int tmp = 0, cnt = 0;
+    for(int i = 0; i < n; i++) {
+        int x; cin >> x;
+        if(tmp != x) {
+            while(cnt < n && arr[cnt] != x) ++cnt;
+            tmp = x;
+        }
+    }
+    cout << (cnt < n ? "Yes" : "No");
+}
