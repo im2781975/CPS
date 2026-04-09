@@ -615,3 +615,160 @@ void check(int n, int *arr) {
     }
     cout << (cnt < n ? "Yes" : "No");
 }
+// Given the first letter of each Platonic‑solid name. computes the sum of their face counts
+void sumface(int n) {
+    int score = 0;
+    for(int i = 0; i < n; i++){
+        string str; cin >> str;
+        if(str[0] == 'T') score += 4;
+        else if(str[0] == 'C') score += 6;
+        else if(str[0] == 'O') score += 8;
+        else if(str[0] == 'D') score += 12;
+        else if(str[0] == 'I') score += 20;
+    } cout << score << endl;
+}
+// Given a starting time and increasing penalty per problem, finds the 
+// maximum number of problems that can be solved within 240 minutes.
+void maxsolved(int n, int k) {
+    // n, k -> total problems, initial time
+    int penalty[10] = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50};
+    int totaltime = k;
+    if(totaltime > 240) cout << 0, return;
+    for(int i = 0; i < n; i++) totaltime += 5 * (i + 1);
+    if(totaltime <= 240) cout << 0, return;
+    int Quetoremove = 0;
+    for(int i = n; i > 0; i--) {
+        Quetoremove++;
+        totaltime -= penalty[i - 1];
+        if(totaltime <= 240)
+            cout << n - Quetoremove, return;
+    } cout << 0 << endl;
+}
+// Converts string to majority case - all uppercase if ≥ 50% uppercase chars exist, else all lowercase.
+void convertstr(string str) {
+    int upper = 0, lower = 0;
+    for(char ch : str) {
+        if(ch >= 'a' && ch <= 'z') lower++;
+        else if(ch >= 'A' && ch <= 'Z') upper++;
+    }
+    if(upper >= lower) 
+        for(char& c : str) c = toupper(c);
+    else 
+        for(char& c : str) tolower(c); /*
+    int upper = 0;
+    for(char ch : str) {
+        if(isupper(ch)) upper++;
+    }
+    for(char ch : str) 
+        ch = (upper * 2 >= str.size()) ? toupper(ch) : tolower(ch); */
+    cout << str << endl;
+}
+// Count multiples of LCM(a,e) up to n:
+void cntmulti(int n, int a, int b) {
+    int cnt = 0;
+    for(int i = 1; i <= n; i++) {
+        if(i % a == 0 && i % b == 0) ++cnt;
+    }
+    cout << cnt;
+    // cout << n / lcm(a, b); 
+}
+// checks if two numbers are equal or consecutive
+void isequal(int a, int b){ cout << (abs(a - b) <= 1 ? "YES" : "NO"); }
+// Count the number of ways to tile a 2 * n board using 2 * 1 dominoes and
+// L‑shaped trominoes, and print only the last digit of the answer
+void cntways(int n) {
+    if(n == 0) cout << 1;
+    else cout << "6842"[n%4];
+}
+// Count how many times you can triple a and double b until a becomes strictly 
+// greater than b, starting from two initial integers a and b
+void cnttimes(int a, int b) {
+    int steps = 0;
+    while(a <= b) {
+        a *= 3; b *= 2; steps++;
+    } cout << steps;
+}
+// computes the sum of a geometric sequence of powers of 2, starting from 2
+void geosum(int n) {
+    int sum = 0, base = 2;
+    for(int i = 0; i < n; i++) {
+        sum += base; base *= 2;
+    } cout << sum;
+}
+// count the total number of digits used when writing all integers from n down to 1
+void cntdigits(int n) {
+    int res = 0;
+    for(int i = 1; i <= n; i++) {
+        int tmp = i, cnt = 0;
+        while(tmp) {
+            tmp /= 10; ++cnt;
+        } res += cnt;
+    } cout << res;
+}
+// Count how many knight moves are possible from a given chess square (assuming an 8 × 8 board)
+void cntmoves(string str) {
+    int moves = 8;
+    if(str[0] == 'a' || str[0] == 'h') moves = 5;
+    if(str[1] == '1' || str[1] == '8') {
+        if(moves == 8) cout << 5;
+        else if(moves == 5) cout << 3;
+        else cout << moves;
+    }
+}
+void func(int n) {
+    cout << (n % 2 == 0 ? n / 2 : -(n + 1) / 2);
+}
+// computing a sum over decreasing integers and then adding 1 at the end
+void computesum(int n) {
+    int sum = 0;
+    for(int i = 1; i <= n; i++) sum += i * 6;
+    cout << sum + 1;
+}
+// Count how many elements become at most 5 after adding x, and report how many full groups of 3 such elements exist.
+void cntgrp(int n, int x) {
+    int arr[n], cnt = 0;
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+        arr[i] += x;
+        if(arr[i] <= 5) ++cnt;
+    }
+    cnt /= 3; cout << cnt;
+}
+//Given an arr and step size x, compute the minimum number of steps of size x 
+//needed to reach or cross zero from the total sum
+void steps(int n, int x, int *arr) {
+    int sum = 0;
+    for(int i = 0; i < n; i++) sum += arr[i];
+    if(sum == 0) cout << 0, return 0;
+    int steps = 0;
+    if(sum > 0) steps = (sum + x - 1) / x; // ceil(sum / x)
+    else {
+        sum -= sum; steps = (sum + x - 1) / x;
+    } cout << steps;
+}
+// Count who wins more rounds (Mishka or Chris) from pairwise score comparisons, and print the winner (or a tie message).
+void game(int n, int *arr) {
+    int miska = 0, chris = 0;
+    for(int i = 0; i < n; i += 2) {
+        if(arr[i] > arr[i + 1]) miska++;
+        else (arr[i] < arr[i + 1]) chris++;
+    }
+    if(miska > chris) cout << "miska";
+    else if(chris > miska) cout << "chris";
+    else cout << "Friendship is magic";
+}
+// Check if a string is symmetric about its center, where the left half with b↔d flipped equals the right half.
+void issymmetric(string str) {
+    int len = str.size();
+    if(len % 2 == 0) cout << "NIE", return 0;
+    if(len == 1) cout << "TAK", return 0;
+    int mid = (len - 1) / 2;
+    string left = str.substr(0, mid);
+    string right = str.substr(mid + 1, mid);
+    reverse(left.begin(), left.end());
+    for (char &c : left) {
+        if (c == 'b' || c == 'B') c = 'd';
+        else if (c == 'd' || c == 'D') c = 'b';
+    }
+    cout << (left == right) ? "TAK" : "NIE";
+}
