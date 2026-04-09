@@ -772,3 +772,183 @@ void issymmetric(string str) {
     }
     cout << (left == right) ? "TAK" : "NIE";
 }
+#include<bits/stdc++.h>
+using namespace std;
+// compute n**n
+void compute(int n) {
+    int res = 1;
+    for(int i = 0; i < n; i++) res *= n;
+    cout << res;
+}
+// compute a modified value of a by iteratively adding a / b to a while 
+//original a keeps being divided by b, with special rules when b ≥ a.
+void compute(int a, int b) {
+    if(b > a) cout << a << endl;
+    else if(b == a) cout << a + 1 << endl;
+    else {
+        int orig = a;
+        while(orig >= b) {
+            a += a / b; orig /= b;
+        }
+        cout << a << endl;
+    }
+}
+// Check whether the string is “almost symmetric”, allowing at most one mismatch after reversing the left half and comparing it with the right half.
+void almostsymmetric(string str) {
+    int len = str.size(), mid = len / 2;
+    string x, y;
+    if(len % 2 == 1) {
+        x = str.substr(0, mid); y = str.substr(mid + 1, mid);
+    }
+    else {
+        x = str.substr(0, mid); y = str.substr(mid, mid);
+    }
+    reverse(x.begin(), x.end());
+    int diff = 0;
+    for(int i = 0; i < x.length(); ++i) {
+        if(x[i] != y[i]) ++diff;
+    }
+    cout << (diff <= 1 ? "Yes" : "No");
+}
+// swap only the even‑idx elements in the first half with their mirror positions 
+//in the second half, leaving odd‑indexed elements in the first half unchanged.
+void sorthalf(int *arr, int n) {
+    for(int i = 0; i < n / 2; i++) swap(arr[i], arr[n - 1 - i]);
+    for(int i = 0; i < n; i++) cout << arr[i] << " ";
+}
+// compute the total adjusted gap between each number and the maximum, where each strictly‑below gap is reduced by one.
+void adjgap(int a, int b, int c) {
+    int maxi = max({a, b, c});
+    int diff_a = maxi - a, diff_b = maxi - b, diff_c = maxi - c;
+    if (diff_a > 0) diff_a--;
+    if (diff_b > 0) diff_b--;
+    if (diff_c > 0) diff_c--;
+    cout << diff_a + diff_b + diff_c;
+}
+// Check whether n is a triangular number
+void istriangular(int n) {
+    int k = 1;
+    while(n > 0) {
+        n -= k; k++;
+    }
+    cout << (n == 0 ? "YES" : "NO");
+}
+// Count either the even or odd elements in the array, depending on the parity of the total sum.
+void cntevenOdd(int n, int *arr) {
+    int sum = 0;
+    for(int i = 0; i < n; i++) sum += arr[i];
+    bool iseven = (sum % 2 == 0);
+    for(int i = 0; i < n; i++) {
+        if(iseven && arr[i] % 2 == 0) cnt++;
+        if(!iseven && arr[i] % 2 != 0) cnt++;
+    }cout << cnt;
+}
+// if the smallest and second‑smallest values are equal print "Still Rozdil"; 
+// else print the index of the first occurrence of the smallest element.
+void isequal(int n, int *arr) {
+    if(n == 1) cout << 1, return 0;
+    int mn = min(arr[0], arr[1]);
+    int duo = max(arr[0], arr[1]);
+    for(int i = 2; i < n; i++) {
+        if(arr[i] < mn) { duo = mn; mn = arr[i]; }
+        else if(arr[i] < duo) duo = arr[i];
+    }
+    if(mn == duo) cout << "rodzill"; return 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == mn)
+            cout << i + 1 << endl; return 0;
+    }
+}
+// compute the minimum number of steps needed so that a becomes at least c, when in each step you can add b to a.
+void minsteps(int a, int b, int c) {
+    if (a >= c || b <= 0) {
+        cout << (a >= c ? 0 : -1) << endl;
+        return 0;
+    }
+    int need = c - a; cout << (need + b - 1) / b;
+}
+// Given n numbers and a target goal,fill buckets of size 8 in order. Return the minimum number of input elements needed
+//so that the total number of completely filled buckets is at least goal. If it is impossible, return -1.
+void minInput(int n, int goal, int *arr) {
+    if(goal == 0) {
+        cout << 0; return 0;
+    }
+    int bucket = 0, total = 0;
+    for(int i = 0; i < n; ++i) bucket += arr[i];
+    total += bucket / 8; bucket %= 8;
+    if(total >= goal) {
+        cout << i + 1 << endl; return 0;
+    } cout << -1;
+}
+// compare two computed scores and decide which participant “wins” or if they are equal.
+void whowin(int a, int b, int c, int d, int k) {
+    int first  = a * b + d * 2;
+    int duo = c * a + k * 2;
+    if(first < duo) cout << "first";
+    else if(first > duo) cout << "duo";
+    else cout << "friendship";
+}
+// compute the integer quotient q = a / b then check whether that quotient is odd
+void isOdd(int a, int b) {
+    a /= b;
+    cout << (a % 2 == 1 ? "YES" : "NO");
+}
+// computes the total amount you would need to raise each element up to the maximum value in the array
+void raiseval(int n, int *arr) {
+    int maxi = arr[0];
+    for(int i = 1; i < n; ++i) maxi = max(maxi, arr[i]);
+    int sum = 0;
+    for(int i = 0; i < n; i++) sum += maxi - arr[i];
+    cout << sum;
+}
+// find the length of the longest contiguous segment such that 
+// the diff between each adjacent pair of elements is at most limit
+int findlen(int n, int limit, int *arr) {
+    int len = 1, curr = 1;
+    for(int i = 1; i < n; i++) {
+        if(arr[i] - arr[i - 1] > limit) curr = 1;
+        else ++curr;
+    }
+    len = max(len, curr); cout << len;
+}
+void func(int n, int *arr) {
+    int x = arr[0] - arr[1];
+    for(int i = 2; i < n; i++) {
+        int diff = arr[i - 1] - arr[i];
+        if(diff != x && diff != arr[i - 1] * 2) {
+            cout << arr[n - 1]; return 0;
+        }
+    }
+    cout << ((a[n - 1] < 0 || d < 0) ? arr[n - 1] - x : arr[n - 1] + x);
+}
+// Is this array such that there is exactly one 0, and all other values are 1
+void exitsZero(int n, int *arr) {
+    if(n == 1) {
+        cout << (arr[0] == 0 ? "YES" : "NO"); return 0;
+    }
+    int count0 = 0, count1 = 0;
+    for (int i = 0; i < n; ++i) {
+        if (arr[i] == 0) count0++;
+        if (arr[i] == 1) count1++;
+    }
+    cout << (count0 == 1 ? "YES" : "NO");
+}
+// finds and prints the index of a specific element depending on how many odd numbers are in the array
+void printIdx(int n, int *arr) {
+    int Odd = 0;
+    for(int i = 0; i < n; i++) {
+        if(arr[i] % 2 == 1) ++Odd;
+    }
+    if(Odd == 1) {
+        for (int i = 0; i < n; ++i) {
+            if (arr[i] % 2 == 1)
+                cout << i + 1; return 0;
+        }
+    }
+    if(Odd > 1) {
+        for (int i = 0; i < n; ++i) {
+            if (arr[i] % 2 == 0)
+                cout << i + 1; return 0;
+        }
+    }
+}
