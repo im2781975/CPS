@@ -1,3 +1,39 @@
+//https://codeforces.com/problemset/problem/195/A
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main(int argc, char const *argv[])
+// {
+//     char arr[100];
+//     char app[100];
+//     cin >> arr;
+//     int t = 0, m = 0;
+//     for (int i = 0; arr[i] != '\0'; i++)
+//     {
+//         t++;
+//     }
+
+//     cout << t << endl;
+//     for (int i = 0; i < t; i++)
+//     {
+//         if (arr[i] == arr[t - 1 - i])
+//         {
+//             m++;
+//             continue;
+//         }
+//     }
+
+//     cout << m << endl;
+//     if (t == m)
+//     {
+//         cout << "its a palindrone number ";
+//     }
+//     else
+//     {
+//         cout << "its a not a palindrone number";
+//     }
+
+//     return 0;
+// }
 //https://codeforces.com/contest/200/problem/B
 #include<bits/stdc++.h>
 using namespace std;
