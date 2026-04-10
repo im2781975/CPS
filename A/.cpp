@@ -96,3 +96,68 @@ void powertwo(int64_t n, int64_t mx) {
     for (int i = 0; i < n; ++i) power *= 2;
     cout << x % power;
 }
+// checks whether the string str contains 7 consecutive identical characters in a row
+void isIdentical(string str) {
+    int cnt = 1;
+    for(int i = 1; i < str.length(); i++) {
+        if(str[i] == str[i - 1]) cnt++;
+        else cnt = 1;
+        if(cnt == 7) { cout << "YES"; return 0;}
+    } cout << "NO";
+}
+// constructs a sequence of digits from even‑index positions of the input 
+// string, sorts them, and outputs them in increasing order joined by +.
+void construct(string str) {
+    vector <int> vec;
+    for(int i = 0; i < str.length(); i += 2) vec.push_back(str[i] - '0');
+    sort(vec.begin(), vec.end());
+    for(int i = 0; i < vec.size(); i++) {
+        if(i > 0) cout << "+";
+        cout << vec[i];
+    }
+}
+// output the total len and longest len
+void longestword(string str) {
+    int m = 0, q = 0;
+    for(int i = 0; str.length(); i++) {
+        if(str[i] != ' ') m++;
+        else q = max(q, m), m = 0;
+    }
+    q = max(q, m); cout << str << " " << q;
+}
+// prints the first and last idx of a given value in the array, or does nothing
+void findIdx(int *arr, int val, int n) {
+    int first = -1, last = -1;
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == val) {
+            first = i; break;
+        }
+    }
+    for(int i = n - 1; i >= 0; i--) {
+        if(arr[i] == val) {
+            last = i; break;
+        }
+    }
+    if(first != last) cout << first << " " << last << endl;
+    else cout << -1;
+}
+// counts how many rows have a prefix sum (of 1, 2, or 3 elements) that is at least 2
+void cntprefix(int n) {
+    int m = 0;
+    for(int i = 0; i < n; ++i) {
+        int r = 0;
+        for(int j = 0; j < 3; ++j) {
+            int x; cin >> x; r += x;
+            if(r >= 2){ m++; break; }
+        }
+    } cout << m;
+}
+// counts the number of elements that are at least as large as their 1‑based position in the array.
+void cntval(int n, int *arr) {
+    int cnt = 0;
+    for(int i = 0; i < n; ++i) {
+        if(arr[i] >= i + 1) ++cnt;
+    } cout << cnt;
+}
+// maximum number of dominoes (each covering 2 cells) that can be placed on an m × n board,
+void dominoes(int m, int n){ cout << 1LL * m * n / 2;}
