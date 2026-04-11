@@ -374,6 +374,12 @@ int combination(int n, int r, int *fact, int *ifact) {
     if(r > n - r) r = n - r;
     return fact[n] * ifact[r] % mod * ifact[n - r] % mod;
 }
+int inv(int a) { return fastpow(a, mod - 2); }
+int C(int n, int r) {
+    int nume = fact[n];
+    int deno = (inv(fact[n - r]) * inv(fact[r])) % mod;
+    return (nume * deno) % mod;
+}
 int gcd(int a, int b) {
     while(b != 0) {
         int tmp = b; b = a % b; a = tmp;
