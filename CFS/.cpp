@@ -1,3 +1,56 @@
+
+158/B
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> odds, nonMultiplesOf4;
+    int multiplesOf4 = 0;
+    
+    // Read and categorize numbers
+    for (int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        if (x % 2 == 1) {
+            odds.push_back(x);
+        } else if (x % 4 == 0) {
+            multiplesOf4++;
+        } else {
+            nonMultiplesOf4.push_back(x);
+        }
+    }
+    
+    // Special case: all odds are 3
+    bool allThrees = true;
+    for (int odd : odds) {
+        if (odd != 3) {
+            allThrees = false;
+            break;
+        }
+    }
+    if (allThrees) {
+        cout << odds.size() << endl;
+        return 0;
+    }
+    
+    // Count taxis needed
+    int taxis = multiplesOf4;
+    taxis += odds.size() / 4;
+    taxis += nonMultiplesOf4.size() / 4;
+    
+    int remainingOdds = odds.size() % 4;
+    int remainingOthers = nonMultiplesOf4.size() % 4;
+    int totalRemaining = remainingOdds + remainingOthers;
+    
+    if (totalRemaining > 0) {
+        taxis += (totalRemaining + 3) / 4;  // Ceiling division
+    }
+    
+    cout << taxis << endl;
+    return 0;
+}
 //https://codeforces.com/problemset/problem/195/A
 // #include <bits/stdc++.h>
 // using namespace std;
