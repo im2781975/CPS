@@ -165,6 +165,17 @@ void primefactors(int n) {
     }
     for(auto [p, power] : factor) cout << p << " " << power << endl;
 }
+void primefactor(int l, int r, int n) {
+    for(int i = l; i <= r; i++) {
+        if(i == 1) continue;
+        while(n % i == 0) {
+            cout << i << " "; n /= i;
+        }
+    } if(n > 1) cout << n;
+}
+bool isbinseq(int num) {
+    return num > 0 && (num & (num - 1)) == 0;
+}
 int smallestDiv(int n) {
     if(n % 2 == 0) return 2;
     for(int i = 3; i * i <= n; i += 2) {
