@@ -569,3 +569,163 @@ void alicebob(int n, deque <int> dq) {
     }
     cout << a << " " << b << endl;
 }
+int maxsubarrsum(int *arr, int sz) {
+    int maxsum = INT_MIN;
+    int slidesum = 0;
+    for(int i = 0; i < sz; i++) {
+        slidesum += arr[i];
+        if(maxsum < slidesum) maxsum = slidesum;
+        if(slidesum < 0) slidesum = 0;
+    } return maxsum;
+}
+void ispalindrome(int n) {
+    int rev = 0, val = n;
+    while(n > 0) {
+        rev = rev * 10 + n % 10; n /= 10;
+    }
+    cout << (rev == val ? "palindrome" : "isn't palindrome");
+}
+bool ispalindrome(int *arr, int idx, int n) {
+    if(idx == n) return true;
+    return (arr[idx] == arr[n - idx - 1]) && ispalindrome(arr, idx + 1, n);
+}
+int findsumstr(string str) {
+    int sum = 0, num = 0;
+    for(char ch : str) {
+        if(isdigit(ch)) num = num * 10 + (ch - '0');
+        else {
+            sum += num; num = 0;
+        }
+    } return sum + num;
+}
+int sqt(int x) {
+    if(x == 0 || x == 1) return 1;
+    int start = 1, end = x / 2;
+    while(start <= end) {
+        int mid = start + (end - start) / 2;
+        if(mid > x / mid) end = mid - 1;
+        else start = mid + 1;
+    } return end;
+}
+// even odd query
+void query(int res, int q, int iseven, int isodd) {
+    while(q--) {
+        int num, evenorOdd; cin >> num >> evenorOdd;
+        if(num == 0) {
+            res += evenorOdd * iseven;
+            if (evenorOdd % 2 != 0) {
+                isodd += iseven; iseven = 0;
+            }
+        } else if (num == 1) {
+            res += evenorOdd * isodd;
+            if (evenorOdd % 2 != 0) {
+                iseven += isodd;
+                isodd = 0;
+            }
+        }
+    } cout << res;
+}
+int powerOf2(int n) {
+    if(n == 0) return 1;
+    return pow(2, ceil(log2(n)));
+    // return n & ~(n - 1); // highest of power two
+}
+int binetsformula(int n) {
+    const double x = (1 + sqrt(5)) / 2;
+    const double y = (1 - sqrt(5)) / 2;
+    return round(pow(x, n) - pow(y, n)) / sqrt(5);
+}
+void sortBylen(string str, int n) {
+    for(int i = 1; i < n; i++) {
+        string tmp = str[i];
+        int j = i - 1;
+        while(j >= 0 && str[i].length() < str[j].length()) {
+            str[j + 1] = str[j]; j--;
+        }
+        str[j + 1] = tmp; i = j + 1;
+    }
+}
+int BsearchCnt(int *arr, int n, int key) {
+    int left = 0, right = n - 1, first = -1;
+    while(left <= right) {
+        int mid = left + (right - left) / 2;
+        if(arr[mid] == key) {
+            first = mid; right = mid - 1;
+        }
+        else if(arr[mid] < key) left = mid + 1;
+        else right = mid - 1;
+    }
+    left = first, right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == key) left = mid + 1;
+        else right = mid - 1;
+    } return left - first;
+}
+// Checks if digits of x and y together contain all 10 digits (0-9 exactly once).
+bool is(int x, int y) {
+    bool vis[10] = {};
+    auto adddigits = [&](int n) {
+        if(n < 0) n = -n;
+        do {
+            vis[n % 10] = true; 
+        } while(n /= 10);
+    };
+    adddigits(x); adddigits(y);
+    for(int i = 0; i < 10; i++) {
+        if(!vis[i]) return false;
+    } return true;
+}
+int cntOnes(int n) {
+    int cnt = 0;
+    while(n) {
+        cnt += (n & 1); n >>= 1;
+    } return cnt;
+}
+string convertTobin(int x) {
+    if(x == 0) return "0";
+    string str;
+    while(x) {
+        str.push_back('0' + (x & 1));
+        x >>= 1;
+    }
+    reverse(str.begin(), str.end()); return str;
+}
+// Find maximum, minimum, avg score
+void avgscore(int n) {
+    int maxi = INT_MIN, mini = INT_MAX, sum = 0;
+    int score[10010];
+    for(int i = 0; i < n; i++) {
+        cin >> score[i];
+        maxi = max(maxi, score[i]);
+        mini = min(mini, score[i]);
+        sum += score[i];
+    }
+    cout << maxi << " " << mini << " " << (sum /(1.0 * n)) << endl;
+}
+// Maximum Rectangle Area from Grid Points
+pair <int, int> edges[110];
+void maxarea(int n) {
+    int ans = 0;
+    for(int i = 0; i < n; i++)
+        cin >> edges[i].first >> edges[i].second;
+    for(int i = 0; i < n; i++) {
+        int x1 = edges[i].first, y1 = edges[i].second;
+        int max_x = x1, max_y = y1;
+        for(int j = 0; j < n; j++) {
+            if(edges[j].first == x1) max_y = max(max_y, edges[j].second);
+            if(edges[j].second == y1) max_x = max(max_x, edges[j].first);
+        }
+        ans = max(ans, (max_x - x1) * (max_y - y1));
+    } cout << ans;
+}
+void runlen(string str) {
+    for(size_t i = 0; i < str.size(); i++) {
+        char ch = str[i];
+        if(isalpha(ch) && i + 1 < str.size() && isdigit(str[i + 1])) {
+            int n = str[i + 1] - '0';
+            cout << string(n, ch); i++;
+        }
+        else if(isalpha(ch)) cout << ch;
+    }
+}
