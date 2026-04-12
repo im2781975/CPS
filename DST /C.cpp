@@ -830,3 +830,30 @@ void validatepath(string str) {
     if(x == 0 && y == 0) cout << "NO";
     else cout << "Yes";
 }
+void maxpathsum(int n) {
+    vector <vector <int>> ang(n + 1);
+    for(int i = 1; i <= n; i++) {
+        ang.resize(n + 1);
+        for(int j = 1; j <= i; j++) cin >> ang[i][j];
+    }
+    for(int i = 2; i <= n; i++) {
+        for(int j = 1; j <= i; j++) 
+            ang[i][j] += max(ang[i - 1][j - 1], ang[i - 1][j]);
+    }
+    cout << *max_element(tri[n].begin() + 1, tri[n].end()) << endl;
+}
+// count the number of matching “prefix sums” between two arrays, by greedily “merging” and extending prefixes.
+void prefixsum(int n, int m, int *arr, int *grp) {
+    int l = 0, r = 0, res = 0;
+    while(l < n && r < m) {
+        if(arr[l] == grp[r]) {
+            ++l; ++r; ++res;
+        }
+        else if(arr[l] > grp[r]) {
+            ++r; grp[r] += grp[r - 1];
+        }
+        else {
+            ++l; arr[l] += arr[l - 1];
+        }
+    } cout << res;
+}
