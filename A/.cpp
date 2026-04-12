@@ -729,3 +729,104 @@ void runlen(string str) {
         else if(isalpha(ch)) cout << ch;
     }
 }
+int search(vector <int> vec, int trg) {
+    int l = 0, r = arr.size() - 1;
+    while(l <= r) {
+        int mid = l + (r - l) / 2;
+        if(vec[mid] == trg) return mid;
+        if(vec[l] <= vec[mid]) {
+            if(vec[l] <= trg && trg < vec[mid]) r = mid - 1;
+            else l = mid + 1;
+        }
+        else {
+            if(vec[mid] < trg && trg <= vec[r]) l = mid + 1;
+            else r = mid - 1;
+        }
+    } return -1;
+}
+// swap permutation position tracker
+void postracker(int n) {
+    int pos = 1;
+    for(int i = 0; i < n; i++) {
+        int a, b, g; cin >> a >> b >> g;
+        if(pos == a) pos = b;
+        else if(pos == b) pos = a;
+        static int cnt[4] = {}; cnt[pos]++;
+    }/*
+    int cnt[4] = {};
+    int perm[4] = {0, 1, 2, 3};
+    for(int i = 0; i < n; i++) {
+        int a, b, g; cin >> a >> b >> g;
+        swap(perm[a], perm[b]);
+        for(int pos = 1; pos <= 3; ++pos) {
+            if(perm[pos] == g) {
+                cnt[pos]++; break;
+            }
+        }
+    } */
+    int res = 1;
+    for(int i = 2; i <= 3; i++) {
+        if(cnt[i] > cnt[res]) res = i;
+    } cout << res;
+}
+// Given an array of integers, output "YES" if it can be partitioned into 2 non-empty subsets with equal sum, "NO" otherwise
+void partitioncheck(int n) {
+    unordered_map <int, int> freq;
+    for(int i = 0; i < n; i++) {
+        int x; cin >> x;
+        freq[x]++;
+    }
+    if(freq[0]) cout << "NO" << endl;
+    else if(freq.size() == 2){
+        auto it = freq.begin();
+        int x = it++ -> first, y = it -> first;
+        cout << (x + y == 0 ? "NO" : "YES") << endl;
+    } 
+    cout << "YES" << endl;
+}
+// counts how many previous occurrences of the same string are “reachable” within a certain distance in the sequence
+void slidematching(int n, int k) {
+    unordered_map <string, vector <int>> pos;
+    int res = 0;
+    for(int i = 1; i <= n; i++) {
+        string str; cin >> str;
+        auto &vec = pos[str];
+        auto it = lower_bound(vec.begin(), vec.end(), i - k - 1);
+        res += vec.end() - it;
+        vec.push_back(i);
+    } cout << res;
+}
+// validate a 2D path given as a string of moves (U, D, L, R) and decide whether the path is “allowed” (YES) or not (NO).
+void validatepath(string str) {
+    int x = y = 0, n = str.size();
+    unordered_set <string> vis;
+    for(int i = 0; i < n; i++) {
+        char ch = str[i];
+        if (i + 1 < n) {
+            char nc = str[i + 1];
+            if ((ch == 'L' && nc == 'R') || (ch == 'R' && nc == 'L') ||
+                (ch == 'U' && nc == 'D') || (ch == 'D' && nc == 'U')) {
+                cout << "NO"; return 0;
+            }
+        }
+        if (ch == 'U') y++;
+        else if (ch == 'D') y--;
+        else if (ch == 'R') x++;
+        else if (ch == 'L') x--;
+    }
+    for (int i = 0; i + 2 < n; i++) {
+        string tri = str.substr(i, 3);
+        vis.insert(tri);
+    }
+    // Forbidden 3‑character patterns
+    string forbidden[8] = {
+        "ULD", "URD", "LDR", "LUR", "DLU", "DRU", "RUL", "RDL"
+    };
+    for(int i = 0; i < 8; i++) {
+        if(vis.count(forbidden[i])) {
+            cout << "NO"; return 0;
+        }
+    }
+    if(x == 0 && y == 0) cout << "NO";
+    else cout << "Yes";
+}
