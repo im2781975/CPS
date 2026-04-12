@@ -173,6 +173,35 @@ void primefactor(int l, int r, int n) {
         }
     } if(n > 1) cout << n;
 }
+void factorize(int n) {
+    int cnt = 0;
+    while(n % 2 == 0) {
+        cnt++; n /= 2;
+    }
+    if(cnt) cout << 2 << "^" << cnt << endl;
+    for(int i = 3; i * i <= n; i += 2) {
+        cnt = 0;
+        while(n % i == 0) {
+            cnt++; n /= i;
+        }
+        if(cnt) cout << i << "^" << cnt << endl;
+    }if(n > 2) cout << n << "^1" << endl;
+}
+bool oneprimefactor(int num) {
+    if(num < 2) return false;
+    if(num % 2 == 0) {
+        num /= 2;
+        while(num % 2 == 0) num /= 2;
+        return num == 1;
+    }
+    for(int i = 3; i * i <= num; i += 2) {
+        if(num % i == 0) {
+            num /= i;
+            while(num % i == 0) num /= i;
+            return num == 1;
+        }
+    } return num > 1;
+}
 bool isbinseq(int num) {
     return num > 0 && (num & (num - 1)) == 0;
 }
