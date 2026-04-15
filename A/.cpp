@@ -386,3 +386,127 @@ void slidesum(int n, int k) {
         }
     } cout << L << " " << R << " " << maxsum;
 }
+// n people (1 to n). m operations where person k kills everyone in range [l,r] except himself
+void whokilledhimself(int n, int m) {
+    while(cin >> n >> m) {
+        set <int> alive;
+        vector <int> killed(n + 1, 0);
+        for(int i = 1; i <= n; i++) alive.insert(i);
+        for(int i = 0; i < m; i++) {
+            int l, r, k; cin >> l >> r >> k;
+            // Erase everyone in [l,r] except k
+            auto it = alive.lower_bound(l);
+            while(it != alive.end() *it <= r) {
+                int x = *it; ++it;
+                if(x != k) {
+                    killed[x] = k; alive.erase(x - 1);
+                }
+            }
+        }
+        for(int i = 1; i <= n; i++)
+            cout << killed[i] << (i < n ? " " : "");
+    }
+}
+bool next_permutation(string str) {
+    int i = str.size() - 2;
+    while(i >= 0 && str[i] >= str[i + 1]) i--;
+    if(i < 0) {
+        reverse(str.begin(), str.end()); return false;
+    }
+    int j = str.size() - 1;
+    while(str[j] <= str[i]) j--;
+    swap(str[i], str[j]);
+    reverse(str.begin() + i + 1, str.end());
+    return true;
+}
+// Count numbers in range [n,m] avoiding forbidden digit patterns
+int dp[10][2], digit[10];
+int cntnumber(int n, int m) {
+    memset(dp, -1, sizeof(dp));
+    auto count = [&](int x) -> int {
+        if(x < 0) return 0;
+        int len = 0;
+        do {
+            digit[++len] = x % 10; x /= 10;
+        } while(x);
+        function<int(int,int,bool)> dfs = [&](int pos, int has6, bool tight) -> int {
+            if(pos == 0) return 1;
+            
+            if(!tight && dp[pos][has6] != -1) return dp[pos][has6];
+            
+            int ans = 0, up = tight ? digit[pos] : 9;
+            for(int d = 0; d <= up; d++) {
+                if(d == 4 || (has6 && d == 2)) continue;
+                ans += dfs(pos-1, has6 || (d == 6), tight && (d == up));
+            }
+            if(!tight) dp[pos][has6] = ans;
+            return ans;
+        };
+        return dfs(len, 0, true);
+    };
+    return count(m) - count(n-1);
+}
+// Count numbers ≤ m containing the 49 subsequence pattern
+long long dp[100][2], digit[100];
+long long cntnumber(long long m) {
+    memset(dp, -1, sizeof(dp));
+    auto count = [&](long long x) -> long long {
+        if(x < 0) return 0;
+        int len = 0;
+        do {
+            digit[++len] = x % 10;
+            x /= 10;
+        } while(x);
+        function<long long(int,int,bool)> dfs = [&](int pos, int has4, bool tight) -> long long {
+            if(pos == 0) return 1;
+            if(!tight && dp[pos][has4] != -1) return dp[pos][has4];
+            long long ans = 0;
+            int up = tight ? digit[pos] : 9;
+            for(int d = 0; d <= up; d++) {
+                if(has4 && d == 9) continue;  
+                ans += dfs(pos-1, has4 || (d == 4), tight && (d == up));
+            }
+            if(!tight) dp[pos][has4] = ans;
+            return ans;
+        };
+        return dfs(len, 0, true);
+    };
+    return m + 1 - count(m);
+}
+void freqranking(int n) {
+    map< string, int> freq;
+    string line;
+    for(int i = 0; i < n; i++) {
+        getline(cin >> ws, line);  // Read full line including spaces
+        string word;
+        for(char c : line) {
+            if(isalpha(c)) word += tolower(c);
+            else if(!word.empty()) {
+                freq[word]++; word.clear();
+            }
+            if(!word.empty()) freq[word]++;
+        }
+        // Convert to vector for sorting
+        vector<pair<string, int>> words;
+        for(auto& p : freq) 
+            words.emplace_back(p.first, p.second);
+        sort(words.begin(), words.end(),  [](const auto& a, const auto& b) {
+                if(a.second != b.second) return a.second > b.second;
+                return a.first > b.first;
+        });
+        for(int i = 0; i < min(n, (int)words.size()); i++) {
+            cout << words[i].first << " " << words[i].second << endl;
+        }
+    }
+}
+// Fast lookup table for binomial coefficients C(m,n) = "m choose n"
+void binomial(int n, int m) {
+    int dp[11][11] = {};
+    dp[0][0] = 1;
+    // Precompute all combinations C(i,j) for i,j <= 10
+    for(int i = 1; i <= 10; i++) {
+        for(int j = 0; j <= i; j++)
+            dp[i][j] = (j == 0 ? dp[i-1][j] : dp[i][j-1] + dp[i-1][j]);
+    }
+    cout << dp[m][n];
+}
