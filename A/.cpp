@@ -510,3 +510,15 @@ void binomial(int n, int m) {
     }
     cout << dp[m][n];
 }
+// Extracts digits 0-3 from string, sorts them, prints as sum expression
+void extractdigits(string str) {
+    string digits;
+    for(char ch : str) {
+        if(ch >= '0' && ch <= '3') digits += ch;
+    }
+    sort(digits.begin(), digits.end());
+    if(!digits.empty()) {
+        cout << digits[0];
+        for(size_t i = 1; i < digits.size(); i++) cout << "+" << digits[i];
+    }
+}
