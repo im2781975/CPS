@@ -246,3 +246,100 @@ void luckyrange() {
     }
     return 0;
 }
+// Checks if ing appears as a reverse subsequence in str with strictly decreasing positions (no character reuse).
+bool matchrev(const string &str, const string &ing) {
+    if(str == ing) return true;
+    if(str.size() < ing.size()) return false;
+    size_t prvpos = str.rfind(ing.back());
+    if(prvpos == string::npos) return false;
+    for(int i = ing.size() - 2; i >= 0; --i) {
+        size_t pos = str.rfind(ing[i], prvpos);
+        if(pos == string::npos || pos >= prvpos) return false;
+        prvpos = pos;
+    } return true;
+}
+// Finds elements in array A that are not in forbidden set B, prints them sorted, or "NULL" if none exist.
+void findval(int n, int m) {
+    while(cin >> n >> m) {
+        unordered_set <int> forbidden;
+        vector <int> arr(n);
+        for(int i = 0; i < n; i++) cin >> arr[i];
+        // forbidden values
+        for(int i = 0; i < m; i++) {
+            int x; cin >> x; forbidden.insert(x);
+        }
+        sort(arr.begin(), arr.end());
+        bool first = true;
+        for(int val : arr) {
+            if(!forbidden.count(val)) {
+                if(!first) cout << " ";
+                cout << val;
+                first != first;
+            }
+        }
+        cout << (first ? "NULL" : endl);
+    }
+}
+// Josephus Problem variant - simulates elimination game with variable counting steps
+void simulate(int n, int k) {
+    queue <int> q;
+    for(int i = 1; i <= n; i++) q.push(i);
+    while(k--) {
+        int x; cin >> x;
+        int steps = x % q.size();
+        for(int i = 0; i < steps; i++) {
+            q.push(q.front()); q.pop();
+        }
+        cout << q.front() << " "; q.pop();
+    }
+}
+// Compares two strings character by character after converting both to 
+// uppercase, using the first differing position to decide order
+void cmprstr(string a, string b) {
+    for(size_t i = 0; i < a.size(); i++) {
+        a[i] = toupper(a[i]);
+        b[i] = toupper(b[i]);
+        if(a[i] > b[i]) return cout << 1, 0;
+        if(a[i] < b[i]) return cout << -1, 0;
+    } /*
+    transform(a.begin(), a.end(), a.begin(), ::toupper);
+    transform(b.begin(), b.end(), b.begin(), ::toupper);
+    cout << a.compare(b); */
+}
+string digsum(string str, int k) {
+    while(str.size() > k) {
+        string tmp = "";
+        for(int i = 0; i < str.size(); i += k) {
+            int sum = 0;
+            for(int j = 0; j < k && i + j < str.size(); j++) sum += str[i + j] - '0';
+            next += to_string(sum);
+        }
+        str = next;
+    } return str;
+}
+void convertstr(string str) {
+    vector <int> res;
+    for(int i = 0; i < str.size(); i++) {
+        if(str[i] >= '0' && str[i] <= '9') res.push_back(str[i] - '0');
+    }
+    sort(res.begin(), res.end()); cout << res[0];
+    for(int i = 1; i < res.size(); i++) cout << "+" << res[i];
+}
+// Converts a string of digits "1", "2", "3" into a mathematical sum expression in ascending digit order.
+void buildexpr(string str) {
+    int cnt1 = cnt2 = cnt3 = 0;
+    for(char ch : str) {
+        if(ch == '1') ++cnt1;
+        else if(ch == '2') ++cnt2;
+        else if(ch == '3') ++cnt3;
+    }
+    string res;
+    int cnt[4] = {0, cnt1, cnt2, cnt3};
+    for(int dig = 1; dig <= 3; ++dig) {
+        int d = cnt[dig];
+        if(d == 0) continue;
+        for(int i = 0; i < d; ++i) {
+            res += char('0' + dig); res += '+';
+        }
+    } if(!res.empty()) res.pop_back();
+}
