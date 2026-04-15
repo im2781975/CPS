@@ -343,3 +343,46 @@ void buildexpr(string str) {
         }
     } if(!res.empty()) res.pop_back();
 }
+// Counts valid necklace rotations where a substring can be "sorted" by rotation
+void validrotation(string str) {
+    string tmp = str + str;
+    vector <int> prefix(tmp.size() + 1, 0);
+    for(int i = 1; i <= tmp.size(); ++i)
+        prefix[i] = prefix[i - 1] + (tmp[i - 1] == 'C' ? 1 : -1);
+    int len = str.size();
+    vector <bool> forward(len), backward(len);
+    deque <int> dq;
+    for(int i = 1; i <= tmp.size(); i++) {
+        while(!dq.empty() && prefix[dq.back()] >= prefix[i]) dq.pop_back();
+        dq.push_back(i);
+        while(!dq.empty() && i - dq.front() >= len) dq.pop_front();
+        if(i >= len) forward[i - len] = (prefix[i - len] <= prefix[q.front()]);
+    }
+    reverse(tmp.begin(), tmp.end());
+    int res = 0;
+    for(int i = 0; i < len; i++) {
+        if(forward[i] || backward[len - 1 - i]) res++;
+    } cout << res;
+}
+// Maximum subarray sum with wrap-around (circular array extension by k positions).
+void slidesum(int n, int k) {
+    vector <int> arr(n + k), prefix(n + k + 1, 0);
+    for(int i = 1; i <= n; i++) {
+        cin >> arr[i - 1];
+        prefix[i] = prefix[i - 1] + arr[i - 1];
+    }
+    for(int i = n + 1; i <= n + k; i++) {
+        arr[i - 1] = arr[i - 1 - n];
+        prefix[i] = prefix[i - 1] + arr[i - 1];
+    }
+    int maxsum = INT_MIN, L = 0, R = 0;
+    for(int i = 1; i <= n + k; i++) {
+        for(int j = 0; j < i; j++) {
+            int sum = prefix[i] - prefix[j];
+            if(sum > maxsum) {
+                maxsum = sum;
+                L = j+1; R = i;
+            }
+        }
+    } cout << L << " " << R << " " << maxsum;
+}
