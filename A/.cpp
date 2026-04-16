@@ -522,3 +522,64 @@ void extractdigits(string str) {
         for(size_t i = 1; i < digits.size(); i++) cout << "+" << digits[i];
     }
 }
+// number of unique (X,Y) pairs across all given ranges
+void unqpair(int n, int a, int b) {
+    set <pair <int, int>> st;
+    for(int i = 0; i < n; i++) {
+        int l, r; cin >> l >> r;
+        int x = (j + (j / b)) % a;
+        int y = j % b; st.insert({x, y});
+    } cout << st.size();
+}
+// Interactive Binary String Zero Counter with Updates
+void zerocounter(int n, int m, string str) {
+    vector <int> zeros;
+    for(int i = 0; i < n; i++) {
+        if(str[i] == '0') zeros.push_back(i);
+    }
+    for(int q = 0; q < m; q++) {
+        string type; cin >> type;
+        if(type = "query") {
+            int l, r; cin >> l >> r;
+            // Count zeros STRICTLY between l and r (exclusive)
+            int count = 0;
+            for (int pos : zeros) {
+                if (l < pos && pos < r) count++;
+            }
+            cout << count << endl;
+        } else {
+            int x; cin >> x; x--;
+            str[x] = (str[x] == '0') ? '1' : '0';
+            zeros.clear();
+            for (int i = 0; i < n; i++) {
+                if (str[i] == '0') zeros.push_back(i);
+            }
+        }
+    }
+}
+// Historical Range All-Ones Query Tracker
+void querytracker(int n, int m, string str) {
+    vector<string> history;
+    history.push_back(str);
+    
+    for (int i = 0; i < m; i++) {
+        string type; cin >> type;
+        if (type == "query") {
+            int l, r; cin >> l >> r;
+            l--; r--; 
+            int ans = 0;
+            for (const string& state : history) {
+                int ones = 0;
+                for (int k = l; k < r; k++)
+                    ones += state[k] - '0';
+                if (ones == r - l) ans++; 
+            }
+            cout << ans << endl;
+        } else { 
+            int x; cin >> x; x--;  
+            string next = history.back();
+            next[x] = (next[x] == '0') ? '1' : '0';
+            history.push_back(next);
+        }
+    }
+}
