@@ -1,37 +1,4 @@
 
-
-bool isPrime(ll n)
-{
-    if (n <= 1)
-        return false;
-    for (int i = 2; i <= sqrt(n); i++)
-        if (n % i == 0)
-            return false;
-    return true;
-}
-ll factorial(ll n) {
-    int fact = 1;
-    for (int i = 1; i <= n; i++)fact *= i;
-    return fact;
-}
-bool primeFactors(int n, int l, int r, bool notFound)
-{
-    for (int i = l; i <= r; i++)
-    {
-        if (i == 1)
-            i++;
-        if (n % i == 0)
-        {
-            cout << i << " ";
-            notFound = false;
-        }
-        while (n % i == 0)
-        {
-            n = n / i;
-        }
-    }
-    return notFound;
-}
 bool IsInBinarySequence(ll number) {
     ll numberToCheck = 1;
     do {
@@ -68,44 +35,6 @@ ll highestPowerof2(ll n)
     }
     return res;
 }
-
-vector<ll> first50fib1_1_2()
-{
-    vector<ll>v = { 1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657,46368,75025,121393,196418,317811,514229,832040,1346269,2178309,3524578,5702887,9227465,14930352,24157817,39088169,63245986,102334155, 165580141 ,267914296 ,433494437 ,701408733 ,1134903170 ,1836311903 ,2971215073 ,4807526976 ,7778742049,12586269025,20365011074 };
-    return v;
-}
-void first50fib0_0_1()
-{
-    ll arr[51]={0, 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368,75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049};
-}
-ll fib(ll n) {
-    if (n == 1)
-        return 0;
-    if (n == 2)
-        return 1;
-    return fib(n - 1) + fib(n - 2);
-}
-ll binets_formula(ll n) {
-    double sqrt5 = sqrt(5);
-
-    int F_n = (pow((1 + sqrt5), n) - pow((1 - sqrt5), n)) / (pow(2, n) * sqrt5);
-
-    return F_n;
-}
-
-/*const int N = 1e7;
-bool prime[N+3];
-void Sieve() {
-    memset(prime, true, sizeof(prime));
-
-    for (int p = 2; p * p <= N; p++) {
-        if (prime[p]) {
-            for (int i = p * p; i <= N; i += p)
-                prime[i] = false;
-        }
-    }
-}
-*/
 /*
 void Sieve(int n) {
     memset(prime, true, sizeof(prime));
@@ -120,16 +49,7 @@ void Sieve(int n) {
 }
  */
 
-void  luckyGenerator() {
-    vector<ll> lucky;
-    lucky.pb(0);
-    int idx = 0;
-    while (lucky.back() < 1e10) {
-        lucky.push_back(((lucky[idx] * 10) + 4));
-        lucky.push_back((lucky[idx] * 10) + 7);
-        idx++;
-    }
-}
+
 int binarySearch(int a[], int first, int last, int search_num) {
     int middle;
     if (last >= first) {
@@ -201,15 +121,7 @@ bool onePrimeFactor(ll num) {
     }
     return true;
 }
-bool isPerfect(ll d)
-{
-    double temp = d;
-    d = sqrt(d);
-    temp = sqrt(temp);
-    if (temp == d)
-        return true;
-    return false;
-}
+
 void sort(string s[], int n)//sort string according to length
 {
     for (int i = 1; i < n; i++)
@@ -286,13 +198,6 @@ ll convertToDecimal(string s) {
 long long lcm(int a, int b)
 {
     return (a / __gcd(a, b)) * b;
-}
-bool palindrome(string s) {
-    for (int i = 0; i < s.length() / 2; i++) {
-        if (s[i] != s[s.length() - i - 1])
-            return false;
-    }
-    return true;
 }
 int sumOfDigits(ll n) {
     int sum = 0;
