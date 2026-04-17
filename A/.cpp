@@ -583,3 +583,243 @@ void querytracker(int n, int m, string str) {
         }
     }
 }
+bool isinbinseq(int num) {
+    int dig = 1;
+    do {
+        if(num == dig) return true;
+        dig *= 2;
+    } while(dig <= num); return false;
+    // return (num > 0) && (num & (num - 1)) == 0;
+}
+int nextpowtwo(int n) {
+    if(n <= 1) return 1;
+    int p = 1;
+    while(p < n) p <<= 1;
+    return p;
+}
+bool ispowOftwo(int x) {
+    return (x & (x - 1)) == 0;
+}
+void Sieve(int n) {
+    memset(prime, true, sizeof(prime));
+    prime[0] = prime[1] = false;
+    for (int i = 2; i <= n; i++) {
+        if (prime[i]) {
+            for (int j = 2 * i; j <= n; j += i) {
+                prime[j] = false;
+            }
+        }
+    }
+}
+void factorize(int n) {
+    int cnt = 0;
+    while(!(n % 2)) {
+        n /= 2; cnt++;
+    }
+    if(count) cout << 2 << " " << cnt;
+    for(int i = 3; i <= sqrt(n); i += 2) {
+        cnt = 0;
+        while(n % i == 0) {
+            cnt++; n /= i;
+        } if(count) cout << i << " " << cnt;
+    } if(n > 2) cout << n << " " << 1 << endl;
+}
+void primefactor(int num) {
+    if(num <= 1) return;
+    int fact = 2;
+    while(fact * fact <= num) {
+        if(num % fact == 0) {
+            int power = 0;
+            while(num % fact == 0) {
+                num /= fact; power++;
+            } cout << fact << " " << power << endl;
+        } fact++;
+    } if(num > 1) cout << fact << " 1" << endl;
+}
+bool primefactor(int num) {
+    if(num <= 1) return false;
+    int fact = 2, cnt = 0;
+    while(fact * fact <= num) {
+        if(num % fact == 0) {
+            cnt++;
+            while (num % fact == 0) num /= fact;
+            if(cnt >= 2) return false;
+        } fact++;
+    } if(num > 1) cnt++;
+    return cnt == 1;
+}
+void sort(string str, int n) {
+    sort(s, s + n, [](const string &a, const string &b) {
+        return a.length() < b.length();
+    });
+}
+int Bsearchcnt(int *arr, int n, int key) {
+    int left = 0, right = n;
+    while (left < right) {
+        int mid = (left + right) >> 1;
+        if (arr[mid] <= key) left = mid + 1;
+        else right = mid;
+    } return left;
+}
+int cntOnesBin(int n) {
+    int cnt = 0;
+    while(n) {
+        cnt += n & 1; n >>= 1;
+    } return cnt;
+}
+int converttodecimal(string str) {
+    int res = 0, p = 1;
+    for(int i = str.size() - 1; i >= 0; i--) {
+        if(str[i] == '1') res += p;
+        p *= 2;
+    } return res;
+}
+int sumOfdig(int n) {
+    int sum = 0;
+    while(n) {
+        sum += n % 10; n /= 10;
+    } return sum;
+}
+bool sumDigits(int n) {
+    int rem = 0;
+    while (n) {
+        rem += n % 10; n /= 10;
+    } return rem == 10;
+}
+bool isunq(int x) {
+    bool vis[10] = {0};
+    while(x > 0) {
+        int dig = x % 10;
+        if(vis[d]) return false;
+        vis[d] = true; x /= 10;
+    } return true;
+}
+void substring(string str, int n) {
+    for (int i = 0; i < n; i++)
+        for (int len = 1; len <= n - i; len++)
+            cout << str.substr(i, len) << endl;
+}
+int Round(int n) {
+    int y = n;
+    return (y == n) ? y : y + 1;
+}
+int findlastIdx(string str, char x) {
+    for(int i = str.size() - 1; i >= 0; i--) {
+        if(str[i] == x) return i;
+    } return -1;
+}
+int sumconsucetive(int n) {
+    return (n * (n + 1) / 2);
+}
+int sumInrange(int l, int r) {
+    return (sumInrange(r) - sumInrange(l - 1));
+}
+int decimaldigroot(int n) {
+    return ((n - 1) % 9) + 1;
+}
+bool equal(char a, char b) {
+    return a == '.' || a == b;
+}
+string add(string str, int n) {
+    string aux = "";
+    while(n--) aux += str;
+    return aux;
+}
+bool regularbracseq(string str) {
+    stack <char> st;
+    for(int i = 0; i < str.size(); i++) {
+        if(str[i] == '(') st.push('(');
+        else {
+            if(st.empty()) return false;
+            else st.pop();
+        }
+    }
+}
+string onlyalphastr(string str) {
+    string aux = "";
+    for(int i = 0; i < str.size(); i++) {
+        if(isalpha(str[i])) aux += tolower(str[i]);
+    } return aux;
+}
+int computeXOR(int a) {
+    if (a % 4 == 0) return a;
+    else if (a % 4 == 1) return 1;
+    else if (a % 4 == 2) return a + 1;
+    else return 0;
+}
+void sort3(int& a, int& b, int& c) {
+    if (a > b) swap(a, b);
+    if (b > c) swap(b, c);
+    if (a > b) swap(a, b);
+}
+void longestsubseq(vector <int> arr) {
+    int n = arr.size(), res = 0;
+    vector <int> dp(n + 1, 0);
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < i; j++) {
+            if(arr[j] < arr[i]) dp[i] = max(dp[i], dp[i] + 1);
+        } res = max(res, dp[i]);
+    } return res;
+}
+bool oneCharacterString(string s) {
+    if (s.empty()) return true;
+    char c = s[0];
+    for (char x : s)
+        if (x != c) return false;
+    return true;
+}
+int nPr(int n, int r) {
+    int res = 1;
+    while(r--) res *= n--;
+    return res;
+}
+bool containeven(string str) {
+    for(int i = 0; i < str.size(); i++) {
+        if(str[i] == '2' || str[i] == '4' || str[i] == '6' || str[i] == '8') return true;
+    } return false;
+}
+void ncr(int n, int r) {
+    if(n - r < r) r = n - r;
+    int p = 1, k = 1; 
+    while(r--) {
+        p *= n--; k *= r + 1;
+        int g = __gcd(p, k);
+        p /= g; k /= g;
+    } cout << p << endl;
+}
+string convertToternary(int n) {
+    if(n == 0) return '0';
+    string res = "";
+    while(n > 0) {
+        res += '0' + (n % 3); n /= 3;
+    } reverse(res.begin(), res.end());
+    return res;
+}
+string sumOfternaries(string str, string ing) {
+    string res = "";
+    for(int i = 0; i < str.size(); i++) {
+        int x = (str[i] - '0') + (ing[i] - '0');
+        res += '0' + (x % 3);
+    } return res;
+}
+string unqstr(string str) {
+    if(str.empty()) return "";
+    string res = ""; res += str[0];
+    for(int i = 1; i < str.length(); i++) {
+        if(str[i] != str[i - 1]) res += str[i];
+    } return res;
+}
+int countOdd(int L, int R) {
+    return (R - L) / 2 + (L % 2 || R % 2);
+}
+bool isPowerof10(int n) {
+    while (n % 10 == 0) n /= 10;
+    return n == 1;
+}
+long long nCr(int n, int r) {
+    if (r > n - r) r = n - r;
+    long long ans = 1;
+    for (int i = 1; i <= r; ++i)
+        ans = ans * (n - r + i) / i;
+    return ans;
+}
