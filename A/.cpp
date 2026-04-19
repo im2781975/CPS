@@ -823,3 +823,185 @@ long long nCr(int n, int r) {
         ans = ans * (n - r + i) / i;
     return ans;
 }
+string convertTolatin(string str) {
+    if(str.size() == 1) return str + "ay";
+    string res; res += toupper(str[1]);
+    for(int i = 2; i < str.size(); i++) res += tolower(str[i]);
+    res += tolower(str[0]) + string("ay");
+    // return toupper(s[1]) + s.substr(2) + tolower(s[0]) + "ay";
+}
+int cntdivisor(int n) {
+    if(n <= 0) return 0;
+    int cnt = 0;
+    for(int i = 1; i * i <= n; i++) {
+        if(n % i == 0) 
+            cnt += (i * i == n) ? 1 : 2;
+    } return cnt % mod;
+}
+int maxdig(int x) {
+    int mx = 0;
+    while(n) {
+        mx = max(mx, n % 10); n /= 10;
+    } return mx;
+}
+string decimalTohex(int n, int x) {
+    string res;
+    while(n > 0) {
+        int rem = n % x;
+        res += (rem % 10 ? '0' + rem : 'A' + rem - 10); n /= x;
+    } reverse(res.begin(), res.end());
+    return res;
+}
+string hexTodecimal(string str, int x) {
+    reverse(str.begin(), str.end());
+    int res = 0, st = 1;
+    for(char ch : str) {
+        if(ch != '0') {
+            int dig = isalpha(ch) ? (ch - 'A' + 10) : (ch - '0');
+            res += dig * st;
+        } st *= x;
+    } return res;
+}
+bool checksemiprime(int n) {
+    int cnt = 0;
+    for(int i = 2; i * i <= n && cnt < 2; i++) {
+        while(n % i == 0) {
+            n /= i; cnt++; 
+            if(cnt > 2) return false;
+        }
+    } return cnt == 2 && n == 1;
+}
+string binaryadd(string a, string b) {
+    string res;
+    int carry = 0, i = a.size() - 1, j = b.size() - 1;
+    while (i >= 0 || j >= 0 || carry) {
+        int sum = carry;
+        if (i >= 0) sum += a[i--] - '0';
+        if (j >= 0) sum += b[j--] - '0';
+        res = char(sum % 2 + '0') + res;
+        carry = sum / 2;
+    }
+    return res;
+}
+int cmp(string a, string b) {
+    int cnt = 0;
+    for (int i = 0; i < a.size(); i++) {
+        if (a[i] != b[i]) cnt++;
+    } return cnt;
+}
+int sumOfDivisors(int n) {
+    int sum = 0;
+    for (int i = 1; i * i <= n; i++) {
+        if (n % i == 0) {
+            sum += i;
+            if (i != n / i) sum += n / i;
+        }
+    } return sum;
+}
+int cntDistinctLetters(string s) {
+    unordered_set<char> letters;
+    for (char c : s) {
+        if (c != ' ' && letters.insert(c).second) cnt++;
+    } return cnt;
+}
+// reverses the decimal digits of n, then concatenates the original n after the reversed digits
+int fixedrev(int n, int p, int m) {
+    int rev = 0, tmp = n, base = 1;
+    while(tmp > 0) {
+        rev = rev * 10 + tmp % 10;
+        base *= 10; tmp /= 10;
+    }
+    int v = rev * base + n; return (v + m) % p;
+}
+void pow2(int n) {
+    for(int i = 0; i < n; i++) cout << 1 << i << endl;
+}
+bool isdistinctdig(int x) {
+    bool vis[10] = {false};
+    while(x > 0) {
+        int d = x % 10;
+        if(vis[d]) return false;
+        vis[d] = true; x /= 10;
+    } return true;
+}
+// collects and prints the distinct letters that appear as the last of a consecutive run
+void collectdistinct(string str) {
+    bool vis[26] = {false};
+    for(int i = 0; i < str.length(); i++) {
+        if(str.length() - 1 || str[i] != str[i + 1]) vis[str[i] - 'a'] = true;
+        else ++i;
+    }
+    for (int i = 0; i < 26; ++i)
+        if (vis[i]) cout << char('a' + i);
+    cout << endl;
+}
+// Compute the total number of 1s plus the number of contiguous 
+// segments of 1s, then subtract 1. If there are no 1s, output 0
+void compute1s(int n) {
+    int ones = 0, segments = 0, prv = 0;
+    for(int i = 0; i < n; i++) {
+        int x; cin >> x;
+        if(x == 1) {
+            ones++; if(prv != 1) segments++;
+        } prv = x;
+    }
+    cout << (ones == 0) ? 0 : ones + segments - 1;
+}
+// Given n periodic event sequences, returns the final time reached by greedily following the next upcoming event from each sequence.
+void finaltime(int n) {
+    long long sum = 0;
+    for (int i = 0; i < n; ++i) {
+        int s, d; cin >> s >> d;
+        if (sum < s) sum = s;
+        else sum = s + ((sum - s) / d + 1) * d;
+    }
+    cout << sum << ' ';
+}
+//Re‑arrange the array by repeatedly moving the smallest remaining element to the front (via block‑shifting) and output the final configuration
+void blockshift(int n, int *arr) {
+    int firstpos = -1;
+    for(int i = 0; i < n; i++) {
+        if(arr[i] == 1 && firstpos == -1) firstpos = i;
+    }
+    int idx = 0;
+    while(idx < n - 1) {
+        int m = arr[idx], pos = idx;
+        for(int i = idx + 1; i < n; ++i) {
+            if(arr[i] < m) {
+                m = arr[i]; pos = i;
+            }
+        }
+        if(pos != idx) {
+            for(int i = pos; i > idx; i--) arr[i] = arr[i - 1];
+            arr[idx] = m;
+        } idx++;
+    }
+    for(int i = 0; i < n; ++i) cout << arr[i] << " ";
+}
+// Given n positions, m groups of chips, and a maximum allowed gap d,
+// decide whether you can place all chips into a sequence of length n 
+void ispositioned(int n, int m, int d) {
+    int a[1005] = {0}; int sum = 0;
+    for (int i = 0; i < m; ++i) {
+        cin >> a[i];
+        sum += a[i];
+    }
+    int empty = n - sum;
+    if (empty > (m + 1) * (d - 1)) cout << "NO";
+    else {
+        int each = empty / (m + 1);
+        int lef = empty % (m + 1);
+        cout << "YES" << endl;
+        for (int j = 0; j < m; ++j) {
+            for (int i = 0; i < each; ++i)
+                cout << 0 << " ";
+            if(lef > 0) {
+                cout << 0 << " "; lef--;
+            }
+            for (int i = 0; i < a[j]; ++i)
+                cout << j + 1 << " ";
+        }
+        for (int i = 0; i < each; ++i)
+            cout << 0 << " ";
+    }
+}
