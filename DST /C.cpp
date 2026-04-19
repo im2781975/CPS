@@ -1,5 +1,76 @@
 #include<bits/stdc++.h>
 using namespace std;
+// Minimum number of operations to turn n into m using x = x * 2 and x = x - 1.
+const int MAX = 200000;
+void minOpr(int n, int m) {
+    if (n >= m) { cout << n - m << ' '; return; }
+    vector<int> dist(MAX + 1, -1);
+    queue<int> q; dist[n] = 0;
+    q.push(n);
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        if (u == m) {
+            cout << dist[u] << ' '; return; }
+        long long nv = (long long)u * 2;
+        if (nv <= MAX && dist[nv] == -1) {
+            dist[nv] = dist[u] + 1;
+            q.push(static_cast<int>(nv));
+        }
+        // Operation 2: u - 1
+        nv = u - 1;
+        if (nv > 0 && dist[nv] == -1) {
+            dist[nv] = dist[u] + 1;
+            q.push(static_cast<int>(nv));
+        }
+    }
+    cout << n + 3 * m << ' ';
+}
+// Given n points on a grid (each point has integer coordinates (x, y)), treat them as intersections of horizontal and vertical lines and 
+// count the number of connected components in the bipartite line graph constructed from these points.
+int cntcomponents(int n) {
+    vector<int> hv[1005], lv[1005];
+    int h[1005] = {0}, l[1005] = {0};
+    for (int i = 0; i < n; ++i) {
+        int x, y;
+        cin >> x >> y;
+        hv[x].push_back(y);
+        lv[y].push_back(x);
+    }
+    int comp = 0;
+    for (int x = 1; x <= 1000; ++x) {
+        if (hv[x].empty() || h[x] != 0)
+            continue;
+        ++comp;
+        h[x] = comp;
+        queue<int> hq, lq; 
+        for (int y : hv[x])
+            if (l[y] == 0) {
+                l[y] = comp;
+                lq.push(y);
+            }
+        while (!lq.empty() || !hq.empty()) {
+            while (!lq.empty()) {
+                int y = lq.front();
+                lq.pop();
+                for (int x2 : lv[y])
+                    if (h[x2] == 0) {
+                        h[x2] = comp;
+                        hq.push(x2);
+                    }
+            }
+            while (!hq.empty()) {
+                int x2 = hq.front();
+                hq.pop();
+                for (int y2 : hv[x2])
+                    if (l[y2] == 0) {
+                        l[y2] = comp;
+                        lq.push(y2);
+                    }
+            }
+        }
+    }
+    cout << comp << ' ';
+}
 // Find the Winner and the Dissenters
 void findwinner(int n, vector <int> arr) {
     map <int, int> cnt;
