@@ -1,3 +1,53 @@
+// 1714E
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    int k = n / m;                       // target size per modulo group
+
+    vector<vector<int>> val(m);          // val[r] = indices i where arr[i] % m == r
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        val[arr[i] % m].push_back(i);    // group indices by arr[i] % m
+    }
+
+    long long ans = 0;
+    vector<pair<int, int>> fre;          // {index, original mod}
+
+    for (int i = 0; i < 2 * m; i++) {    // try mod 0,1,...,m-1 twice
+        int cur = i % m;
+
+        // Step 1: remove extra indices from group `cur`
+        while (val[cur].size() > k) {
+            int idx = val[cur].back();
+            val[cur].pop_back();
+            fre.push_back({idx, i});     // mark this index as “free”
+        }
+
+        // Step 2: fill group `cur` from free indices if needed
+        while (val[cur].size() < k && !fre.empty()) {
+            auto [idx, from_mod] = fre.back();
+            fre.pop_back();
+
+            val[cur].push_back(idx);
+            int add = i - from_mod;      // we add this to arr[idx]
+            arr[idx] += add;
+            ans += add;
+        }
+    }
+
+    cout << ans << '
+';
+    for (int x : arr) {
+        cout << x << ' ';
+    }
+    cout << '
+';
+}
 void a1257() {
     int n, x, a, b;
     cin >> n >> x >> a >> b;
