@@ -92,4 +92,79 @@ void rangesum(int n) {
         cout << (type == 1 ? suff1[r] - suff1[l - 1] : suff2[r] - suff2[l - 1]) << ' ';
     }
 }
+bool issubseq(int seq, int n) {
+    while(seq > 0 && n > 0) {
+        if(n % 10 == seq % 10) seq /= 10;
+        n /= 10;
+    } return seq == 0;
+}
+// Compute a total penalty based on how many new values appear between 
+// the first and second occurrence of each repeated element
+int minswap(int *arr, int n) {
+    bool vis[n] = {}; int res = 0;
+    for(int i = 0; i < n; ++i) {
+        if(vis[arr[i]]) continue;
+        vis[arr[i]] = true; int cnt = 0;
+        for(int j = i + 1; j < 2 * n; j++) {
+            if(!vis[arr[j]]) cnt++;
+            else if(arr[i] == arr[j]) {
+                res += cnt; break;
+            }
+        }
+    } return res;
+}
+// find if the first half of the string has a repeated block, and if it does,
+//it saves k - 1 operations as an optimization or penalty reduction
+void findhalf(int n, string str) {
+    int opr = n, k = n / 2;
+    while(k >= 2) {
+        if(str.substr(0, k) == str.substr(k, k)) {
+            opr -= (k - 1); break;
+        } k--;
+    } cout << opr;
+}
+// For each element (ordered by increasing power), compute a final value res[i] as its own coin plus 
+//the sum of the k largest coins from any elements with strictly lower or equal power processed so far.
+const int x = 100005;
+int power[x], coin[x], res[x];
+map <int, int> mp; priority_queue <int> pq;
+void computeval(int n, int k) {
+    for(int i = 1; i <= n; i++) {
+        cin >> power[i]; mp[power[i]] = i;
+    }
+    for(int i = 1; i <= n; i++) cin >> coin[i];
+    sort(power + 1, power + n + 1);
+    for (int i = 1; i <= n; i++) {
+        int idx = mp[power[i]];
+        res[idx] = coin[idx];
 
+        vector <int> temp;
+        for (int j = 0; j < k && !pq.empty(); j++) {
+            int co = pq.top(); pq.pop();
+            res[idx] += co;
+            temp.push_back(co);
+        }
+        for (int x : temp) pq.push(x);
+        pq.push(coin[idx]);
+    }
+    for(int i = 1; i <= n; i++) cout << res[i] << " ";
+}
+// sorts the input numbers by how “deeply divisible by 3” they are (ascending), 
+// and if two numbers have the same depth, it puts the larger one first.
+bool comp(const pair <int, long long>& p1, const pair <int, long long>& p2) {
+    if (p1.first == p2.first) return p1.second > p2.second;  
+    return p1.first < p2.first;       
+}
+void deeplydiv(int n) {
+    vector <pair<int, long long>> v;
+    for (int i = 0; i < n; i++) {
+        int x; cin >> x;
+        int y_val = 0;
+        int tmp = x;
+        while (tmp != 0) {
+            tmp /= 3; y_val++;
+        } v.push_back({y_val, x});
+    }
+    sort(v.begin(), v.end(), comp);
+    for (int i = 0; i < n; i++) cout << v[i].second << " ";
+}
