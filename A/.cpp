@@ -168,3 +168,31 @@ void deeplydiv(int n) {
     sort(v.begin(), v.end(), comp);
     for (int i = 0; i < n; i++) cout << v[i].second << " ";
 }
+// find a short arithmetic‑like structures around each element, where the gap is a power of two.
+void findarithmetic(vector <long long> x, int n) {
+    sort(x.begin(), x.end());
+    vector<long long> res;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < 32; j++) {
+            long long diff = 1LL << j;         // 2^j
+            long long lx = x[i] - diff;
+            long long rx = x[i] + diff;
+
+            bool isl = binary_search(x.begin(), x.end(), lx);
+            bool isr = binary_search(x.begin(), x.end(), rx);
+
+            if (isl && isr && res.size() < 3) {
+                res = {lx, x[i], rx};
+            } else if (isl && res.size() < 2) {
+                res = {lx, x[i]};
+            } else if (isr && res.size() < 2) {
+                res = {rx, x[i]};
+            }
+        }
+    }
+    if (res.empty()) {
+        res.push_back(x[0]);
+    }
+    cout << res.size() << ' ';
+    for (long long val : res) cout << val << ' ';
+}
