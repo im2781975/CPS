@@ -1,48 +1,42 @@
-// int main(){
-  
-//   int n,q,x;
-//   cin>>n>>q;
-  
-//   int arr[n];
-//   for(int i=0;i<n;i++)
-//   cin>>arr[i];
-  
-//   map<int,int> m;
-//   for(int i=0;i<n;i++){
-//     m[arr[i]]++;
-//   }
-  
-//   while(q--){
-    
-//     cin>>x;
-    
-//     int ans=0;
-//     int mx=1<<30;
-    
-    
-//     for(mx;mx>=1;mx=mx>>1){
-      
-//       if(m[mx]==0) continue;
-      
-//       else{
-        
-//         int times=min(m[mx],x/mx);
-        
-//         x-=times*mx;
-//         ans+=times;
-//       }
-//     }
-    
-//     if(x==0){
-//       cout<<ans<<endl;
-//     }
-//     else{
-//       cout<<-1<<endl;
-//     }
-//   }
-  
-//   return 0;
-// }
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, q;
+    cin >> n >> q;
+
+    vector<int> arr(n);
+    map<int, int> freq;
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        freq[arr[i]]++;
+    }
+
+    vector<int> vals;
+    for (auto &p : freq) vals.push_back(p.first);
+    sort(vals.rbegin(), vals.rend());
+
+    while (q--) {
+        int x;
+        cin >> x;
+        int ans = 0;
+
+        for (int v : vals) {
+            int take = min(freq[v], x / v);
+            x -= take * v;
+            ans += take;
+        }
+
+        cout << (x == 0 ? ans : -1) << '
+';
+    }
+
+    return 0;
+}
 // int isSubstring(string s1, string s2)
 // {
 //     int M = s1.length();
