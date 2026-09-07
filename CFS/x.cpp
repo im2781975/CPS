@@ -1,3 +1,16 @@
+using namespace std;
+https://codeforces.com/problemset/problem/1/A
+// 1A. Theatre Square
+int main(){
+    unsigned long long n, m, a; cin >> n >> m >> a;
+    cout << ceil((double)n / a) * ceil((double)m / a);
+    // cout << ceil(0.1 * (n / a)) * ceil(0.1  * (m / a));
+    //cout << (n / a + (n % a != 0)) * (m / a + (m % a != 0))
+    int r1 = n / a, r2 = m / a;
+    if(n % a != 0)    r1++;
+    if(m % a != 0)    r2++;
+    cout << r1 * r2;
+}
 https://codeforces.com/problemset/problem/3/A
 // 3A.Shortest path of the king
 using namespace std;
