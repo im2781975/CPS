@@ -405,38 +405,7 @@ int main(){
     }
     cout << '\n';
 }
-using namespace std;
-typedef pair <int, int> square;
-int main(){
-    square start, end; 
-    list <string> res;
-    
-    string str; cin >> str;
-    start.first = str[1] - '1';
-    start.second = str[0] - 'a';
-    cin >> str;
-    end.first = str[1] - '1';
-    end.second = str[0] - 'a';
-    while(start != end){
-        string move = "";
-        if(start.first < end.first){
-            move += 'U'; start.first++;
-        }
-        else if(start.first > end.first){
-            move += 'D';  start.first--;
-        }
-        if(start.second < end.second){
-            move += 'R'; start.second++;
-        }
-        else if(start.second > end.second){
-            move += 'L'; start.second--;
-        }
-        res.push_back(move);
-    }
-    cout << res.size() << "\n";
-    for(auto it = res.begin(); it!= res.end(); ++it)
-        cout << *it << "\n";
-}
+
 https://codeforces.com/problemset/problem/3/B
 // 3B. Lorry
 using namespace std;
