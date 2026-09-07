@@ -29,3 +29,34 @@ int main() {
         cout << move << endl;
     }
 }
+https://codeforces.com/problemset/problem/4/B
+// 4B. Before an Exam
+using namespace std;
+int main() {
+    int days, totaltime; cin >> days >> totaltime;
+    vector <int> mintime(days), maxtime(days);
+    for(int i = 0; i < days; i++) cin >> mintime[i] >> maxtime[i];
+    int totalmintime = accumulate(mintime.begin(), mintime.end(), 0);
+    int totalmaxtime = accumulate(maxtime.begin(), maxtime.end(), 0);
+    if(totaltime < totalmintime || totaltime > totalmaxtime) {
+        cout << "NO"; return 0;
+    }
+    cout << "YES" << endl; vector <int> res(days);
+    int rem = totaltime - totalmintime;
+    for(int i = 0; i < days; i++) {
+        int extra = min(rem, maxtime[i] - mintime[i]);
+        res[i] = mintime[i] + extra;
+        rem -= extra;
+    }
+    for(int i = 0; i < res.size(); i++) cout << res[i] << " ";
+    /* 
+    if(totalmintimee <= totaltime && totalmaxtime >= totaltime){
+        cout << "YES\n";
+        for(int i = 0; i < days; i++){
+            int t = min(mintime[i] + totaltime - totalmintime, maxtime[i])
+            cout << t << (i + 1 < days) ? ' ' : '\n';
+            totaltime -= (t - mintime[i]);
+        }
+    }
+    else    cout << "NO"; */
+}
