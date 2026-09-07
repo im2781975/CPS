@@ -405,38 +405,6 @@ int main(){
     }
     cout << '\n';
 }
-https://codeforces.com/problemset/problem/3/A
-// 3A. Shortest path of the king
-using namespace std;
-int main(){
-    string start, end; cin >> start >> end;
-    // dx counts columns (horizontal distance) because it's based on letter differences.
-    // dy counts rows (vertical distance) because it's based on digit differences.
-    int dx = abs(start[0] - end[0]);
-    int dy = abs(start[1] - end[1]);
-    cout << max(dx, dy) << '\n';
-    while(start != end){
-        string move = "";
-        if(start[0] < end[0]){
-            move += 'R'; start[0]++;
-            // cout << 'R';
-        }
-        else if(start[0] > end[0]){
-            move += 'L'; start[0]--;
-            // cout << 'L';
-        }
-        if(start[1] < end[1]){
-            move += 'U'; start[1]++;
-            // cout << 'U';
-        }
-        else if(start[1] > end[1]){
-            move += 'D'; start[1]--;
-            // cout << 'D';
-        }
-        // cout << endl;
-        cout << move << '\n';
-    }
-}
 using namespace std;
 typedef pair <int, int> square;
 int main(){
