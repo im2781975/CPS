@@ -60,3 +60,17 @@ int main() {
     }
     else    cout << "NO"; */
 }
+https://codeforces.com/problemset/problem/4/C
+// 4C. Registration system
+using namespace std;
+int main() {
+    int t; cin >> t;
+    map <string, int> mp;
+    while(t--) {
+        string str; cin >> str;
+        if(!mp[str]) cout << "OK" << endl;
+        else cout << str << mp[str] << endl;
+        // cout << (mp[str] == 0 ? "OK" : str + to_string(mp[str]))<< endl;
+        ++mp[str];
+    }
+}
