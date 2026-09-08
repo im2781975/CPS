@@ -699,32 +699,7 @@ int main(){
         cout << seq[i] << " ";
     cout << endl;
 }
-https://codeforces.com/problemset/problem/5/A
-// 5A. Chat Server's Outgoing Traffic
-using namespace std;
-int main(){
-    string str; int len = 0;
-    set <string> user;
-    while(getline(cin, str)){
-        if(str.empty())    continue;
-        if(str[0] == '+'){
-            str[0] = '@';
-            user.insert(str);
-        }
-        if(str[0] == '-'){
-            str[0] = '@'; 
-            user.erase(str);
-        }
-        else {
-            size_t pos = str.find(':');
-            if(pos != string::npos){
-                int strlength = str.size() - pos - 1;
-                len += strlength * user.size();
-            }
-        }
-    }
-    cout << len;
-}
+
 https://codeforces.com/problemset/problem/5/B
 // 5B. Center Alignment
 using namespace std;
