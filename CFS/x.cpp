@@ -87,3 +87,25 @@ int main() {
         ++mp[str];
     }
 }
+https://codeforces.com/problemset/problem/5/A
+// 5A. Chat Server's Outgoing Traffic
+using namespace std;
+int main() {
+    string str; int len = 0;
+    set <string> user;
+    while(getline(cin, str)) {
+        if(str[0] == '+') {
+    		str[0] = '*'; user.insert(str);
+        }
+        if(str[0] == '-') {
+            str[0] = '*'; user.erase(str);
+        }
+        else {
+            size_t pos = str.find(':');
+            if (pos != string::npos) {
+                int strlen = str.size() - pos - 1;
+                len += strlen * user.size();
+            }
+        }
+    } cout << len;
+}
