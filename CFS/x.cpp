@@ -109,3 +109,25 @@ int main() {
         }
     } cout << len;
 }
+https://codeforces.com/problemset/problem/22/A
+// 22A. Second Order Statistics
+using namespace std;
+int main() {
+    int n; cin >> n; /*
+    set <int> st; int x;
+    for(int i = 0; i < n; i++) {
+        cin >> x; st.insert(x);
+    }
+    if(st.size() <= 1)  cout << "NO" << endl;
+    else {
+        st.erase(st.begin()); cout << *st.begin();
+    } */
+    vector <int> vec(n);
+    for(auto &x : vec) cin >> x;
+    sort(vec.begin(), vec.end());
+    for(int i = 1; i < n; i++) {
+        if(vec[i] != vec[i - 1]) {
+            cout << vec[i]; return 0;
+        }
+    } cout << "NO";
+}
