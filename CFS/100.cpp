@@ -1,16 +1,4 @@
-using namespace std;
-https://codeforces.com/problemset/problem/1/A
-// 1A. Theatre Square
-int main(){
-    unsigned long long n, m, a; cin >> n >> m >> a;
-    cout << ceil((double)n / a) * ceil((double)m / a);
-    // cout << ceil(0.1 * (n / a)) * ceil(0.1  * (m / a));
-    //cout << (n / a + (n % a != 0)) * (m / a + (m % a != 0))
-    int r1 = n / a, r2 = m / a;
-    if(n % a != 0)    r1++;
-    if(m % a != 0)    r2++;
-    cout << r1 * r2;
-}
+
 using namespace std;
 https://codeforces.com/problemset/problem/1/B
 // 1B. Spreadsheets
@@ -4666,28 +4654,7 @@ int main(){
     cout << cur;
     return 0;
 }
-https://codeforces.com/problemset/problem/18/C
-// 18C. Stripe
-using namespace std;
-int main(){
-    int n, cnt = 0; cin >> n;
-    vector <int> vec(n + 1), prefix(n + 1, 0);
-    for(int i = 1; i <= n; i++){
-        cin >> vec[i];
-        prefix[i] = prefix[i - 1] + vec[i];
-    }
-    int total = prefix[n];
-    for(int i = 1; i < n; i++){
-        if(prefix[i] = total - prefix[i])
-            cnt++;
-    }/*
-    for(int i = 0; i < n; i++)    cin >> vec[i];
-    partial_sum(vec.begin(), vec.end(), prefix.begin());
-    for(int i = 0; i < n - 1; i++){
-        if(2 * prefix[i] == prefix[n - 1])    cnt++;
-    } */
-    cout << cnt;
-}
+
 https://codeforces.com/problemset/problem/18/D
 // 18D. Seller Bob
 using namespace std;
