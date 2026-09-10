@@ -109,6 +109,28 @@ int main() {
         }
     } cout << len;
 }
+https://codeforces.com/problemset/problem/18/C
+// 18C. Stripe
+using namespace std;
+int main(){
+    int n, cnt = 0; cin >> n;
+    vector <int> vec(n + 1), prefix(n + 1, 0);
+    for(int i = 1; i <= n; i++){
+        cin >> vec[i];
+        prefix[i] = prefix[i - 1] + vec[i];
+    }
+    int total = prefix[n];
+    for(int i = 1; i < n; i++){
+        if(prefix[i] == total - prefix[i])
+            cnt++;
+    }/*
+    for(int i = 0; i < n; i++)    cin >> vec[i];
+    partial_sum(vec.begin(), vec.end(), prefix.begin());
+    for(int i = 0; i < n - 1; i++){
+        if(2 * prefix[i] == prefix[n - 1])    cnt++;
+    } */
+    cout << cnt;
+}
 https://codeforces.com/problemset/problem/22/A
 // 22A. Second Order Statistics
 using namespace std;
