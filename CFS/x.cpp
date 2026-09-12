@@ -209,3 +209,31 @@ int main() {
     }
     cout << (odd == 1 ? idxodd : idxeven); */
 }
+#include<bits/stdc++.h>
+https://codeforces.com/problemset/problem/25/B
+// 25B. Phone numbers
+using namespace std;
+int main() {
+    int n, i = 0; cin >> n;
+    string str; cin >> str; /*
+    int first = (n % 3 == 1 ? 2 : 3);
+    cout << s.substr(0, first);
+    for (int i = first; i < n; i += 3) {
+        cout << '-' << s.substr(i, 3);
+    } */
+    if(n == 2 || n % 3 == 1) {
+        cout << str[0] << str[1]; i = 2;
+    }
+    else {
+        cout << str[0] << str[1] << str[2]; i = 3;
+    }
+    while(i < n) {
+        cout << '-';
+        if(n - i >= 3) {
+            cout << str[i] << str[i + 1] << str[i + 2]; i += 3;
+        }
+        else {
+            cout << str[i] << str[i + 1]; i += 2;
+        }
+    }
+}
