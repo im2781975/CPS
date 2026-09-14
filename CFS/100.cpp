@@ -1,4 +1,3 @@
-
 using namespace std;
 https://codeforces.com/problemset/problem/1/B
 // 1B. Spreadsheets
@@ -575,7 +574,6 @@ int main(){
     if(flag != 0)    cout << -1;
     else    cout << val << "\n" << str << "\n";
 }
-
 https://codeforces.com/problemset/problem/4/D
 // 4D. Mysterious Present
 using namespace std; /*
@@ -687,7 +685,6 @@ int main(){
         cout << seq[i] << " ";
     cout << endl;
 }
-
 https://codeforces.com/problemset/problem/5/B
 // 5B. Center Alignment
 using namespace std;
@@ -1732,24 +1729,6 @@ int main(){
         else    cout << "0";
     }
     cout << endl;
-}
-
-http://codeforces.com/contest/9/problem/A
-// 9A. Die Roll
-using namespace std;
-int main(){
-    int y, w; cin >> y >> w;
-    int maxi = max(y, w);
-    int q = (6 - maxi) + 1;
-    if(q == 1)    cout << "1/6" << endl;
-    else if(q == 2)    cout << "1/3" << endl;
-    else if(q == 3)    cout << "1/2" << endl;
-    else if(q == 4)    cout << "2/3" << endl;
-    else if(q == 5)    cout << "5/6" << endl;
-    else if(q == 6)    cout << "1/1" << endl;
-    else if(q == 0)    cout << "0/1" << endl; /*
-    string arr[] = {"1/6", "1/3", "1/2", "2/3", "5/6", "1/1", "0/1"};
-    cout << arr[maxi] << endl; */
 }
 https://codeforces.com/problemset/problem/9/B
 // 9B. Running Student
@@ -4058,145 +4037,6 @@ int main(){
         res ^= (XOR(b) ^ XOR(a - 1));
     }
     cout << (res ? "tolik" : "bolik") << endl;
-}
-https://codeforces.com/problemset/problem/16/A
-// 16A. Flag
-using namespace std;
-int main(){
-    int n, m; cin >> n >> m;
-    char arr[101][101];
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++)
-            cin >> arr[i][j];
-    }
-    for(int i = 0; i < n - 1; i++){
-        for(int j = 0; j < m; j++){
-            if(arr[i][j] == arr[i + 1][j]){
-                cout << "NO" << endl;
-                return 0;
-            }
-        }
-    }
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m - 1; j++){
-            if(arr[i][j] != arr[i][j + 1]){
-                cout << "NO" << endl;
-                return 0;
-            }
-        }
-    }
-    cout << "YES";
-}
-using namespace std;
-int main(){
-    int n, m; cin >> n >> m;
-    vector <string> vec(n);
-    for(int i = 0; i < n; i++) cin >> vec[i]; 
-    /*
-    for(int i = 0; i < n; i++){
-        char ch = vec[i][0];
-        for(int j = 0; j < m; j++){
-            if(vec[i][j] != ch){
-                cout << "NO" << endl;
-                return 0;
-            }
-        }
-    }
-    for(int i = 0; i < n - 1; i++){
-        if(vec[i][0] == vec[i + 1][0]){
-            cout << "NO" << endl;
-            return 0;
-        }
-    } */
-    for(int i = 0; i < n; i++){
-        if(!all_of(vec[i].begin(), vec[i].end(), [&](char ch){
-            return ch = vec[i][0];
-        })){
-            cout << "NO" << endl;
-            return 0;
-        }
-        if(i > 0 && vec[i][0] == vec[i - 1][0]){
-            cout << "NO" << endl;
-            return 0;
-        }
-    }
-    cout << "YES" << endl;
-}
-using namespace std;
-int main() {
-    int n, m; cin >> n >> m;
-    string prevRow;
-    bool valid = true;
-    for (int i = 0; i < n; ++i) {
-        string row; cin >> row;
-        for (int j = 1; j < m; ++j) {
-            if (row[j] != row[0]) {
-                valid = false;
-                break;
-            }
-        }
-        if (i > 0 && row[0] == prevRow[0]) 
-            valid = false;
-        if (!valid) break;
-        prevRow = row;
-    }
-    cout << (valid ? "YES" : "NO") << endl;
-}
-https://codeforces.com/problemset/problem/16/B
-// 16B. Burglar and Matches
-using namespace std;
-int main(){
-    //n -> capacity
-    int n, m; cin >> n >> m;
-    vector <pair <int, int>> matches(m);
-    for(int i = 0; i < m; i++){
-        cin >> matches[i].second >> matches[i].first;
-        //prices, boxes -> value, quantity
-        /*int boxes, prices; cin >> boxes >> prices;
-        matches[i] = {prices, boxes}; */
-    }
-    // sort(matches.begin(), matches.end());
-    // reverse(matches.begin(), matches.end());
-    /*sort(matches.begin(), matches.end(), [](pair <int, int> &x, pair <int, int> &y){
-        return x.first > y.first;
-    });
-    int res = 0;
-    for(int i = 0; i < m && n > 0; i++){
-        int take = min(n, matches[i].second);
-        res += take * matches[i].first;
-        n -= take;
-    } */
-    sort(matches.begin(), matches.end(), greater <pair <int, int>>());
-    int res = 0;
-    for(int i = 0; i < m; i++){
-        if(matches[i].second <= n){
-            res += matches[i].second * matches[i].first;
-            n -= matches[i].second;
-        }
-        else {
-            res += n * matches[i].first;
-            n = 0;
-        }
-        if(n == 0)    break;
-    }/*
-    multimap <int, int, greater<int>> marr;
-    int x, y;
-    for(int i = 0; i < m; i++){
-        cin >> x >> y;
-        marr.insert(pair <int, int> (y, x));
-    }
-    multimap <int, int> ::iterator itr;
-    int count = 0, res = 0;
-    for (itr = marr.begin(); itr != marr.end(); ++itr){
-        count += itr->second;
-        if(count >= n){
-            itr->second = itr->second - (count - n);
-            res += itr->first * itr->second;
-            break;
-        }
-        sum += itr->first * itr->second;
-    }*/
-    cout << res;
 }
 https://codeforces.com/problemset/problem/16/C
 // 16C. Monitor
