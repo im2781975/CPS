@@ -237,3 +237,16 @@ int main() {
         }
     }
 }
+https://codeforces.com/problemset/problem/26/A
+// 26A. Almost Prime
+using namespace std;
+int main() {
+    int n, res = 0; cin >> n;
+    vector <int> cnt(n + 1, 0);
+    for(int i = 2; i <= n; ++i) {
+        if(cnt[i] == 0) {
+            for(int j = i; j <= n; j += i) cnt[j]++;
+        }
+        if(cnt[i] == 2) res++;
+    } cout << res << " ";
+}
