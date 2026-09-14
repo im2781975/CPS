@@ -284,7 +284,6 @@ int main() {
     }
     cout << (odd == 1 ? idxodd : idxeven); */
 }
-#include<bits/stdc++.h>
 https://codeforces.com/problemset/problem/25/B
 // 25B. Phone numbers
 using namespace std;
