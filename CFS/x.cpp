@@ -156,6 +156,34 @@ int main() {
         } prvcolor = str;
     } cout << "YES"; */
 }
+https://codeforces.com/problemset/problem/16/B
+// 16B. Burglar and Matches
+using namespace std;
+int main() {
+    int m, n; cin >> m >> n;
+    vector <pair <int, int>> vec(n);
+    /* int x, y; 
+    for(int i = 0; i < n; i++) {
+        cin >> x >> y; 
+        vec.push_back({y, x});
+    }
+    sort(vec.rbegin(), vec.rend());
+    long long cnt = 0, res = 0;
+    for(auto &p : vec) {
+        int take = min(n - cnt, (long long)p.second);
+        res += 1LL * take * p.first;
+        cnt += take; 
+        if(cnt == m) break;
+    } */
+    for(int i = 0; i < n; i++) cin >> vec[i].second >> vec[i].first;
+    sort(vec.rbegin(), vec.rend());
+    long long res = 0;
+    for(int i = 0; i < n && m > 0; i++) {
+        int take = min(m, vec[i].second);
+        res += 1LL * take * vec[i].first;
+        m -= take;
+    } cout << res << endl;
+}
 https://codeforces.com/problemset/problem/18/C
 // 18C. Stripe
 using namespace std;
