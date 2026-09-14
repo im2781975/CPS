@@ -109,6 +109,53 @@ int main() {
         }
     } cout << len;
 }
+http://codeforces.com/contest/9/problem/A
+// 9A. Die Roll
+using namespace std;
+int main() {
+    int y, x; cin >> y >> x;
+    int maxi = max(y, x); 
+    int q = (6 - maxi) + 1;
+    if(q == 1) cout << "1/6" << endl;
+    else if(q == 2)	cout << "1/3" << endl;
+    else if(q == 3)	cout << "1/2" << endl;
+    else if(q == 4) cout << "2/3" << endl;
+    else if(q == 5) cout << "5/6" << endl;
+    else if(q == 6) cout << "1/1" << endl;
+    else if(q == 0) cout << "0/1" << endl; /*
+    string arr[] = {"1/6", "1/3", "1/2", "2/3", "5/6", "1/1", "0/1"};
+    cout << arr[maxi] << endl; */
+}
+https://codeforces.com/problemset/problem/16/A
+// 16A. Flag
+using namespace std;
+int main() {
+    int row, col; cin >> row >> col;
+    vector <string> vec(row);
+    for(int i = 0; i < row; i++) cin >> vec[i];
+    bool ok = true;
+    for(int i = 0; i < row && ok; i++) {
+        for(int j = 1; j < col; j++) {
+            if(vec[i][j] != vec[i][0]) {
+                ok = false; break;
+            }
+        }
+        if(i > 0 && vec[i][0] == vec[i - 1][0])	ok = false;
+    }
+    cout << (ok ? "YES" : "NO");
+    /* string str, prvcolor = "";
+    for(int i = 0; i < row; i++) {
+        cin >> str;
+        for(int j = 1; j < col; j++) {
+            if(str[j] != str[0]) {
+                cout << "NO"; return 0;
+            }
+        }
+        if(i > 0 && str == prvcolor) {
+                cout << "NO"; return 0;
+        } prvcolor = str;
+    } cout << "YES"; */
+}
 https://codeforces.com/problemset/problem/18/C
 // 18C. Stripe
 using namespace std;
