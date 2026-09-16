@@ -370,3 +370,27 @@ int main() {
         if(cnt[i] == 2) res++;
     } cout << res << " ";
 }
+https://codeforces.com/problemset/problem/27/A
+// 27A.Next Test
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector <int> vec(n);
+    for(int i = 0; i < n; i++) cin >> vec[i];
+    sort(vec.begin(), vec.end());
+    int tmp = 1;
+    for(int x : vec) {
+        if(x == tmp) ++tmp;
+        else if(x > tmp) break;
+    } cout << tmp << " "; /*
+    bool vis[200] = {false};
+    while(n--) {
+        int x; cin >> x;
+        vis[x] = true;
+    }
+    for(int i = 1;; ++i) {
+        if(!vis[i]) {
+            cout << i << " "; break;
+        }
+    } */
+}
