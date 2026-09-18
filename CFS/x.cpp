@@ -394,3 +394,19 @@ int main() {
         }
     } */
 }
+https://codeforces.com/problemset/problem/29/A
+// 29A. Spit Problem
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector <int> x(n), d(n);
+    for(int i = 0; i < n; ++i) cin >> x[i] >> d[i];
+    bool found = false;
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < i; ++j) {
+            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) {
+                cout << "YES"; return 0;
+            }
+        } 
+    } cout << "NO";
+}
