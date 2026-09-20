@@ -410,3 +410,46 @@ int main() {
         } 
     } cout << "NO";
 }
+https://codeforces.com/problemset/problem/31/A
+// 31A. Worms Evolution
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector <pair <int, int>> vec(n);
+    for(int i = 0; i < n; i++) {
+        cin >> vec[i].first; vec[i].second = i;
+    }
+    sort(vec.begin(), vec.end());
+    for(int k = 0; k < n; k++) {
+        int l = 0, r = n - 1;
+        while(l < r) {
+            if(l == k) {
+                l++; continue;
+            }
+            if(r == k) {
+                r--; continue;
+            }
+            int sum = vec[l].first + vec[r].first;
+            if(sum == vec[k].first) {
+                cout << vec[k].second  + 1 << " " << vec[l].second + 1 << " " << vec[r].second + 1 << endl;
+                return 0;
+            }
+            else if(sum < vec[k].first) l++;
+            else r--;
+        }
+    } /*
+    vector <int> vec(n);
+    for(int i = 0; i < n; ++i) cin >> vec[i];
+    for(int i = 0; i < n; ++i) {
+        unordered_map <int, int> vis;
+        for(int j = 0; j < n; ++j) {
+            if(i == j) continue;
+            int need = vec[i] - vec[j];
+            if(vis.find(need) != vis.end()) {
+                int k = vis[need];
+                cout << i + 1 << " " << j + 1 << " " << k + 1 << endl;
+                return 0;
+            } vis[vec[j]] = j;
+        }
+    } */ cout << "-1" << endl;
+}
