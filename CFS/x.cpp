@@ -453,3 +453,15 @@ int main() {
         }
     } */ cout << "-1" << endl;
 }
+https://codeforces.com/problemset/problem/32/B
+// 32B. Borze
+using namespace std;
+int main() {
+    string str; cin >> str;
+    for(int i = 0; i < str.size(); i++) {
+        if(str[i] == '.') cout << '0';
+        else {
+            cout << (str[i + 1] == '.' ? '1' : '2'); ++i;
+        }
+    }
+}
