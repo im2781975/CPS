@@ -485,3 +485,15 @@ int main() {
         }
     }
 }
+https://codeforces.com/problemset/problem/34/B
+// 34B. Sale
+using namespace std;
+int main() {
+    int n, m; cin >> n >> m;
+    vector <int> prices(n);
+    for(int i = 0; i < n; i++) cin >> prices[i];
+    sort(prices.begin(), prices.end());
+    int total = 0;
+    for(int i = 0; i < m && prices[i] < 0; i++) total -= prices[i];
+    cout << total;
+}
