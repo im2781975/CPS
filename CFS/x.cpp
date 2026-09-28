@@ -497,3 +497,22 @@ int main() {
     for(int i = 0; i < m && prices[i] < 0; i++) total -= prices[i];
     cout << total;
 }
+https://codeforces.com/problemset/problem/40/A
+// 40A. Find Color
+using namespace std;
+int main() {
+    int a, b; cin >> a >> b;
+    int neg = (a < 0) + (b < 0);
+    int tmp = a * a + b * b;
+    int dis = sqrt(tmp);
+    if(dis * dis == tmp) cout << "black";
+    else {
+        bool res = (neg == 1) ? (dis % 2) : (dis % 2 == 0);
+        cout << (res ? "black" : "white");
+    } /*
+    double x, y; cin >> x >> y;
+    double tmp = sqrt(x * x + y * y);
+    int res = (int)tmp;
+    if(res == tmp || x == 0 || y == 0) return true;
+    return ((x * y > 0) == (res % 2 == 0)); */
+}
