@@ -516,3 +516,13 @@ int main() {
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
 }
+https://codeforces.com/problemset/problem/1257/A
+// 1257A. Two Rival Students
+using namespace std;
+int main() {
+    int t; cin >> t;
+    while(t--) {
+        int n, x, a, b; cin >> n >> x >> a >> b;
+        cout << min(n - 1, abs(a - b) + x) << endl;
+    }
+}
