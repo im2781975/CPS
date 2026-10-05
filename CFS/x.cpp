@@ -533,8 +533,8 @@ int main() {
     int t; cin >> t;
     while(t--) {
         int x, y; cin >> x >> y;
-        if (x == 1 && y > 1 || x <= 3 && y > 3) cout << "No";
-    	else cout << "yes"; /*
+        if (x == 1 && y > 1 || x <= 3 && y > 3) cout << "No" << endl;
+    	else cout << "yes" << endl; /*
         if(x >= y) cout << "Yes" << endl;
         else {
             if((x <= 3 && y > 3) || x == 1) cout << "No" << endl;
