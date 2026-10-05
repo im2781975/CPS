@@ -526,3 +526,24 @@ int main() {
         cout << min(n - 1, abs(a - b) + x) << endl;
     }
 }
+https://codeforces.com/problemset/problem/1257/B?mobile=false
+// 1257B. Magic Stick
+using namespace std;
+int main() {
+    int t; cin >> t;
+    while(t--) {
+        int x, y; cin >> x >> y;
+        if (x == 1 && y > 1 || x <= 3 && y > 3) cout << "No";
+    	else cout << "yes"; /*
+        if(x >= y) cout << "Yes" << endl;
+        else {
+            if((x <= 3 && y > 3) || x == 1) cout << "No" << endl;
+            else cout << "Yes" << endl;
+        } *//*
+        set <int> vis;
+        while(x < y && !vis.count(x)) {
+            vis.insert(x); x = (x / 2) * 3;
+        }
+        cout << (x >= y ? "Yes" : "No"); */
+    }
+}
