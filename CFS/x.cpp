@@ -516,6 +516,17 @@ int main() {
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
 }
+https://codeforces.com/contest/1245/problem/A
+// 1245A. Good ol' Numbers Coloring
+using namespace std;
+int main() {
+    int t; cin >> t; 
+    while(t--) {
+        int x, y; cin >> x >> y;
+    	if(gcd(x, y) == 1) cout << "Finite" << endl;
+    	else cout << "Infinite" << endl;
+    }
+}
 https://codeforces.com/problemset/problem/1257/A
 // 1257A. Two Rival Students
 using namespace std;
