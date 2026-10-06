@@ -516,6 +516,15 @@ int main() {
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
 }
+https://codeforces.com/problemset/problem/990/A
+// 990A. Commentary Boxes
+using namespace std;
+int main() {
+    long long n, m, a, b; cin >> n >> m >> a >> b;
+    long long removecost = (n % m) * b;
+    long long addcost = (m - (n % m)) * a;
+    cout << min(removecost, addcost) << endl;
+}
 https://codeforces.com/contest/1245/problem/A
 // 1245A. Good ol' Numbers Coloring
 using namespace std;
