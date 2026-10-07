@@ -516,6 +516,15 @@ int main() {
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
 }
+https://codeforces.com/problemset/problem/84/A
+// 84A. Toy Army
+using namespace std;
+int main() {
+    int n; cin >> n;
+    // cout << n + n / 2;
+    // cout << (2 * n) - (n / 2);
+    cout << 3 * n / 2;
+}
 https://codeforces.com/problemset/problem/990/A
 // 990A. Commentary Boxes
 using namespace std;
