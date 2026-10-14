@@ -534,6 +534,32 @@ int main() {
     long long addcost = (m - (n % m)) * a;
     cout << min(removecost, addcost) << endl;
 }
+https://codeforces.com/problemset/problem/1100/A
+// 1100A. Roman and Browser
+using namespace std;
+int main() {
+    int n, k; cin >> n >> k; /*
+    int browser[201];
+    for(int i = 1; i <= n; i++) cin >> browser[i];
+    int maxd = -1;
+    for(int i = 0; i < k; i++) {
+        int diff = 0;
+        for(int j = 1; j <= n; j++) {
+            if(j % k != i) diff += browser[j];
+        }
+        maxd = max(maxd, abs(diff));
+    } cout << maxd << endl; */
+    vector <int> vec(n);
+    for(int &x : vec) cin >> x;
+    vector <int> rem(k, 0); 
+    int total = 0, res = 0;
+    for(int i = 0; i < n; i++) {
+        rem[i % k] += vec[i];
+        total += vec[i];
+    }
+    for(int i = 0; i < k; i++) res = max(res, abs(total - rem[i]));
+    cout << res << " ";
+}
 https://codeforces.com/contest/1245/problem/A
 // 1245A. Good ol' Numbers Coloring
 using namespace std;
