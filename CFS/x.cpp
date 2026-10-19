@@ -525,6 +525,24 @@ int main() {
     // cout << (2 * n) - (n / 2);
     cout << 3 * n / 2;
 }
+https://codeforces.com/problemset/problem/339/A
+// 339A. Helpful Maths
+using namespace std;
+int main() {
+    string str; cin >> str;
+    sort(str.begin(), str.end()); /*
+    int mid = (str.size() - 1) / 2;
+    for(int i = mid; i < (int)str.size(); i++) {
+        if(i > mid) cout << '+';
+        cout << str[i];
+    } */
+    string res = "";
+    for(char ch : str) {
+        if(ch == '+') continue;
+        if(!res.empty()) res += '+';
+        res += ch;
+    } cout << res;
+}
 https://codeforces.com/problemset/problem/990/A
 // 990A. Commentary Boxes
 using namespace std;
