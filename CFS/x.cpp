@@ -578,6 +578,33 @@ int main() {
     for(int i = 0; i < k; i++) res = max(res, abs(total - rem[i]));
     cout << res << " ";
 }
+https://codeforces.com/problemset/problem/1117/B
+// 1117B. Emotes
+using namespace std;
+using lli = long long;
+int main() {
+    int n, m, k; cin >> n >> m >> k;
+    vector <lli> vec(n); 
+    for(lli &x : vec) cin >> x; /*
+    lli ein = 0, duo = 0;
+    for(lli x : vec) {
+        if(x > ein) {
+            duo = ein; ein = x;
+        }
+        else if (x > duo) duo = x;
+    }
+    lli full = m / (k + 1);
+    lli extra = m % (k + 1);
+
+    lli ans = full * (first * k + second) + extra * first;
+    cout << ans << ' '; */
+    
+    sort(vec.rbegin(), vec.rend());
+    lli full = m / (k + 1);
+    lli rem  = m % (k + 1);
+    lli happ = full * (1LL * k * vec[0] + vec[1]) + rem * vec[0];
+    cout << happ << ' ';
+}
 https://codeforces.com/contest/1245/problem/A
 // 1245A. Good ol' Numbers Coloring
 using namespace std;
