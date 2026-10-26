@@ -616,6 +616,20 @@ int main() {
     	else cout << "Infinite" << endl;
     }
 }
+https://codeforces.com/problemset/problem/1255/A
+// 1255A. Changing Volume
+using namespace std;
+using ll = long long;
+int main() {
+    int t; cin >> t;
+    while(t--) {
+		ll a, b; cin >> a >> b;
+        ll k = abs(a - b); /*
+        ll cnt = diff / 5 + (diff % 5 > 0) + (diff % 5 > 2);
+        cout << cnt << " "; */
+        cout << k / 5 + (k % 5) / 2 + k % 5 % 2 << ' ';
+    }
+}
 https://codeforces.com/problemset/problem/1257/A
 // 1257A. Two Rival Students
 using namespace std;
