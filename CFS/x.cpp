@@ -605,6 +605,35 @@ int main() {
     lli happ = full * (1LL * k * vec[0] + vec[1]) + rem * vec[0];
     cout << happ << ' ';
 }
+https://codeforces.com/problemset/problem/1243/A
+// 1243A. Maximum Square
+using namespace std;
+int main() {
+    int t; cin >> t;
+    while(t--) {
+        int n; cin >> n;
+        vector <int> vec(n);
+        for(int &x : vec) cin >> x;
+        sort(vec.rbegin(), vec.rend());
+        int res = 1;
+        for(int i = 0; i < n; i++) {
+            if(i + 1 <= vec[i]) res = i + 1;
+            // res = max(res, min(vec[i], n - i));
+        }
+        cout << res << endl;
+    } /*
+    vector <int> freq(1001, 0);
+    for(int i = 0; i < t; i++) {
+        int x; cin >> x; freq[x]++;
+    }
+    int cnt = 0;
+    for(int i = 1000; i >= 1; i--) {
+        cnt += freq[i];
+        if(cnt >= i) {
+            cout << i << ' '; return;
+        }
+    } */
+}
 https://codeforces.com/contest/1245/problem/A
 // 1245A. Good ol' Numbers Coloring
 using namespace std;
