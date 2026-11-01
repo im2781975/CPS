@@ -543,6 +543,28 @@ int main() {
         res += ch;
     } cout << res;
 }
+https://codeforces.com/problemset/problem/708/A
+// 708A. Letters Cyclic Shift
+using namespace std;
+int main() {
+    string str; cin >> str;
+    int i = 0;
+    while(i < str.length() && str[i] == 'a') i++;
+    if(i == str.length()) str[i - 1] = 'z';
+    while(i < str.length() && str[i] != 'a') {
+        str[i]--; i++;
+    } /*
+    bool changed = false;
+    for(char &ch : str) {
+        if(ch == 'a') {
+            if(changed) break;
+        }
+        else {
+            ch--; changed = true;
+        }
+    } if(!changed) str.back() = 'z'; */
+    cout << str;
+}
 https://codeforces.com/problemset/problem/990/A
 // 990A. Commentary Boxes
 using namespace std;
