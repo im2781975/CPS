@@ -565,6 +565,27 @@ int main() {
     } if(!changed) str.back() = 'z'; */
     cout << str;
 }
+https://codeforces.com/problemset/problem/982/A
+// 982A. Row
+using namespace std;
+int main() {
+    int n; cin >> n;
+    string str; cin >> str;
+    str = "0" + str + "0"; /*
+    bool ok = str.find("000") == string::npos &&
+    	str.find("11") == string::npos;
+    cout << (ok ? "Yes" : "No"); */
+    bool flg = false;
+    for (int i = 1; i <= n; ++i) {
+        if (str[i] == '0' && str[i - 1] == '0' && str[i + 1] == '0') {
+            flg = false; break;
+        }
+        if (str[i] == '1' && (str[i - 1] == '1' || str[i + 1] == '1')) {
+            flg = false; break;
+        }
+    }
+    cout << flg ? " Yes" : "No";
+}
 https://codeforces.com/problemset/problem/990/A
 // 990A. Commentary Boxes
 using namespace std;
