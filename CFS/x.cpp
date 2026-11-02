@@ -543,6 +543,39 @@ int main() {
         res += ch;
     } cout << res;
 }
+https://codeforces.com/problemset/problem/602/A
+// 602A. Two Bases
+using namespace std;
+using ll = long long;
+ll convert(int n, int x) {
+    ll val = 0;
+    for(int i = 0; i < n; ++i) {
+        ll dig; cin >> dig;
+        val = val * x + dig;
+    } return val;
+}
+int main() {
+    int n, x; cin >> n >> x;
+    ll res1 = convert(n, x);
+    int m, y; cin >> m >> y;
+    ll res2 = convert(m, y);
+
+    cout << (res1 < res2 ? "<" : res1 > res2 ? ">" : "=") << '';
+}
+https://codeforces.com/problemset/problem/633/A
+// 633A. Ebony and Ivory
+using namespace std;
+using ll = long long;
+int main() {
+    ll a, b, c; cin >> a >> b >> c;
+    if(a > b) swap(a, b);
+    bool ok = false;
+    for(ll i = 0; i * a <= c; ++i) {
+        if((c - a * i) % b == 0) {
+            ok = true; break;
+        }
+    } cout << (ok ? "Yes" : "No");
+}
 https://codeforces.com/problemset/problem/708/A
 // 708A. Letters Cyclic Shift
 using namespace std;
