@@ -576,6 +576,27 @@ int main() {
         }
     } cout << (ok ? "Yes" : "No");
 }
+https://codeforces.com/problemset/problem/705/B
+// 705B. Spider Man
+using namespace std;
+int main() {
+    int n; cin >> n; /*
+    if (cin >> n) {
+        long long temp = 0;
+        for (int i = 0; i < n; i++) {
+            long long a; cin >> a;
+            temp = (temp + a - 1) % 2;
+            if (temp != 0) cout << 1 << "\n";
+            else cout << 2 << "\n";
+        }
+    } */
+    int parity = 0;
+    for (int i = 0; i < n; ++i) {
+        int x; cin >> x;
+        parity ^= (x - 1) & 1;
+        cout << (parity ? 1 : 2) << endl;
+    }
+}
 https://codeforces.com/problemset/problem/708/A
 // 708A. Letters Cyclic Shift
 using namespace std;
