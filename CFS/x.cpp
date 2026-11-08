@@ -543,6 +543,24 @@ int main() {
         res += ch;
     } cout << res;
 }
+https://codeforces.com/problemset/problem/552/B
+// 552B. Vanya and Books
+using namespace std;
+using ll = long long;
+int main() {
+    ll n, digits = 0; cin >> n;
+    for(ll i = 9; n > 0; i *= 10) {
+        digits += n; n -= i;
+    } cout << digits << endl;
+    /* ll n; cin >> n;
+    ll sum = 0, digits = 1, cnt = 9;
+    while (n >= cnt) {
+        sum += cnt * digits; n -= cnt;
+        digits++; cnt *= 10;
+    }
+    sum += n * digits;
+    cout << sum << ''; */
+}
 https://codeforces.com/problemset/problem/602/A
 // 602A. Two Bases
 using namespace std;
