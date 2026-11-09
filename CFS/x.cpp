@@ -9,34 +9,24 @@ int main() {
     // cout << (n / a + (n % a != 0)) * (m / a + (m % a != 0));
 }
 https://codeforces.com/problemset/problem/3/A
-// 3A.Shortest path of the king
+// 3A. Shortest path of the king
 using namespace std;
 int main() {
-    string init, end; cin >> init >> end;
-    // dx counts colums, dy counts rows
-    int dx = abs(init[0] - end[0]);
-    int dy = abs(init[1] - end[1]);
+    string str, ing; cin >> str >> ing;
+    int dx = abs(str[0] - ing[0]); // counts cols
+    int dy = abs(str[1] - ing[1]); // counts rows
     cout << max(dx, dy) << endl;
-    while(init != end) {
+    while(str != ing) {
         string move = "";
-        if(init[0] < end[0]) {
-        	move += 'R'; init[0]++;
-            // cout << 'R';
-        }
-        else if(init[0] > end[0]) {
-        	move += 'L'; init[0]--;
-            // cout << 'L';
-        }
-        if(init[1] < end[1]) {
-        	move += 'U'; init[1]++;
-            // cout << 'U';
-        }
-        else if(init[1] > end[1]) {
-        	move += 'D'; init[1]--;
-            // cout << 'D';
-        }
-        // cout << endl;
-        cout << move << endl;
+        if(str[0] < ing[0]) {
+            move += 'R'; str[0]++; // cout << 'R';
+        } else if(str[0] > ing[0]) {
+            move += 'L'; str[0]--; // cout << 'L';
+        } if(str[1] < ing[1]) {
+            move += 'U'; str[1]++; // cout << 'U';
+        } else if(str[1] > ing[1]) {
+            move += 'D'; str[1]--; // cout << 'D';
+        } cout << move << endl;
     }
 }
 https://codeforces.com/problemset/problem/4/B
