@@ -543,6 +543,20 @@ int main() {
         res += ch;
     } cout << res;
 }
+https://codeforces.com/problemset/problem/433/A
+// 433A. Kitahara Haruki's Gift
+using namespace std;
+int main() {
+    int n; cin >> n;
+    int one = 0, two = 0;
+    for(int i = 0; i < n; i++) {
+        int w; cin >> w;
+        if(w == 100) one++;
+        else if(w == 200) two++;
+    }
+    if (one % 2 == 1 || (two % 2 == 1 && one == 0)) cout << "NO" << endl;
+    else cout << "YES" << endl;  
+}
 https://codeforces.com/problemset/problem/459/A
 // 459A. Pashmak and Garden
 using namespace std;
