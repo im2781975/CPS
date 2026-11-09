@@ -603,6 +603,31 @@ int main() {
     sum += n * digits;
     cout << sum << ''; */
 }
+https://codeforces.com/problemset/problem/554/B
+// 554B. Ohana Cleans Up
+using namespace std;
+int main() {
+    int n; cin >> n;
+    /* if (cin >> n) {
+        map<string, int> row_counts;
+        int max_clean_rows = 0;
+        for (int i = 0; i < n; ++i) {
+            string row; cin >> row;
+            row_counts[row]++;
+            max_clean_rows = max(max_clean_rows, row_counts[row]);
+        }
+        cout << max_clean_rows << "\n";
+    } */
+    map <string, int> mp;
+    for(int i = 0; i < n; ++i) {
+        string str; cin >> str;
+        ++mp[str];
+    }
+    int ma = 0;
+    for (const auto& [s, c] : mp)
+        ma = max(ma, c);
+    cout << ma;
+}
 https://codeforces.com/problemset/problem/602/A
 // 602A. Two Bases
 using namespace std;
