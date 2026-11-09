@@ -1147,47 +1147,6 @@ void b1011() {
         cout << 1;
     }
 }
-
-int b554() {
-    int n;
-    cin >> n;
-    string s[105];
-    for (int i = 0; i < n; ++i)
-        cin >> s[i];
-    sort(s, s + n);
-    int ma = 0;
-    int i = 0;
-    while (i < n) {
-        int num = 1;
-        while (i < n - 1 && s[i] == s[i + 1]) {
-            i++;
-            num++;
-        }
-        if (num > ma)
-            ma = num;
-        i++;
-    }
-    cout << ma;
-}
-
-void a433() {
-    int n;
-    int a[2] = {0};
-    cin >> n;
-    for (int i = 0; i < n; ++i) {
-        int temp;
-        cin >> temp;
-        if (temp == 100)
-            a[0]++;
-        else 
-            a[1]++;
-    }
-    if (a[0] % 2 == 1 || (a[0] == 0 && a[1] % 2 == 1))
-        cout << "NO";
-    else 
-        cout << "YES";
-}
-
 int bs(int v, int begin, int end) {
     if (begin >= end)
         return end;
