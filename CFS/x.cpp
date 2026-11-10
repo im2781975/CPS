@@ -789,6 +789,43 @@ int main() {
     long long addcost = (m - (n % m)) * a;
     cout << min(removecost, addcost) << endl;
 }
+https://codeforces.com/problemset/problem/1011/b
+// 1011B. Planning The Expedition
+void b1011() {
+    int n, m;
+    cin >> n >> m;
+    vector<int> cnt(101, 0);
+    for (int i = 0; i < m; ++i) {
+        int x;
+        cin >> x;
+        ++cnt[x];
+    } /*
+    int max_days = 0;
+    // Try every possible number of days d
+    for (int d = 1; d <= m; ++d) {
+        int participants_fed = 0;
+        for (int i = 1; i <= 100; ++i) {
+            participants_fed += count[i] / d;
+        }
+        if (participants_fed >= n) {
+            max_days = d;
+        } else {
+            break; // If d days don't work, larger d won't work either
+        }
+    }
+    cout << max_days << "\n"; */
+    int ans = 0;
+    for (int k = m / n; k >= 1; --k) {
+        int groups = 0;
+        for (int c : cnt) groups += c / k;
+
+        if (groups >= n) {
+            ans = k;
+            break;
+        }
+    }
+    cout << ans;
+}
 https://codeforces.com/problemset/problem/1100/A
 // 1100A. Roman and Browser
 using namespace std;
