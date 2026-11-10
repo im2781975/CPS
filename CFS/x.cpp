@@ -614,6 +614,75 @@ int main() {
         ma = max(ma, c);
     cout << ma;
 }
+https://codeforces.com/problemset/problem/574/A?mobile=false
+// 574A. Bear and Elections
+using namespace std;
+int main() {
+    int n; cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+    int bribes = 0;
+    while (true) {
+        int rivalidx = 1;
+        for (int i = 2; i < n; i++) {
+            if (a[i] >= a[rivalidx]) rivalidx = i;
+        }
+        if (a[0] > a[rivalidx]) break;
+        a[0]++; a[rivalidx]--; bribes++;
+    }
+    cout << bribes << endl;
+    /*
+    int n, a;
+    cin >> n >> a;
+
+    int start = a;
+    vector<int> cnt(1001, 0);
+
+    for (int i = 1; i < n; ++i) {
+        int x;
+        cin >> x;
+        cnt[x]++;
+    }
+
+    for (int i = 1000; i >= a; --i) {
+        if (cnt[i] == 0) continue;
+        if (a + cnt[i] <= i) {
+            cnt[i - 1] += cnt[i];
+            a += cnt[i];
+        } else {
+            a = i + 1;
+        }
+    }
+    cout << a - start << '
+';
+    */ /*
+    int n, a;
+    cin >> n >> a;
+
+    priority_queue<int> pq;
+
+    for (int i = 1; i < n; ++i) {
+        int votes;
+        cin >> votes;
+        pq.push(votes);
+    }
+
+    int answer = 0;
+
+    while (!pq.empty() && pq.top() >= a) {
+        int votes = pq.top();
+        pq.pop();
+
+        --votes;  // Opponent loses one vote
+        ++a;      // Limak gains one vote
+        ++answer;
+
+        pq.push(votes);
+    }
+
+    cout << answer << '
+'; */
+}
 https://codeforces.com/problemset/problem/602/A
 // 602A. Two Bases
 using namespace std;
@@ -858,39 +927,6 @@ int main() {
         cout << (x >= y ? "Yes" : "No"); */
     }
 }
-
-void a574() {
-    int n;
-    cin >> n;
-    int a;
-    cin >> a;
-    int sum = a;
-    int num = 1;
-    int eq = 0;
-    int ma = a;
-    int mbuf[1005] = {0};
-    for (int i = 2; i <= n; ++i) {
-        int temp;
-        cin >> temp;
-        mbuf[temp]++;
-    }
-    for (int i = 1000; i>= a; --i) {
-        if (mbuf[i] == 0)
-            continue;
-        int temp = mbuf[i];
-        // printf("i=%d, a=%d, buf[i]=%d\n", i, a, mbuf[i]);
-        if (a + mbuf[i] <= i) {
-            mbuf[i - 1] += mbuf[i];
-            a += mbuf[i];
-            mbuf[i] = 0;
-        } else {
-            a = i + 1;
-        }
-    }
-    cout << a - ma;
-    return ;
-}
-
 void a902() {
     int n, m;
     cin >> n >> m;
