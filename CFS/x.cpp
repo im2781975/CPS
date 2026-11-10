@@ -571,6 +571,48 @@ int main() {
         else cout << -1 << endl;
     }
 }
+https://codeforces.com/problemset/problem/474/B
+// 474B. Worms
+int main() {
+    int n;
+    cin >> n; /*
+    vector<int> pref(n);
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        int a;
+        cin >> a;
+        sum += a;
+        pref[i] = sum;
+    }
+
+    int m;
+    cin >> m;
+    for (int i = 0; i < m; i++) {
+        int q;
+        cin >> q;
+        // lower_bound finds the first prefix sum >= q
+        auto it = lower_bound(pref.begin(), pref.end(), q);
+        cout << (it - pref.begin() + 1) << "\n";
+    } */
+    vector<long long> prefix(n + 1, 0);
+    for (int i = 1; i <= n; ++i) {
+        long long x;
+        cin >> x;
+        prefix[i] = prefix[i - 1] + x;
+    }
+
+    int m;
+    cin >> m;
+
+    while (m--) {
+        long long x;
+        cin >> x;
+
+        int pos = lower_bound(prefix.begin() + 1, prefix.end(), x) - prefix.begin();
+        cout << min(pos, n) << '
+';
+    }
+}
 https://codeforces.com/problemset/problem/552/B
 // 552B. Vanya and Books
 using namespace std;
@@ -1169,66 +1211,4 @@ void b365() {
         cout << 1;
     else 
         cout << ma + 2;
-}
-
-void b1011() {
-    int n, m;
-    cin >> n >> m;
-    if (n > m) {
-        cout << 0;
-        return;
-    }
-    if (n == m || m / n == 1) {
-        cout << 1;
-        return;
-    }
-    int a[105] = {0};
-    for (int i = 0; i < m; ++i) {
-        int temp;
-        cin >> temp;
-        a[temp]++;
-    }
-    sort(a, a + 101);
-    int ma = m / n;
-    ma = min(ma, a[100]);
-    if (ma == 1)
-        cout << 1;
-    else {
-        for(int i = ma; i > 1; --i) {
-            int sum = 0;
-            for (int j = 100; a[j] >= i; --j)
-                sum += a[j] / i;
-            if (sum >= n) {
-                cout << i;
-                return;
-            }
-        }
-        cout << 1;
-    }
-}
-int bs(int v, int begin, int end) {
-    if (begin >= end)
-        return end;
-    int half = (begin + end) / 2;
-    if (v > buffer[half])
-        return bs(v, half + 1, end);
-    else if (v == buffer[half])
-        return half;
-    else 
-        return bs(v, begin, half);
-}
-void b474() {
-    int n;
-    cin >> n;
-    for (int i = 1; i <= n; ++i) {
-        cin >> buffer[i];
-        buffer[i] += buffer[i - 1];
-    }
-    int m;
-    cin >> m;
-    for (int i = 0; i < m; ++i) {
-        int temp;
-        cin >> temp;
-        cout << bs(temp, 1, n) << endl;
-    }
 }
