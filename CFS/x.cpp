@@ -529,6 +529,69 @@ int main() {
         res += ch;
     } cout << res;
 }
+void b362() {
+    int n, m;
+    cin >> n >> m;
+    int buf[3000] = {0};
+    for (int i = 0; i < m; ++i)
+        cin >> buf[i];
+    sort(buf, buf + m);
+    if (buf[0] == 1 || buf[m - 1] == n)
+        cout << "NO";
+    else {
+        bool b = false;
+        for (int i = 0; i < m - 2; ++i) 
+            if (buf[i] + 1 == buf[i + 1] && buf[i] + 2 == buf[i + 2]) {
+                b = true;
+                break;
+            }
+        if (b)
+            cout << "NO";
+        else 
+            cout << "YES";
+    }
+}
+void b365() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++i)
+        cin >> buffer[i];
+    for (int i = 2; i < n; ++i)
+        if (buffer[i] == buffer[i - 1] + buffer[i - 2])
+            buf2[i] = 1;
+    int ma = 0;
+    int i = 2;
+    while(i < n) {
+        int num = 0;
+        while (i < n && buf2[i] == 1) {
+            i++;
+            num++;
+        }
+        if (num > ma)
+            ma = num;
+        i++;
+    }
+    if (n == 1)
+        cout << 1;
+    else 
+        cout << ma + 2;
+}
+long long buffer[500005] = {0};
+long long buf2[500005] = {0};
+
+void b432() {
+    int n;
+    cin >> n;
+    // cout << n << endl;
+    for (int i = 0; i < n; ++i) {
+        int temp;
+        cin >> temp >> buf2[i];
+        buffer[temp]++;
+    }
+    for (int i = 0; i < n; ++i) {
+        cout << n - 1 + buffer[buf2[i]] << " " << n - 1 - buffer[buf2[i]] << endl;
+    }
+}
 https://codeforces.com/problemset/problem/433/A
 // 433A. Kitahara Haruki's Gift
 using namespace std;
@@ -725,6 +788,12 @@ int main() {
     cout << answer << '
 '; */
 }
+void b592() {
+    long long n;
+    cin >> n;
+    n -= 2;
+    cout << n * n;
+}
 https://codeforces.com/problemset/problem/602/A
 // 602A. Two Bases
 using namespace std;
@@ -801,6 +870,93 @@ int main() {
     } if(!changed) str.back() = 'z'; */
     cout << str;
 }
+void b734() {
+    int k2, k3, k5, k6;
+    cin >> k2 >> k3 >> k5 >> k6;
+    int mi;
+    mi = min(k2, k5);
+    mi = min(mi, k6);
+    long long sum = 0;
+    sum += mi * 256L;
+    k2 -= mi;
+    mi = min(k2, k3);
+    sum += mi * 32;
+    cout << sum;
+}
+void a799() {
+    int n, t, k, d;
+    cin >> n >> t >> k >> d;
+    int num = (n + k - 1) / k;
+    num--;
+    if (num * t > d)
+        cout << "YES";
+    else 
+        cout << "NO";
+}
+
+void a902() {
+    int n, m;
+    cin >> n >> m;
+    int b = 0, e = 0, t1, t2;
+    for (int i = 0; i < n; ++i) {
+        cin >> t1 >> t2;
+        if (t1 <= e && t2 > e)
+            e = t2;
+    }
+    if (e >= m)
+        cout << "YES";
+    else 
+        cout << "NO";
+}
+void c903() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++i)
+        cin >> buffer[i];
+    sort(buffer, buffer + n);
+    int ma = 0;
+    int i = 0;
+    while(i < n) {
+        int num = 1;
+        while(i < n - 1 && buffer[i] == buffer[i + 1]) {
+            i++;
+            num++;
+        }
+        if (num > ma)
+            ma = num;
+        i++;
+    }
+    cout << ma;
+}
+void b911() {
+    int n, a, b;
+    cin >> n >> a >> b;
+    int mi = 0;
+    for (int i = 1; i < n; ++i) {
+        int temp = min(a / i, b / (n - i));
+        mi = max(mi, temp);
+    }
+    cout << mi;
+}
+void c977() {
+    int n, k;
+    cin >> n >> k;
+    for (int i = 0; i < n; ++i)
+        cin >> buffer[i];
+    sort(buffer, buffer + n);
+    int sum = 0;
+    if (k == n)
+         cout << buffer[n - 1];
+    else if (buffer[k - 1] == buffer[k])
+        cout << -1;
+    else if (k == 0) {
+        if (buffer[0] > 1)
+            cout << 1;
+        else 
+            cout << -1;
+    } else
+        cout << buffer[k - 1];
+}
 https://codeforces.com/problemset/problem/982/A
 // 982A. Row
 using namespace std;
@@ -830,6 +986,36 @@ int main() {
     long long removecost = (n % m) * b;
     long long addcost = (m - (n % m)) * a;
     cout << min(removecost, addcost) << endl;
+}
+void b998() {
+    int n, b;
+    cin >> n >> b;
+    int a[1000] = {0};
+    int on = 0, en = 0;
+    for (int i = 0; i < n; ++i)
+        cin >> a[i];
+    vector<int> v;
+    for (int i = 0; i < n; ++i) {
+        if (a[i] % 2 == 0)
+            en++;
+        else 
+            on++;
+        if (en == on && i < n - 1)
+            v.push_back(abs(a[i + 1] - a[i]));
+    }
+    if (en != on || v.size() == 0)
+        cout << 0;
+    else {
+        sort(v.begin(), v.end());
+        int sum = 0;
+        int i = 0;
+
+        while(sum + v[i] <= b && i < v.size()) {
+            sum += v[i];
+            i++;
+        }
+        cout << i;
+    }
 }
 https://codeforces.com/problemset/problem/1011/b
 // 1011B. Planning The Expedition
@@ -1006,113 +1192,6 @@ int main() {
         cout << (x >= y ? "Yes" : "No"); */
     }
 }
-void a902() {
-    int n, m;
-    cin >> n >> m;
-    int b = 0, e = 0, t1, t2;
-    for (int i = 0; i < n; ++i) {
-        cin >> t1 >> t2;
-        if (t1 <= e && t2 > e)
-            e = t2;
-    }
-    if (e >= m)
-        cout << "YES";
-    else 
-        cout << "NO";
-}
-
-void b911() {
-    int n, a, b;
-    cin >> n >> a >> b;
-    int mi = 0;
-    for (int i = 1; i < n; ++i) {
-        int temp = min(a / i, b / (n - i));
-        mi = max(mi, temp);
-    }
-    cout << mi;
-}
-
-long long buffer[500005] = {0};
-long long buf2[500005] = {0};
-
-void b432() {
-    int n;
-    cin >> n;
-    // cout << n << endl;
-    for (int i = 0; i < n; ++i) {
-        int temp;
-        cin >> temp >> buf2[i];
-        buffer[temp]++;
-    }
-    for (int i = 0; i < n; ++i) {
-        cout << n - 1 + buffer[buf2[i]] << " " << n - 1 - buffer[buf2[i]] << endl;
-    }
-}
-
-void b592() {
-    long long n;
-    cin >> n;
-    n -= 2;
-    cout << n * n;
-}
-
-void b362() {
-    int n, m;
-    cin >> n >> m;
-    int buf[3000] = {0};
-    for (int i = 0; i < m; ++i)
-        cin >> buf[i];
-    sort(buf, buf + m);
-    if (buf[0] == 1 || buf[m - 1] == n)
-        cout << "NO";
-    else {
-        bool b = false;
-        for (int i = 0; i < m - 2; ++i) 
-            if (buf[i] + 1 == buf[i + 1] && buf[i] + 2 == buf[i + 2]) {
-                b = true;
-                break;
-            }
-        if (b)
-            cout << "NO";
-        else 
-            cout << "YES";
-    }
-}
-
-void b734() {
-    int k2, k3, k5, k6;
-    cin >> k2 >> k3 >> k5 >> k6;
-    int mi;
-    mi = min(k2, k5);
-    mi = min(mi, k6);
-    long long sum = 0;
-    sum += mi * 256L;
-    k2 -= mi;
-    mi = min(k2, k3);
-    sum += mi * 32;
-    cout << sum;
-}
-
-void c977() {
-    int n, k;
-    cin >> n >> k;
-    for (int i = 0; i < n; ++i)
-        cin >> buffer[i];
-    sort(buffer, buffer + n);
-    int sum = 0;
-    if (k == n)
-         cout << buffer[n - 1];
-    else if (buffer[k - 1] == buffer[k])
-        cout << -1;
-    else if (k == 0) {
-        if (buffer[0] > 1)
-            cout << 1;
-        else 
-            cout << -1;
-    } else
-        cout << buffer[k - 1];
-}
-
 void a1263() {
     int a[3];
     cin >> a[0] >> a[1] >> a[2];
@@ -1122,93 +1201,4 @@ void a1263() {
     else 
         cout << a[1] + a[0];
     cout << endl;
-}
-
-void a799() {
-    int n, t, k, d;
-    cin >> n >> t >> k >> d;
-    int num = (n + k - 1) / k;
-    num--;
-    if (num * t > d)
-        cout << "YES";
-    else 
-        cout << "NO";
-}
-
-void b998() {
-    int n, b;
-    cin >> n >> b;
-    int a[1000] = {0};
-    int on = 0, en = 0;
-    for (int i = 0; i < n; ++i)
-        cin >> a[i];
-    vector<int> v;
-    for (int i = 0; i < n; ++i) {
-        if (a[i] % 2 == 0)
-            en++;
-        else 
-            on++;
-        if (en == on && i < n - 1)
-            v.push_back(abs(a[i + 1] - a[i]));
-    }
-    if (en != on || v.size() == 0)
-        cout << 0;
-    else {
-        sort(v.begin(), v.end());
-        int sum = 0;
-        int i = 0;
-
-        while(sum + v[i] <= b && i < v.size()) {
-            sum += v[i];
-            i++;
-        }
-        cout << i;
-    }
-}
-
-void c903() {
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; ++i)
-        cin >> buffer[i];
-    sort(buffer, buffer + n);
-    int ma = 0;
-    int i = 0;
-    while(i < n) {
-        int num = 1;
-        while(i < n - 1 && buffer[i] == buffer[i + 1]) {
-            i++;
-            num++;
-        }
-        if (num > ma)
-            ma = num;
-        i++;
-    }
-    cout << ma;
-}
-
-void b365() {
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; ++i)
-        cin >> buffer[i];
-    for (int i = 2; i < n; ++i)
-        if (buffer[i] == buffer[i - 1] + buffer[i - 2])
-            buf2[i] = 1;
-    int ma = 0;
-    int i = 2;
-    while(i < n) {
-        int num = 0;
-        while (i < n && buf2[i] == 1) {
-            i++;
-            num++;
-        }
-        if (num > ma)
-            ma = num;
-        i++;
-    }
-    if (n == 1)
-        cout << 1;
-    else 
-        cout << ma + 2;
 }
