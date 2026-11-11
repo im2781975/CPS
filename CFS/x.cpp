@@ -29,6 +29,14 @@ int main() {
         } cout << move << endl;
     }
 }
+https://codeforces.com/problemset/problem/4/A
+// 4A. Watermelon
+using namespace std;
+int main() {
+    int w; cin >> w;
+    if(w % 2 == 0 && w > 2) cout << "Yes";
+    else cout << "No";
+}
 https://codeforces.com/problemset/problem/4/B
 // 4B. Before an Exam
 using namespace std;
