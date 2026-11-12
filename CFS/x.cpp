@@ -85,22 +85,19 @@ https://codeforces.com/problemset/problem/5/A
 // 5A. Chat Server's Outgoing Traffic
 using namespace std;
 int main() {
-    string str; int len = 0;
+    string str; int len = 0, people = 0;
     set <string> user;
     while(getline(cin, str)) {
-        if(str[0] == '+') {
-    		str[0] = '*'; user.insert(str);
-        }
-        if(str[0] == '-') {
-            str[0] = '*'; user.erase(str);
-        }
+        if(str.empty()) continue;
+        if(str[0] == '+') user.insert(str.substr(1));
+        if(str[0] == '-') user.erase(str.substr(1));
         else {
             size_t pos = str.find(':');
-            if (pos != string::npos) {
-                int strlen = str.size() - pos - 1;
-                len += strlen * user.size();
-            }
+            if(pos != string::npos) len += (str.size() - pos - 1) * user.size();
         }
+        /* if(str[0] == '+') ++people;
+        else if(str[0] == '-') --people;
+        else len += people * (str.size() - str.find(':') - 1); */
     } cout << len;
 }
 http://codeforces.com/contest/9/problem/A
