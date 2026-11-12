@@ -121,30 +121,25 @@ https://codeforces.com/problemset/problem/16/A
 using namespace std;
 int main() {
     int row, col; cin >> row >> col;
+    string str, prvcolor = "";
+    for(int i = 0; i < row; ++i) {
+        cin >> str;
+        for(int j = 1; j < col; ++j) {
+            if(str[j] != str[0]) { cout << "NO"; return 0; }
+        } if(i > 0 && str == prvcolor) {
+            cout << "NO"; return 0;
+        } prvcolor = str;
+    } cout << "YES"; /*
     vector <string> vec(row);
     for(int i = 0; i < row; i++) cin >> vec[i];
     bool ok = true;
-    for(int i = 0; i < row && ok; i++) {
-        for(int j = 1; j < col; j++) {
+    for(int i = 0; i < row; ++i) {
+        for(int j = 1; j < col; ++j) {
             if(vec[i][j] != vec[i][0]) {
                 ok = false; break;
             }
-        }
-        if(i > 0 && vec[i][0] == vec[i - 1][0])	ok = false;
-    }
-    cout << (ok ? "YES" : "NO");
-    /* string str, prvcolor = "";
-    for(int i = 0; i < row; i++) {
-        cin >> str;
-        for(int j = 1; j < col; j++) {
-            if(str[j] != str[0]) {
-                cout << "NO"; return 0;
-            }
-        }
-        if(i > 0 && str == prvcolor) {
-                cout << "NO"; return 0;
-        } prvcolor = str;
-    } cout << "YES"; */
+        } if(i > 0 && vec[i][0] == vec[i - 1][0]) ok = false;
+    } cout << (ok ? "YES" : "NO"); */
 }
 https://codeforces.com/problemset/problem/16/B
 // 16B. Burglar and Matches
