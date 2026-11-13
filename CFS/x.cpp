@@ -144,30 +144,30 @@ int main() {
 https://codeforces.com/problemset/problem/16/B
 // 16B. Burglar and Matches
 using namespace std;
+using ll = long long;
 int main() {
-    int m, n; cin >> m >> n;
-    vector <pair <int, int>> vec(n);
-    /* int x, y; 
-    for(int i = 0; i < n; i++) {
-        cin >> x >> y; 
+    int n, m; cin >> n >> m;
+    ll cnt = 0, res = 0;
+    vector <pair <int, int>> vec(m);
+    for(int i = 0; i < m; ++i) {
+        int x, y; cin >> x >> y;
         vec.push_back({y, x});
     }
     sort(vec.rbegin(), vec.rend());
-    long long cnt = 0, res = 0;
     for(auto &p : vec) {
-        int take = min(n - cnt, (long long)p.second);
-        res += 1LL * take * p.first;
-        cnt += take; 
-        if(cnt == m) break;
-    } */
-    for(int i = 0; i < n; i++) cin >> vec[i].second >> vec[i].first;
-    sort(vec.rbegin(), vec.rend());
-    long long res = 0;
-    for(int i = 0; i < n && m > 0; i++) {
-        int take = min(m, vec[i].second);
-        res += 1LL * take * vec[i].first;
-        m -= take;
-    } cout << res << endl;
+        if(cnt >= n) break;
+        int take = min((ll)n - cnt, (ll)p.second);
+        res += 1LL * take * p.first; cnt += take;
+    }
+    /* for(int i = 0; i < m; i++) cin >> vec[i].first >> vec[i].second;
+    sort(vec.begin(), vec.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        return a.second > b.second;
+    });
+    for(int i = 0; i < m && n > 0; i++) {
+        int take = min(n, vec[i].first);
+        res += 1LL * take * vec[i].second;
+        n -= take;
+    } */ cout << res;
 }
 https://codeforces.com/problemset/problem/17/A
 // 17A. Noldbach problem
