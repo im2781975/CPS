@@ -259,24 +259,17 @@ https://codeforces.com/problemset/problem/23/A
 using namespace std;
 int main() {
     string str; cin >> str;
-    map <string, int> mp;, /*
-    for (int i = 0; i < (int)str.size(); i++) {
-        for (int j = 1; i + j <= (int)str.size(); j++)
-            mp[str.substr(i, j)]++;
-    }
-    */
-    int len = str.size();
-    for(int i = 0; i < len; i++) {
+    map <string, int> mp;
+    int len = str.size(), res = 0;
+    for(int i = 0; i < (int)str.size(); i++) {
+        for(int j = 1; i + j <= (int)str.size(); j++) mp[str.substr(i, j)]++;
+    } /* for(int i = 0; i < len; ++i) {
         string tmp = "";
-        for(int j = i; j < len; j++) {
-            tmp += str[j];
-            mp[tmp]++;
+        for(int j = i; j < len; ++j) {
+            tmp += str[j]; mp[tmp]++;
         }
-    } int res = 0;
-    for (auto &p : mp) {
-        if (p.second >= 2) {
-            res = max(res, (int)p.first.size());
-        }
+    } */ for(auto &p : mp) {
+        if(p.second >= 2) res = max(res, (int)p.first.size());
     } cout << res;
 }
 https://codeforces.com/problemset/problem/25/A
