@@ -55,8 +55,7 @@ int main() {
             else cout << endl;
             fullera -= (rem - minera[i]);
         }
-    } 
-    else cout << "NO" << endl; */
+    } else cout << "NO" << endl; */
     if(fullera < fullminera || fullera > fullmaxera) {
         cout << "NO"; return 0;
     } cout << "YES\n"; vector <int> res(day);
@@ -94,8 +93,7 @@ int main() {
         else {
             size_t pos = str.find(':');
             if(pos != string::npos) len += (str.size() - pos - 1) * user.size();
-        }
-        /* if(str[0] == '+') ++people;
+        } /* if(str[0] == '+') ++people;
         else if(str[0] == '-') --people;
         else len += people * (str.size() - str.find(':') - 1); */
     } cout << len;
