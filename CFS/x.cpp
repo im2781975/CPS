@@ -244,8 +244,7 @@ int main() {
     if(st.size() <= 1) cout << "NO";
     else {
         st.erase(st.begin()); cout << *st.begin();
-    } /*
-    vector <int> vec(n);
+    } /* vector <int> vec(n);
     for(int i = 0; i < n; i++) cin >> vec[i];
     sort(vec.begin(), vec.end());
     for(int i = 1; i < n; i++) {
