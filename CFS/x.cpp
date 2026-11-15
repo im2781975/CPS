@@ -748,6 +748,29 @@ int main() {
         else cout << -1 << endl;
     }
 }
+// 469A
+using namespace std;
+void WannaBeTheGuy(){
+    int n, p, q; cin >> n >> p >> q;
+    int freq[101]{0};
+    vector <int> vec(p), tmp(q);
+    for(int i = 0; i < p; i++){
+        cin >> vec[i];
+        freq[vec[i]]++;
+    }
+    for(int i = 0; i < q; i++){
+        cin >> tmp[i];
+        freq[tmp[i]]++;
+    }
+    bool flag = false;
+    for(int i = 1; i <= n; i++){
+        if(freq[i] == 0){
+            flag = false;
+            break;
+        }
+    }
+    (flag)? cout << "Become the guy" : cout << "Oh, no";
+}
 https://codeforces.com/problemset/problem/474/B
 // 474B. Worms
 int main() {
