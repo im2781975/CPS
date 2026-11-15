@@ -1,26 +1,4 @@
 using namespace std;
-void HelpfulMath(){
-    string str, ans, res; cin >> str;
-    if(str.size() == 1){
-        cout << str;
-        return 0;
-    }
-    for(int i = 0; i < str.size(); i++){
-        if(str[i] == '+')
-            res += str[i];
-        else
-            ans += str[i];
-    }
-    sort(ans.begin(), ans.end());
-    for(int i = 0; i < ans.size(); i++){
-        cout << ans[i];
-        if(i == ans.size() - 1)
-            return 0;
-        else
-            cout << '+';
-    }
-}
-using namespace std;
 void WannaBeTheGuy(){
     int n, p, q; cin >> n >> p >> q;
     int freq[101]{0};
