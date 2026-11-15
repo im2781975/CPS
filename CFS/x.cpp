@@ -603,6 +603,17 @@ int main()
     avg=(double)sum/(double)n;
     cout<<avg;
 }
+// 231A
+using namespace std;
+void Team(){
+    int n, cnt = 0; cin >> n;
+    while(n--){
+        int x, y, z; cin >> x >> y >> z;
+        if(x + y + z > 1)
+            cnt++;
+    }
+    cout << cnt;
+}
 https://codeforces.com/problemset/problem/339/A
 // 339A. Helpful Maths
 using namespace std;
@@ -664,6 +675,29 @@ void b362() {
         else 
             cout << "YES";
     }
+}
+// 365A
+using namespace std;
+void GoodNumber(){
+    int n, k; cin >> n >> k;
+    int cnt = 0;
+    while(n--){
+        string str; cin >> str;
+        sort(str.begin(), str.end());
+        int freq[10]{0};
+        bool flag = true;
+        for(int i = 0; i < str.size(); i++)
+            freq[str[i] - '0']++;
+        for(int i = 0; i <= k; i++){
+            if(freq[i] == 0 && i <= k){
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+            cnt++;
+    }
+    cout << cnt;
 }
 void b365() {
     int n;
@@ -737,6 +771,22 @@ int main() {
     }
     if (one % 2 == 1 || (two % 2 == 1 && one == 0)) cout << "NO" << endl;
     else cout << "YES" << endl;  
+}
+// 443A
+using namespace std;
+void AntonAndLetter(){
+    string str, res; cin >> str;
+    for(int i = 0; i < str.size(); i++){
+        if(str[i] >= 'a' && str[i] <= 'z')
+            res += str[i];
+    }
+    sort(res.begin(), res.end());
+    int cnt = 0;
+    for(int i = 0; i < res.size(); i++){
+        if(res[i] != res[i + 1])
+            cnt++;
+    }
+    cout << cnt;
 }
 https://codeforces.com/problemset/problem/459/A
 // 459A. Pashmak and Garden
@@ -1048,6 +1098,22 @@ void b734() {
     mi = min(k2, k3);
     sum += mi * 32;
     cout << sum;
+}
+// 785A
+using namespace std;
+void AntonAndPolyhedron(){
+    int n; cin >> n;
+    int cnt = 0;
+    string str;
+    while(n--){
+        cin >> str;
+        if(str == "Tetrahedron") cnt += 4;
+        else if(str == "Cube") cnt += 6;
+        else if(str == "Octahedron") cnt += 8;
+        else if(str == "Dodecahedron") cnt =+ 12;
+        else if(str == "Icosahedron") cnt += 20;
+    }
+    cout << cnt;
 }
 void a799() {
     int n, t, k, d;
