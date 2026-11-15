@@ -273,32 +273,26 @@ https://codeforces.com/problemset/problem/25/A
 // 25A. IQ test
 using namespace std;
 int main() {
-    int n; cin >> n; 
-    int arr[n], odd = 0, even = 0;
-    // int evenodd[2] = 0;
+    int n, odd = 0, even = 0; cin >> n; 
+    int tive[2] = {0};
+    vector <int> arr(n);
+    for(int i = 0; i < n; ++i) {
+		cin >> arr[i]; 
+        tive[abs(arr[i]) % 2]++;
+        // (arr[i] % 2) ? odd++ : even++;
+    }/* int ty = (odd > even) ? 0 : 1;
     for(int i = 0; i < n; i++) {
-        cin >> arr[i];
-        if(arr[i] % 2) odd++;
-        else even++;
-        // evenodd[arr[i] % 2]++;
-    }
-    int parity = (odd > even) ? 0 : 1;
-    for(int i = 0; i < n; i++) {
-        if(arr[i] % 2 == parity) {
-            cout << i + 1 << endl; break;
+        if(arr[i] % 2 == ty) {
+            cout << i + 1; break;
         }
-    } /*
-    for(int i = 0; i < n; i++){
-        if(arr[i] % 2 == ((evenodd[0] >= evenodd[1]) ? 1 : 0))
-            cout << i + 1 << " ";
-    } */ /*
-    int idxeven = idxodd = -1;
+    } */ for(int i = 0; i < n; ++i) {
+        if(arr[i] % 2 == ((tive[0] >= tive[1]) ? 1 : 0)){ cout << i + 1; break; }
+    } /* int idxeven = idxodd = -1;
     for(int i = 0; i < n; i++) {
         int x; cin >> x;
-        if(x % 2 == 0) { even++; idxeven = i;}
+        if(x % 2 == 0) { even++; idxeven = i; }
         else { odd++; idxodd = i; }
-    }
-    cout << (odd == 1 ? idxodd : idxeven); */
+    } cout << (odd == 1 ? idxodd : idxeven); */
 }
 https://codeforces.com/problemset/problem/25/B
 // 25B. Phone numbers
