@@ -11,7 +11,23 @@ int main() {
         } if(vec[i] == 2) cnt++;
     } cout << cnt;
 }
-
+https://codeforces.com/problemset/problem/26/B
+// B. Regular Bracket Sequence
+using namespace std;
+int main() {
+    string str; cin >> str;
+    stack <char> st; int cnt = 0, res = 0;
+    for(int i = 0; i < (int)str.size(); i++) {
+        if(str[i] == '(') ++cnt;
+        else if(cnt > 0) { res += 2; --cnt; }
+    } cout << res; /*
+    for(int i = 0; i < str.size(); i++) {
+        char ch = str[i];
+        if(ch == '(') st.push(ch);
+        else if(ch == ')' && !st.empty() && st.top() == '(') { st.pop(); cnt++; }
+        else st.push(ch);
+    } cout << cnt * 2; */
+}
 
 
 
