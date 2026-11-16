@@ -31,43 +31,7 @@ int main() {
 
 
 
-using namespace std;
-// problemset/problem/26/B
-// B. Regular Bracket Sequence
-int main(){
-    string str; cin >> str;
-    stack <char> st;
-    int cnt = 0;
-    for(int i = 0; i < str.size(); i++){
-        char ch = str[i];
-        if(ch == '(') st.push(ch);
-        else if(ch == ')' && !st.empty() && st.top() == '('){
-            st.pop();
-            cnt++;
-        }
-        else
-            st.push(ch);
-    }
-    cout << cnt * 2;
-}
-https://codeforces.com/problemset/problem/26/B
-// B. Regular Bracket Sequence
-int main() {
-    string s;
-    cin >> s;
-    int cnt = 0, ans = 0;
-    for (int i = 0; i < (int)s.size(); ++i) {
-        if (s[i] == '(') {
-            ++cnt;
-        } else {
-            if (cnt != 0) {
-                ans += 2;
-                --cnt;
-            }
-        }
-    }
-    cout << ans << '\n';
-}
+
 https://codeforces.com/problemset/problem/27/A
 // A. Next Test
 using namespace std;
