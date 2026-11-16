@@ -1,74 +1,19 @@
-
-
 https://codeforces.com/problemset/problem/26/A
 // A. Almost Prime
 using namespace std;
-int main(){
-    int n, amount = 0; cin >> n;
-    bool b[3001] = {false};
-    int pfactors[3001] = {0};
-    for (int i = 2; i <= n; ++i){
-        if (!b[i]){
-            for (int j = i + i; j <= n; j += i){
-                b[j] = true;
-                pfactors[j] += 1;
-            }
-        }
-        if (pfactors[i] == 2)    amount++;
-    }
-    cout << amount << endl;
-    return 0;
-}
-using namespace std;
 int main() {
-    int n, count = 0; cin >> n;
-    vector<bool> isComposite(n + 1, false);
-    vector<int> primeFactorCount(n + 1, 0);
-    for (int i = 2; i <= n; ++i) {
-        if (!isComposite[i]) {
-            for (int j = i * 2; j <= n; j += i) {
-                isComposite[j] = true;
-                primeFactorCount[j]++;
-            }
-        }
-    }
-    for (int i = 2; i <= n; ++i) {
-        if (primeFactorCount[i] == 2)  count++;
-    }
-    cout << count << endl;
+    int n, cnt = 0; cin >> n;
+    vector <int> vec(n + 1, 0);
+    for(int i = 2; i <= n; ++i) {
+        if(vec[i] == 0) {
+            for(int j = i; j <= n; j += i) vec[j]++;
+            // for(int j = i * 2; j <= n; j += i) vec[j]++;
+        } if(vec[i] == 2) cnt++;
+    } cout << cnt;
 }
-using namespace std;
-int main(){
-    int n, amount = 0; cin >> n;
-    bool b[3001] = {false};
-    int pfactors[3001] = {0};
-    for (int i = 2; i <= n; ++i){
-        if (!b[i]){
-            for (int j = i + i; j <= n; j += i){
-                b[j] = true;
-                pfactors[j] += 1;
-            }
-        }
-        if (pfactors[i] == 2)    amount += 1;
-    }
-    cout << amount;
-    return 0;
-}
-using namespace std;
-int main() {
-    int n, count = 0; cin >> n;
-    vector<int> pfactors(n + 1, 0);
-    for (int i = 2; i <= n; ++i) {
-        if (pfactors[i] == 0) {
-            for (int j = i; j <= n; j += i)
-                pfactors[j]++;
-        }
-        if (pfactors[i] == 2)
-            count++;
-    }
-    cout << count << '\n';
-    return 0;
-}
+
+
+
 
 using namespace std;
 // problemset/problem/26/B
