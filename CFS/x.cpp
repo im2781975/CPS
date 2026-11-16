@@ -469,6 +469,20 @@ int main() {
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
 }
+// 69A
+using namespace std;
+void YoungPhysicist(){
+    int n; cin >> n;
+    int sumx = 0, sumy = 0, sumz = 0;
+    while(n--){
+        int x, y, z; cin >> x >> y >> z;
+        sumx += x; sumy += y; sumz += z;
+    }
+    if(sumx == 0 && sumy == 0 && sumz)
+        cout << "Yes";
+    else
+        cout << "No";
+}
 https://codeforces.com/problemset/problem/84/A
 // 84A. Toy Army
 using namespace std;
@@ -586,6 +600,19 @@ int main()
     avg=(double)sum/(double)n;
     cout<<avg;
 }
+// 228A
+using namespace std;
+void HorseShoweOnHoof(){
+    int arr[4], cnt = 0;
+    for(int i = 0; i < 4; i++)
+        cin >> arr[i];
+    sort(arr, arr + 4);
+    for(int i = 0; i < 3; i++){
+        if(arr[i] == arr[i + 1])
+            cnt++;
+    }
+    cout << cnt;
+}
 // 231A
 using namespace std;
 void Team(){
@@ -596,6 +623,20 @@ void Team(){
             cnt++;
     }
     cout << cnt;
+}
+// 236A
+using namespace std;
+void BoyOrGirl(){
+    string str; cin >> str;
+    vector <int> freq(26);
+    int cnt = 0;
+    for(int i = 0; i < str.size(); i++)
+        freq[str[i] - 'a']++;
+    for(int i = 0; i < 26; i++){
+        if(freq[i])
+            cnt++;
+    }
+    (cnt % 2 == 0)? cout << "chat with her" : cout << "Ignore him";
 }
 https://codeforces.com/problemset/problem/339/A
 // 339A. Helpful Maths
@@ -706,6 +747,38 @@ void b365() {
         cout << 1;
     else 
         cout << ma + 2;
+}
+// 381A
+using namespace std;
+void SirajaAndDima(){
+    int n; cin >> n;
+    deque <int> dq(n);
+    int siraj = 0, Dima = 0;
+    for(int i = 0; i < n; i++)
+        cin >> dq[i];
+    for(int i = 0; i < n; i++){
+        if(i % 2 == 0){
+            if(dq.back() > dq.front()){
+                siraj += dq.back();
+                dq.pop_back();
+            }
+            else{
+                siraj += dq.front();
+                dq.pop_front();
+            }
+        }
+        else{
+            if(dq.back() > dq.front()){
+                Dima += dq.back();
+                dq.pop_back();
+            }
+            else{
+                Dima += dq.front();
+                dq.pop_front();
+            }
+        }
+    }
+    cout << siraj << " " << Dima;
 }
 // 431A
 using namespace std;
@@ -875,6 +948,23 @@ void teamOlympiad(int n) {
     for(int i = 0; i < k; i++) 
         cout << team[0][i] << " " << team[1][i] << " " << team[2][i] << endl;
 }
+// 520A
+using namespace std;
+void Pangram(){
+    int n; cin >> n;
+    if(n < 26){
+        cout << "No";
+        return 0;
+    }
+    set <char> st;
+    for(int i = 0; i < n; i++){
+        char ch; cin >> ch;
+        if(ch >= 'A' && ch <= 'Z')
+            ch += 32;
+        st.insert(ch);
+    }
+    (st.size() == 26) ? cout << "Yes" : cout << "No";
+}
 https://codeforces.com/problemset/problem/552/B
 // 552B. Vanya and Books
 using namespace std;
@@ -1026,6 +1116,39 @@ int main() {
         }
     } cout << (ok ? "Yes" : "No");
 }
+//677A
+using namespace std;
+void VanyaAndFence(){
+    int n, h; cin >> n >> h;
+    int res = 0;
+    for(int i = 0; i < n; i++){
+        int x; cin >> x;
+        if(x <= h)
+            res++;
+        else
+            res += 2;
+    }
+    cout << res;
+}
+// 686A
+using namespace std;
+void FreeIceCreem(){
+    int n, x; cin >> n >> x;
+    int cnt = 0, sum = x;
+    char ch;
+    while(n--){
+        cin >> ch >> x;
+        if(ch == '+')
+            sum += x;
+        else{
+            if(sum - x < 0)
+                cnt++;
+            else
+                sum -= x;
+        }
+    }
+    cout << sum << " " << cnt;
+}
 https://codeforces.com/problemset/problem/705/B
 // 705B. Spider Man
 using namespace std;
@@ -1068,6 +1191,35 @@ int main() {
         }
     } if(!changed) str.back() = 'z'; */
     cout << str;
+}
+// 709A
+using namespace std;
+void Juicer(){
+    int n, b, d;cin >> n >> b >> d;
+    vector <int> vec(n);
+    int sum = 0, cnt = 0;
+    for(int i = 0; i < n; i++){
+        cin >> vec[i];
+        if(vec[i] <= b)
+            sum += vec[i];
+        if(sum > d){
+            cnt++;
+            sum = 0;
+        }
+    }
+    cout << cnt;
+}
+// 732A
+using namespace std;
+void BuyShovel(){
+    int k, r; cin >> k >> r;
+    for(int i = 1; i <= 1000; i++){
+        int shovel = i * k;
+        if(shovel % 10 == r || shovek % 10 == 0){
+            cout << i << " ";
+            return 0;
+        }
+    }
 }
 void b734() {
     int k2, k3, k5, k6;
