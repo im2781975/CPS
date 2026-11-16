@@ -518,6 +518,22 @@ void PetyaString(){
     else
         cout << "0";
 }
+// 116A
+using namespace std;
+void Tram(){
+    int n; cin >> n;
+    int ans[n];
+    for(int i = 0; i < n; i++){
+        int a, b; cin >> a >> b;
+        ans[i] = a + b;
+    }
+    int maxi = ans[0];
+    for(int i = 1; i < n; i++){
+        if(ans[i] > maxi)
+            maxi = ans[i];
+    }
+    cout << maxi - 1;
+}
 // 141A
 using namespace std;
 void AmusingJoke(){
@@ -702,6 +718,17 @@ int main()
     }
     avg=(double)sum/(double)n;
     cout<<avg;
+}
+using namespace std;
+void Drinks(){
+    int n; cin >> n;
+    float sum = 0;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n; i++)
+        sum += arr[i];
+    cout << sum / n;
 }
 // 202A
 using namespace std;
@@ -1083,6 +1110,48 @@ void SirajaAndDima(){
     }
     cout << siraj << " " << Dima;
 }
+// 427A
+using namespace std;
+void PoliceRecruits(){
+    int n; cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    int available = 0, crimes = 0;
+    for(int i = 0; i < n; i++){
+        if(arr[i] > 0)
+            available += arr[i];
+        else{
+            if(available > 0)
+                available--;
+            else
+                crimes++;
+        }
+    }
+    cout << crimes;
+	
+}
+using namespace std;
+void PoliceRecruite(){
+    int n; cin >> n;
+    int police = 0, crime = 0, cnt = 0;
+    vector <int> vec(n);
+    for(int i = 0; i < n; i++){
+        cin >> vec[i];
+        if(vec[i] < 0){
+            crime++;
+            if(police == 0)
+                cnt++;
+            else if(police && crime){
+                police--;
+                crime--;
+            }
+        }
+        else
+            police += vec[i];
+    }
+    cout << cnt;
+}
 // 431A
 using namespace std;
 void BalckSqr(){
@@ -1213,6 +1282,43 @@ void WannaBeTheGuy(){
         }
     }
     (flag)? cout << "Become the guy" : cout << "Oh, no";
+}
+using namespace std;
+int removeDup(int arr[], int n){
+    if(n == 0 || n == 1)
+        return n;
+    int j = 0;
+    for(int i = 0; i < n - 1; i++){
+        if(arr[i] != arr[i + 1])
+            arr[j++] = arr[i];
+    }
+    arr[j++] = arr[n - 1];
+    return j;
+}
+void WannaGuy(){
+    int n; cin >> n;
+    int a, b; cin >> a >> b;
+    int arr[a], tmp[b];
+    for(int i = 0; i < a; i++)
+        cin >> arr[i];
+    for(int i = 0; i < b; i++)
+        cin >> tmp[i];
+    removeDup(&arr[a], a);
+    removeDup(&arr[b], b);
+    int cnt = n;
+    for(int i = 0; i < a; i++){
+        for(int j = 0; j < n; j++){
+            if(arr[i] == j)
+                cnt--;
+        }
+    }
+    for(int i = 0; i < b; i++){
+        for(int j = 0; j < n; j++){
+            if(tmp[i] == j)
+                cnt--;
+        }
+    }
+    (cnt == 0) ? cout << "Wann be guy" : cout << "Oh! keyboard";
 }
 https://codeforces.com/problemset/problem/474/B
 // 474B. Worms
@@ -1429,6 +1535,16 @@ int main() {
 
     cout << answer << '
 '; */
+}
+// 581A
+using namespace std;
+void VasyaTheHipster(){
+    int a, b, c; cin >> a >> b;
+    if(a <= b)
+        c = a;
+    else
+        c = b;
+    cout << c << " " << (a + b - 2 * c) / 2;
 }
 void b592() {
     long long n;
@@ -2199,6 +2315,29 @@ void PhoenixAndBalance(){
             x = 2 * (i - 1) - 2;
     }
     cout << x;
+}
+// 1352A
+using namespace std;
+void sumOfRound(){
+    int n; cin >> n;
+    int ans[n], cnt = 0;
+    for(int i = 0; i < n; i++){
+        int x; cin >> x;
+        ans[i] = 0;
+        if(x % 10 == 0){
+            cnt++;
+            ans[i] = x;
+        }
+        else{
+            while(x != 0){
+                cnt++;
+                x /= 10;
+            }
+        }
+    }
+    cout << "Count of Operation: " << cnt << "\n";
+    for(int i = 0; i < n; i++)
+        cout << ans[i] << " ";
 }
 using namespace std;
 //1450B
