@@ -619,6 +619,19 @@ int main() {
     cout << taxis << endl;
     return 0;
 }
+using namespace std;
+void NextRound(){
+    int n, k, cnt = 0; cin >> n >> k;
+    k--;
+    vector <int> vec(n);
+    for(int i = 0; i < n; i++)
+        cin >> vec[i];
+    for(int i = 0; i < n; i++){
+        if(vec[i] && vec[i] >= vec[k])
+            cnt++;
+    }
+    cout << cnt;
+}
 //https://codeforces.com/problemset/problem/195/A
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -769,6 +782,41 @@ void colorfulStone(){
     }
     cout << pos + 1;
 }
+// 268A
+using namespace std;
+void Games(){
+    int n, cnt = 0;
+    cin >> n;
+    int arr[n], tmp[n];
+    for(int i = 0; i < n; i++){
+        int x, int y; cin >> x >> y;
+        arr[i] = x; 
+        tmp[i] = y;
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(arr[i] == tmp[j] && i != j)
+                cnt++;
+        }
+    }
+    cout << cnt;
+}
+using namespace std;
+void Game(){
+    int n, cnt = 0; cin >> n;
+    vector <int> vec(n), tmp(n);
+    for(int i = 0; i < n; i++)
+        cin >> vec[i] >> tmp[i];
+    sort(vec.begin(), vec.end());
+    sort(tmp.begin(), tmp.end());
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            if(vec[i] == tmp[j])
+                cnt++;
+        }
+    }
+    cout << cnt;
+}
 // 276A
 using namespace std;
 void LunchRush(){
@@ -782,6 +830,21 @@ void LunchRush(){
             mx = max(mx, x);
     }
     cout << mx;
+}
+// 282A
+using namespace std;
+void BitsPlus(){
+    int n, cnt = 0;
+    cin >> n;
+    string a = "++X", b = "X++", c = "--X", d = "X--";
+    while(n--){
+        string str; cin >> str;
+        if(str == a || str == b)
+            cnt++;
+        else if(str == c || str == d)
+            cnt--;
+    }
+    cout << cnt;
 }
 // 289A
 using namespace std;
@@ -842,6 +905,20 @@ void HelpfulMath(){
         else
             cout << '+';
     }
+}
+// 344A
+using namespace std;
+void Megnets(){
+    int n, cnt = 0;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n - 1; i++){
+        if(arr[i] != arr[i - 1])
+            cnt++;
+    }
+    cout << cnt;
 }
 using namespace std;
 //352B
@@ -1542,6 +1619,15 @@ void ArpasExam(){
     }
     cout << res;
 }
+// 766A
+using namespace std;
+void LongestUncommonSubsequence(){
+    string a, b; cin >> a >> b;
+    if(a == b)
+        cout << "-1";
+    else
+        cout << max(a.size(), b.size());
+}
 // 768A
 using namespace std;
 void OathOfNightWatch(){
@@ -1608,6 +1694,14 @@ void IsItRated(){
         cout << "Unrated";
     else
         cout << "maybe";
+}
+// 822A
+using namespace std;
+void BoredLife(){
+    int a, b, fact = 1; cin >> a >> b;
+    for(int i = 1; i <= min(a, b); i++)
+        fact *= i;
+    cout << fact;
 }
 void a902() {
     int n, m;
@@ -2036,6 +2130,52 @@ void PhoenixAndBalance(){
             x = 2 * (i - 1) - 2;
     }
     cout << x;
+}
+using namespace std;
+//1450B
+void BallsOfSteel(){
+    int n, k; cin >> n >> k;
+    int x[n], y[n];
+    for(int i = 0; i < n; i++)
+        cin >> x[i] >> y[i];
+    bool found = false;
+    for(int i = 0; i < n; i++){
+        bool withDist = true;
+        for(int j = 0; j < n; j++){
+            if(i != j){
+                long long dist = abs(x[i] - x[j]) + abs(y[i] - y[j]);
+                if(d > k){
+                    withDist = false;
+                    break;
+                }
+            }
+        }
+        if(withDist){
+            found = true;
+            break;
+        }
+    }
+    if(found)
+        cout << 1;
+    else
+        cout << -1;
+}
+using namespace std;
+//1453A
+void CancelTheTrain(){
+    int m, n, cnt = 0; cin >> m >> n;
+    int bottom[n], left[m];
+    for(int i = 0; i < n; i++)
+        cin >> bottom[i];
+    for(int i = 0; i < m; i++)
+        cin >> left[i];
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(bottom[i] == left[j])
+                cnt++;
+        }
+    }
+    cout << cnt;
 }
 // 1512A
 using namespace std;
