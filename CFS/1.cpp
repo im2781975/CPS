@@ -1,40 +1,4 @@
-u
-using namespace std;
-void wrongSubtract(){
-    int n, k; cin >> n >> k;
-    while(k--){
-        if(n % 10 == 0)
-            n /= 10;
-        else
-            n--;
-    }
-    cout << n;
-}
-using namespace std;
-void ultraFast(){
-    string str, tmp;
-    cin >> str >> tmp;
-    for(int i = 0; i < str.size(); i++){
-        if(str[i] != tmp[i])
-            cout << "1";
-        else
-            cout << "0";
-    }
-}
-using namespace std;
-void EqualCandies(){
-    int n; cin >> n;
-    vector <int> vec(n);
-    int sum = 0;
-    for(int i = 0; i < n; i++)
-        cin >> vec[i];
-    int mini = *min_element(vec.begin(), vec.end());
-    for(int i = 0; i < n; i++){
-        vec[i] -= mini;
-        sum += vec[i];
-    }
-    cout << sum;
-}
+
 using namespace std;
 void colorfulStone(){
     string str, tmp; cin >> str >> tmp;
