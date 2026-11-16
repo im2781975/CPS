@@ -650,6 +650,40 @@ void BoyOrGirl(){
     }
     (cnt % 2 == 0)? cout << "chat with her" : cout << "Ignore him";
 }
+// 255A
+Greg's Workout
+using namespace std;
+void GresWorkout(){
+    int n; cin >> n;
+    vector <int> vec(n);
+    int chest = 0, biceps = 0, back = 0;
+    for(int i = 0; i < n; i++){
+        cin >> vec[i];
+        if(i % 3 == 0)
+            chest += vec[i];
+        else if(i % 3 == 1)
+            biceps += vec[i];
+        else
+            back += vec[i];
+    }
+    if(chest >= biceps && chest >= back)
+        cout << "chest";
+    else if(biceps >= chest && biceps >= back)
+        cout << "biceps";
+    else
+        cout << "back";
+}
+// 265A
+using namespace std;
+void colorfulStone(){
+    string str, tmp; cin >> str >> tmp;
+    int pos = 0;
+    for(int i = 0; i < tmp.size(); i++){
+        if(str[pos] == tmp[i])
+            pos++;
+    }
+    cout << pos + 1;
+}
 https://codeforces.com/problemset/problem/339/A
 // 339A. Helpful Maths
 using namespace std;
@@ -977,6 +1011,18 @@ void Pangram(){
     }
     (st.size() == 26) ? cout << "Yes" : cout << "No";
 }
+// 546A
+using namespace std;
+void SoldierAndBanana(){
+    int k, n, w; cin >> k >> n >> w;
+    int total = 0;
+    for(int i = 1; i <= w; i++)
+        total += i * k;
+    if(total <= n)
+        cout << "0";
+    else
+        cout << abs(total - n);
+}
 https://codeforces.com/problemset/problem/552/B
 // 552B. Vanya and Books
 using namespace std;
@@ -1182,6 +1228,23 @@ int main() {
         cout << (parity ? 1 : 2) << endl;
     }
 }
+// 707A
+using namespace std;
+void BrainsPhoto(){
+    int n, m, freq[26]{0}; cin >> n >> m;
+    char ch;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> ch;
+            freq[ch - 'A']++;
+        }
+    }
+    //('C', cyan), ('M', magenta), ('Y', yellow), ('W', white), ('G', grey), ('B', black)
+	if ((freq['C' - 'A']) || (freq['M' - 'A']) || (freq['Y' - 'A']))
+		cout << "#Color" << endl;
+	else
+		cout << "#Black&White" << endl;
+}
 https://codeforces.com/problemset/problem/708/A
 // 708A. Letters Cyclic Shift
 using namespace std;
@@ -1272,7 +1335,33 @@ void a799() {
     else 
         cout << "NO";
 }
-
+// 807A
+using namespace std;
+void IsItRated(){
+    int n; cin >> n;
+    vector <int> vec(n), tmp(n);
+    bool flag = false, bandi = false;
+    for(int i = 0; i < n; i++)
+        cin >> vec[i] >> tmp[i];
+    for(int i = 0; i < n; i++){
+        if(vec[i] != tmp[i]){
+            flag = true;
+            break;
+        }
+    }
+    for(int i = 0; i < n - 1; i++){
+        if(vec[i] < vec[i + 1]){
+            bandi = true;
+            break;
+        }
+    }
+    if(flag)
+        cout << "rated";
+    else if(bandi)
+        cout << "Unrated";
+    else
+        cout << "maybe";
+}
 void a902() {
     int n, m;
     cin >> n >> m;
@@ -1497,6 +1586,34 @@ int main() {
     lli rem  = m % (k + 1);
     lli happ = full * (1LL * k * vec[0] + vec[1]) + rem * vec[0];
     cout << happ << ' ';
+}
+// 1181C
+using namespace std;
+void Flag(){
+    int n, m; cin >> n >> m;
+    bool Isvalid = true;
+    char c1 = '#', c2 = '@';
+    string str;
+    for(int i = 0; i < n; i++){
+        cin >> str;
+        for(int j = 0; j < str.size() - 1; j++){
+            if(str[j]!= str[j + 1]){
+                cout << "No";
+                return 0;
+            }
+        }
+        if(i % 2 == 0)
+            c1 = str[0];
+        else
+            c2 = str[0];
+        if(c1 == c2)
+            Isvalid = false;
+        if(!Isvalid){
+            cout << "No";
+            return 0;
+        }
+    }
+    cout << "Yes";
 }
 https://codeforces.com/problemset/problem/1243/A
 // 1243A. Maximum Square
