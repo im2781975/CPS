@@ -504,6 +504,20 @@ int main() {
     // cout << (2 * n) - (n / 2);
     cout << 3 * n / 2;
 }
+// 112A
+using namespace std;
+void PetyaString(){
+    string str, tmp; cin >> str >> tmp;
+    transform(str.begin(), str.end(), str.begin(), ::tolower);
+    transform(tmp.begin(), tmp.end(), tmp.begin(), ::tolower);
+    int x = str.compare(tmp);
+    if(x > 0)
+        cout << "1";
+    else if(x < 0)
+        cout << "-1";
+    else
+        cout << "0";
+}
 158/B
 #include <bits/stdc++.h>
 using namespace std;
@@ -844,6 +858,22 @@ void BalckSqr(){
     }
     cout << calorie;
 }
+using namespace std;
+void BlackSqr(){
+    int arr[5], sum = 0;
+    for(int i = 0; i < 4; i++)
+        cin >> arr[i];
+    string str; cin >> str;
+    for(int i = 0; i < str.length(); i++){
+        if(str[i] >= '1' && str[i] <= '4')
+            sum += arr[str[i] - '1'];
+        else{
+            cerr << "Invalid";
+            return 1;
+        }
+    }
+    cout << sum;
+}
 long long buffer[500005] = {0};
 long long buf2[500005] = {0};
 
@@ -1160,6 +1190,19 @@ int main() {
 
     cout << (res1 < res2 ? "<" : res1 > res2 ? ">" : "=") << '';
 }
+// 617A
+using namespace std;
+void Elephent(){
+    int n; cin >> n;
+    int x = n / 5;
+    if(n % 5 != 0)
+        x++;
+    cout << x;
+}
+void Elefent(){
+    float n; cin >> n;
+    cout << ceil(n / 5);
+}
 https://codeforces.com/problemset/problem/633/A
 // 633A. Ebony and Ivory
 using namespace std;
@@ -1284,6 +1327,27 @@ void Juicer(){
     }
     cout << cnt;
 }
+// 723A
+using namespace std;
+void NewYearMeeting(){
+    int arr[3];
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j < 2 - i; j++){
+            if(arr[j] > arr[j + 1]){
+                int tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+            }
+        }
+    }
+    cout << abs(arr[1] - arr[0]) + abs(arr[2] - arr[1]);
+}
+void NewYearMeeting(){
+    vector <int> vec(3);
+    for(int i = 0; i < 3; i++)
+        cin >> vec[i];
+    cout << *max_element(vec.begin(), vec.end()) - *min_element(vec.begin(), vec.end());
+}
 // 732A
 using namespace std;
 void BuyShovel(){
@@ -1308,6 +1372,35 @@ void b734() {
     mi = min(k2, k3);
     sum += mi * 32;
     cout << sum;
+}
+// 742A
+using namespace std;
+void ArpasExam(){
+    int n; cin >> n;
+    if(n == 0)
+        cout << "1";
+    else{
+        int res;
+        if(n % 4 == 0) res = 6;
+        else if(n % 4 == 1) res = 8;
+        else if(n % 4 == 2) res = 4;
+        else res = 2;
+    }
+    cout << res;
+}
+// 768A
+using namespace std;
+void OathOfNightWatch(){
+    int n, cnt = 0; cin >> n;
+    vector <int> vec(n);
+    for(int i = 0; i < n; i++)
+        cin >> vec[i];
+    sort(vec.begin(), vec.end());
+    for(int i = 1; i < n; i++){
+        if(vec[i] > vec[0] && vec[n - 1] > vec[i])
+            cnt++;
+    }
+    cout << cnt;
 }
 // 785A
 using namespace std;
@@ -1709,6 +1802,68 @@ void a1263() {
     else 
         cout << a[1] + a[0];
     cout << endl;
+}
+// 1295F
+using namespace std;
+void GoodContest(){
+    int n, l, r; cin >> n;
+    string str;
+    for(int i = 0; i < n; i++){
+        cin >> str >> l >> r;
+        if(r >= 2400 && l > r){
+            cout << "Yes";
+            return 0;
+        }
+    }
+    cout << "No";
+}
+// 1311A
+using namespace std;
+void addOddOrSubtractEven(){
+    int a, b; cin >> a >> b;
+    int cnt = 0;
+    if(a > b){
+        int c = a - b;
+        (c % 2 == 0) ? cnt = 1 :  cnt = 2;
+    }
+    else if(a < b){
+        int c = b - a;
+        (c % 2 == 0) ? cnt = 2 : cnt = 1;
+    }
+    else 
+        cnt = 0;
+    cout << cnt;
+}
+// 1348A
+using namespace std;
+void PhoenixAndBalance(){
+    int n; cin >> n;
+    int x = 0;
+    for(int i = 0; i <= n; i++){
+        if(n == 2)
+            x = 2;
+        else if(n == i)
+            x = 2 * (i - 1) - 2;
+    }
+    cout << x;
+}
+// 1512A
+using namespace std;
+void spyDetect(){
+    int n, cnt = 0; cin >> n;
+    int arr[n], res[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n; i++){
+        if((i > 0 && arr[i] != arr[i - 1] && (i == n - 1 || arr[i] != arr[i + 1])) || (i == 0 && arr[i] != arr[i + 1])){
+                    cnt = i + 1;
+                    break;
+        }
+    }
+    for(int i = 0; i < n; i++)
+        res[i] = cnt;
+    for(int i = 0; i < n; i++)
+        cout << res[i] << " ";
 }
 //https://codeforces.com/problemset/problem/1542/A
 #include<bits/stdc++.h>
