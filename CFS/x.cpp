@@ -567,6 +567,21 @@ void LuckyTicket(){
     }
     (sum1 == sum2) ? cout << "Yes" : cout << "No";
 }
+// 155A
+using namespace std;
+void loveUsername(){
+    int n, cnt = 0;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n - 1; i++){
+        int tmp = abs(arr[i + 1] - arr[i]);
+        if(tmp > 1)
+            cnt++;
+    }
+    cout << cnt;
+}
 158/B
 #include <bits/stdc++.h>
 using namespace std;
@@ -771,6 +786,23 @@ void GresWorkout(){
     else
         cout << "back";
 }
+// 263A
+using namespace std;
+void BeautifulMatrix(){
+    int x, y;
+    int arr[5][5];
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++)
+            cin >> arr[i][j];
+    }
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            if(arr[i][j] == 1){
+                x = i; y = j;
+        }
+    }
+    cout >> abs(x - 2) + abs(y - 2);
+}
 // 265A
 using namespace std;
 void colorfulStone(){
@@ -781,6 +813,19 @@ void colorfulStone(){
             pos++;
     }
     cout << pos + 1;
+}
+// 266A
+using namespace std;
+void StoneOnTable(){
+    int n, cnt = 0; cin >> n;
+    char arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    for(int i = 0; i < n - 1; i++){
+        if(arr[i] == arr[i + 1])
+            cnt++;
+    }
+    cout << cnt;
 }
 // 268A
 using namespace std;
@@ -1658,6 +1703,18 @@ void AntonAndPolyhedron(){
     }
     cout << cnt;
 }
+// 791A
+using namespace std;
+void BearAndBigBrother(){
+    int a, b, cnt = 0;
+    cin >> a >> b;
+    while(a <= b){
+        a *= 3;
+        b *= 2;
+        cnt++;
+    }
+    cout << cnt;
+}
 void a799() {
     int n, t, k, d;
     cin >> n >> t >> k >> d;
@@ -2117,6 +2174,18 @@ void CopyCopy(){
             cnt--;
     }
     cout << cnt;
+}
+// 1335A
+using namespace std;
+void candiesAndASisters(){
+    int t; cin >> t;
+    int res[t];
+    for(int i = 0; i < t; i++){
+        int candies; cin >> candies;
+        res[i] = (candies - 1)/2;
+    }
+    for(int i = 0; i < t; i++)
+        cout << res[i] << " ";
 }
 // 1348A
 using namespace std;
