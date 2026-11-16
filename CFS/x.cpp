@@ -468,6 +468,18 @@ int main() {
     int res = (int)tmp;
     if(res == tmp || x == 0 || y == 0) return true;
     return ((x * y > 0) == (res % 2 == 0)); */
+} 
+// 61A
+using namespace std;
+void ultraFast(){
+    string str, tmp;
+    cin >> str >> tmp;
+    for(int i = 0; i < str.size(); i++){
+        if(str[i] != tmp[i])
+            cout << "1";
+        else
+            cout << "0";
+    }
 }
 // 69A
 using namespace std;
@@ -1305,6 +1317,18 @@ void b911() {
     }
     cout << mi;
 }
+// 977a
+using namespace std;
+void wrongSubtract(){
+    int n, k; cin >> n >> k;
+    while(k--){
+        if(n % 10 == 0)
+            n /= 10;
+        else
+            n--;
+    }
+    cout << n;
+}
 void c977() {
     int n, k;
     cin >> n >> k;
@@ -1603,6 +1627,21 @@ int main()
             cout << "No\n";
     }
     return 0;
+}
+// 1676B
+using namespace std;
+void EqualCandies(){
+    int n; cin >> n;
+    vector <int> vec(n);
+    int sum = 0;
+    for(int i = 0; i < n; i++)
+        cin >> vec[i];
+    int mini = *min_element(vec.begin(), vec.end());
+    for(int i = 0; i < n; i++){
+        vec[i] -= mini;
+        sum += vec[i];
+    }
+    cout << sum;
 }
 // https://codeforces.com/problemset/problem/1807/A
 #include <bits/stdc++.h>
