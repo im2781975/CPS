@@ -518,6 +518,55 @@ void PetyaString(){
     else
         cout << "0";
 }
+// 141A
+using namespace std;
+void AmusingJoke(){
+    string a, b, c, str = " ";
+    cin >> a >> b >> c;
+    str = a + b;
+    if(str.size() > c.size()){
+        cout << "No";
+        return 0;
+    }
+    sort(c.begin(), c.end());
+    sort(str.begin(), str.end());
+    //(str == c) ? cout << "Yes" : cout << "No";
+    int arr[26] = {0}, tmp[26] = {0};
+    for(int i = 0; i < str.size(); i++)
+        arr[str[i] - 'A']++;
+    for(int i = 0; i < c.size(); i++)
+        tmp[c[i] - 'A']++;
+    for(int i = 0; i < 26; i++){
+        if(arr[i] != tmp[i]){
+            cout << "No";
+            return 0;
+        }
+    }
+    cout << "Yes";
+}
+// 146A
+using namespace std;
+void LuckyTicket(){
+    int n, sum1 = 0, sum2 = 0;
+    string str; cin >> n >> str;
+    for(int i = 0; i < n / 2; i++){
+        if(str[i] == '7' || str[i] == '4')
+            sum1 += str[i] - '0';
+        else{
+            cout << "No";
+            return 0;
+        }
+    }
+    for(int i = n - 1; i >= n / 2; i--){
+        if(str[i] == '7' || str[i] == '4')
+            sum2 += str[i] - '0';
+        else{
+            cout << "No";
+            return 0;
+        }
+    }
+    (sum1 == sum2) ? cout << "Yes" : cout << "No";
+}
 158/B
 #include <bits/stdc++.h>
 using namespace std;
@@ -626,6 +675,28 @@ int main()
     avg=(double)sum/(double)n;
     cout<<avg;
 }
+// 202A
+using namespace std;
+void LLPS(){
+    string str; cin >> str;
+    int freq[26] = {0};
+    for(int i = 0; i < str.size(); i++)
+        freq[str[i] - 'a']++;
+    while(freq[str[str.size() - 1] - 'a']--)
+        cout << str[str.size() - 1];
+}
+// 214A
+using namespace std;
+void SystemEquation(){
+    int n, m, cnt = 0; cin >> n >> m;
+    for(int i = 0; i <= mac(m, n); i++){
+        for(int j = 0; j <= max(m, n); j++){
+            if((i * i + j == n) && (j * j + i == m))
+                cnt++;
+        }
+    }
+    cout << cnt;
+}
 // 228A
 using namespace std;
 void HorseShoweOnHoof(){
@@ -698,6 +769,40 @@ void colorfulStone(){
     }
     cout << pos + 1;
 }
+// 276A
+using namespace std;
+void LunchRush(){
+    int n, k, mx = INT_MIN;
+    cin >> n >> k;
+    while(n--){
+        int x, y; cin >> x >> y;
+        if(y > k) 
+            mx = max(mx, x - (y - k));
+        else
+            mx = max(mx, x);
+    }
+    cout << mx;
+}
+// 289A
+using namespace std;
+void PenguinAndSegments(){
+    int n, k, sum = 0; cin >> n >> k;
+    while(n--){
+        int l, r; cin >> l >> r;
+        sum += r - l + 1;
+    }
+    if(sum % k == 0)
+        cout << "0";
+    else
+        cout << k - (sum % k);
+}
+// 334A
+using namespace std;
+void CandyBags(){
+    int n; cin >> n;
+    for(int i = 1, j = n * n; i <= j; i++, j--)
+        cout << i << " " << j << "\n";
+}
 https://codeforces.com/problemset/problem/339/A
 // 339A. Helpful Maths
 using namespace std;
@@ -736,6 +841,22 @@ void HelpfulMath(){
             return 0;
         else
             cout << '+';
+    }
+}
+using namespace std;
+//352B
+void JeffAndPeriod(){
+    int n; cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    unordered_map<int, int> idx;
+    for(int i = 0; i < n; i++){
+        if(idx.find(arr[i]) != idx.end()){
+            int dist = i - idx[arr[i]];
+            cout << "Distance between repeated element " << arr[i] << " id " << dist;
+        }
+        idx[arr[i]] = i;
     }
 }
 void b362() {
@@ -1023,6 +1144,28 @@ void teamOlympiad(int n) {
     int k = min({team[0].size(), team[1].size(), team[2].size()});
     for(int i = 0; i < k; i++) 
         cout << team[0][i] << " " << team[1][i] << " " << team[2][i] << endl;
+} 
+// 514A
+using namespace std;
+void ChewbaсcaAndNumber(){
+    string str; cin >> str;
+    if(str[0] != '9' && str[0] >= 5)
+        str[0] = '9' - str[0] + '0';
+    cout << str[0];
+    for(int i = 1; i < str.size(); i++){
+        if(str[i] >= 5)
+            str[i] = '9' - str[i] + '0';
+        cout << str[i];
+    }
+}
+void ChewbaсcaAndNumber(){
+    string str; cin >> str;
+    if(str[0] == '9')
+        cout << str[0];
+    else
+        cout << (str[0] < '5' ? str[0] : '9' - (str[0] - '0'));
+    for(int i = 1; i < str.size(); i++)
+        cout << (str[i] < '5' ? str[i] : '9' - (str[i] - '0'));
 }
 // 520A
 using namespace std;
@@ -1230,6 +1373,17 @@ void VanyaAndFence(){
             res += 2;
     }
     cout << res;
+}
+// 682A
+using namespace std;
+void AlyonaAndNumbers(){
+    int n, m; cin >> n >> m;
+    int arr[5] = {0}, tmp[5] = {0};
+    for(int i = 1; i <= n; i++)
+        arr[i % 5]++;
+    for(int i = 1; i <= m; i++)
+        tmp[i % 5]++;
+    cout << arr[0] * tmp[0] + arr[1] * tmp[4] + arr[2] * tmp[3] + arr[3] * tmp[2] + arr[4] * tmp[1];
 }
 // 686A
 using namespace std;
@@ -1529,6 +1683,27 @@ void c977() {
             cout << -1;
     } else
         cout << buffer[k - 1];
+}
+using namespace std;
+//977C
+void LessOrEqual(){
+    int n, k; cin >> n >> k;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    sort(arr, arr + n);
+    if(k == 0){
+        int res = arr[0] - 1;
+        cout << (res > 0) ? res : -1;
+    }
+    else if(k == n)
+        cout << arr[n - 1];
+    else{
+        if(arr[k - 1] == arr[k])
+            cout << -1;
+        else
+            cout << arr[k - 1];
+    }
 }
 https://codeforces.com/problemset/problem/982/A
 // 982A. Row
@@ -1834,6 +2009,21 @@ void addOddOrSubtractEven(){
         cnt = 0;
     cout << cnt;
 }
+using namespace std;
+//1325B
+void CopyCopy(){
+    int n; cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
+    sort(arr, arr + n);
+    int cnt = n;
+    for(int i = 0; i < n - 1; i++){
+        if(arr[i] == arr[i + 1])
+            cnt--;
+    }
+    cout << cnt;
+}
 // 1348A
 using namespace std;
 void PhoenixAndBalance(){
@@ -1899,6 +2089,24 @@ int main()
             cout << "No\n";
     }
     return 0;
+}
+using namespace std;
+//1659A
+//distribute a given number of ('R') & ('B') characters across a sequence of specified length as@
+//evenly as possible, with the goal of minimizing large clusters of 'R's between each 'B'.
+void DistributeChar(){
+    int n, r, b; cin >> n >> r >> b;
+    int segment = r / (b + 1);
+    int extraRed = r % (b + 1);
+    string res = " ";
+    for(int i = 0; i < b + 1; i++){
+        res += string(segment + (extraRed > 0 ? 1 : 0), 'R');
+        if(extraRed > 0)
+            extraRed--;
+        if(i < b)
+            res += 'B';
+    }
+    cout << res;
 }
 // 1676B
 using namespace std;
