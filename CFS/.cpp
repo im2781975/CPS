@@ -2,32 +2,22 @@ https://codeforces.com/problemset/problem/27/A
 // A. Next Test
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector <int> vec(n);
-    for(int i = 0; i < n; i++) cin >> vec[i];
+    int n, tmp = 1; cin >> n; 
+    vector <bool> vis(3002, false);
+    for(int i = 0; i < n; ++i) { int x; cin >> x; vis[x] = true; }
+    for(int i = 1; i <= 3001; ++i) {
+        if(!vis[i]) { cout << i; break; }
+    } /*vector <int> vec(n);
+    for(int i = 0; i < n; ++i) cin >> vec[i];
     sort(vec.begin(), vec.end());
-    for(int i = 0; i < n; i++){
-        if(vec[i] != i + 1){
-            cout << i + 1;
-            return 0;
-        }
-    }
-    cout << n + 1;
-    return 0;
-}  
-using namespace std;
-int main() {
-    int n, num; cin >> n;
-    set <int> s;
-    while (n--) {
-        cin >> num;
-        s.insert(num);
-    }
-    for (int i = 1; i <= 3001; ++i) {
-        if (s.find(i) == s.end()) {
-            cout << i << endl;
-            break;
-        }
+    for(auto x : vec) {
+        if(x == tmp) ++tmp;
+        else if(x > tmp) break;
+    } cout << tmp; */
+    set <int> st;
+    while(n--) { int x; cin >> x; st.insert(x); }
+    for(int i = 1; i <= 3001; ++i) {
+        if(st.find(i) == st.end()) { cout << i; break; }
     }
 }
 
