@@ -311,17 +311,34 @@ int main() {
     for(int i = first; i < n; i += 3) cout << '-' << str.substr(i, 3); */
 }
 https://codeforces.com/problemset/problem/26/A
-// 26A. Almost Prime
+// A. Almost Prime
 using namespace std;
 int main() {
-    int n, res = 0; cin >> n;
-    vector <int> cnt(n + 1, 0);
+    int n, cnt = 0; cin >> n;
+    vector <int> vec(n + 1, 0);
     for(int i = 2; i <= n; ++i) {
-        if(cnt[i] == 0) {
-            for(int j = i; j <= n; j += i) cnt[j]++;
-        }
-        if(cnt[i] == 2) res++;
-    } cout << res << " ";
+        if(vec[i] == 0) {
+            for(int j = i; j <= n; j += i) vec[j]++;
+            // for(int j = i * 2; j <= n; j += i) vec[j]++;
+        } if(vec[i] == 2) cnt++;
+    } cout << cnt;
+}
+https://codeforces.com/problemset/problem/26/B
+// B. Regular Bracket Sequence
+using namespace std;
+int main() {
+    string str; cin >> str;
+    stack <char> st; int cnt = 0, res = 0;
+    for(int i = 0; i < (int)str.size(); i++) {
+        if(str[i] == '(') ++cnt;
+        else if(cnt > 0) { res += 2; --cnt; }
+    } cout << res; /*
+    for(int i = 0; i < str.size(); i++) {
+        char ch = str[i];
+        if(ch == '(') st.push(ch);
+        else if(ch == ')' && !st.empty() && st.top() == '(') { st.pop(); cnt++; }
+        else st.push(ch);
+    } cout << cnt * 2; */
 }
 https://codeforces.com/problemset/problem/27/A
 // 27A.Next Test
