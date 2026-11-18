@@ -311,7 +311,7 @@ int main() {
     for(int i = first; i < n; i += 3) cout << '-' << str.substr(i, 3); */
 }
 https://codeforces.com/problemset/problem/26/A
-// A. Almost Prime
+// 26A. Almost Prime
 using namespace std;
 int main() {
     int n, cnt = 0; cin >> n;
@@ -324,7 +324,7 @@ int main() {
     } cout << cnt;
 }
 https://codeforces.com/problemset/problem/26/B
-// B. Regular Bracket Sequence
+// 26B. Regular Bracket Sequence
 using namespace std;
 int main() {
     string str; cin >> str;
@@ -341,44 +341,44 @@ int main() {
     } cout << cnt * 2; */
 }
 https://codeforces.com/problemset/problem/27/A
-// 27A.Next Test
+// 27A. Next Test
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector <int> vec(n);
-    for(int i = 0; i < n; i++) cin >> vec[i];
+    int n, tmp = 1; cin >> n; 
+    vector <bool> vis(3002, false);
+    for(int i = 0; i < n; ++i) { int x; cin >> x; vis[x] = true; }
+    for(int i = 1; i <= 3001; ++i) {
+        if(!vis[i]) { cout << i; break; }
+    } /*vector <int> vec(n);
+    for(int i = 0; i < n; ++i) cin >> vec[i];
     sort(vec.begin(), vec.end());
-    int tmp = 1;
-    for(int x : vec) {
+    for(auto x : vec) {
         if(x == tmp) ++tmp;
         else if(x > tmp) break;
-    } cout << tmp << " "; /*
-    bool vis[200] = {false};
-    while(n--) {
-        int x; cin >> x;
-        vis[x] = true;
+    } cout << tmp; */
+    set <int> st;
+    while(n--) { int x; cin >> x; st.insert(x); }
+    for(int i = 1; i <= 3001; ++i) {
+        if(st.find(i) == st.end()) { cout << i; break; }
     }
-    for(int i = 1;; ++i) {
-        if(!vis[i]) {
-            cout << i << " "; break;
-        }
-    } */
 }
 https://codeforces.com/problemset/problem/29/A
 // 29A. Spit Problem
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector <int> x(n), d(n);
+    int n; cin >> n; vector <int> x(n), d(n);
     for(int i = 0; i < n; ++i) cin >> x[i] >> d[i];
+    /* for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < i; ++j) {
+            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) { cout << "YES"; return 0;}
+        }
+    } cout << "NO"; return 0; */
     bool found = false;
     for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < i; ++j) {
-            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) {
-                cout << "YES"; return 0;
-            }
-        } 
-    } cout << "NO";
+        for(int j = i + 1; j < n; ++j) {
+            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) { found = true; break; }
+        } if(found) break;
+    } cout << (found ? "YES" : "NO");
 }
 https://codeforces.com/problemset/problem/31/A
 // 31A. Worms Evolution
