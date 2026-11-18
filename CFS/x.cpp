@@ -384,32 +384,8 @@ https://codeforces.com/problemset/problem/31/A
 // 31A. Worms Evolution
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector <pair <int, int>> vec(n);
-    for(int i = 0; i < n; i++) {
-        cin >> vec[i].first; vec[i].second = i;
-    }
-    sort(vec.begin(), vec.end());
-    for(int k = 0; k < n; k++) {
-        int l = 0, r = n - 1;
-        while(l < r) {
-            if(l == k) {
-                l++; continue;
-            }
-            if(r == k) {
-                r--; continue;
-            }
-            int sum = vec[l].first + vec[r].first;
-            if(sum == vec[k].first) {
-                cout << vec[k].second  + 1 << " " << vec[l].second + 1 << " " << vec[r].second + 1 << endl;
-                return 0;
-            }
-            else if(sum < vec[k].first) l++;
-            else r--;
-        }
-    } /*
-    vector <int> vec(n);
-    for(int i = 0; i < n; ++i) cin >> vec[i];
+    int n; cin >> n; vector <int> vec(n), idx(n);
+    for(int i = 0; i < n; ++i) { cin >> vec[i]; idx[i] = i; } /*
     for(int i = 0; i < n; ++i) {
         unordered_map <int, int> vis;
         for(int j = 0; j < n; ++j) {
@@ -417,11 +393,21 @@ int main() {
             int need = vec[i] - vec[j];
             if(vis.find(need) != vis.end()) {
                 int k = vis[need];
-                cout << i + 1 << " " << j + 1 << " " << k + 1 << endl;
-                return 0;
+                cout << i + 1 << " " << j + 1 << " " << k + 1 << endl; return 0;
             } vis[vec[j]] = j;
         }
-    } */ cout << "-1" << endl;
+    } */ sort(idx.begin(), idx.end(), [&](int x, int y){ return vec[x] < vec[y];});
+    for(int k = 0; k < n; ++k) {
+        int l = 0, r = n - 1;
+        while(l < r) {
+            if(l == k) l++; else if(r == k) r--;
+            else {
+                int res = vec[idx[l]] + vec[idx[r]];
+                if(res == vec[idx[k]]) { cout << idx[k] + 1 << " " << idx[l] + 1 << " " << idx[r] + 1; return 0; }
+                (res < vec[idx[k]]) ? l++ : r--;
+            }
+        }
+    } cout << -1 << endl;
 }
 https://codeforces.com/problemset/problem/32/A
 // 32A. Reconnaissance
