@@ -20,27 +20,26 @@ int main() {
         if(st.find(i) == st.end()) { cout << i; break; }
     }
 }
-
 https://codeforces.com/problemset/problem/29/A
-// A. Spit Problem
+// 29A. Spit Problem
 using namespace std;
-int main(){
-    int n, x[100], d[100];
-    bool spitted = false;
-    scanf("%d", &n);
-    for (int i = 0; i < n; ++i){
-        cin >> x[i] >> d[i];
-        for (int j = 0; j < i; ++j){
-            if (x[i] + d[i] == x[j] && x[j] + d[j] == x[i]){
-                spitted = true;
-                break;
-            }
+int main() {
+    int n; cin >> n; vector <int> x(n), d(n);
+    for(int i = 0; i < n; ++i) cin >> x[i] >> d[i];
+    /* for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < i; ++j) {
+            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) { cout << "YES"; return 0;}
         }
-        if (spitted)    break;
-    }
-    cout << spitted ? "YES" : "NO";
-    return 0;
+    } cout << "NO"; return 0; */
+    bool found = false;
+    for(int i = 0; i < n; ++i) {
+        for(int j = i + 1; j < n; ++j) {
+            if(x[i] + d[i] == x[j] && x[j] + d[j] == x[i]) { found = true; break; }
+        } if(found) break;
+    } cout << (found ? "YES" : "NO");
 }
+https://codeforces.com/problemset/problem/29/A
+
 https://codeforces.com/problemset/problem/31/A
 // A. Worms Evolution
 using namespace std;
