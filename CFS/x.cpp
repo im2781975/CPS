@@ -413,21 +413,20 @@ https://codeforces.com/problemset/problem/32/A
 // 32A. Reconnaissance
 using namespace std;
 int main() {
-    int n, k; cin >> n >> k;
-    vector <int> arr(n);
-    for(int i = 0; i < n; ++i) cin >> arr[i];
+    int n, d; cin >> n >> d; vector <int> arr(n);
+    for(int i = 0; i < n; i++) cin >> arr[i];
     sort(arr.begin(), arr.end());
-    int j = 0, cnt = 0; /*
-    for(int i = 0; i < n; ++i) {
+    int k = 1, j = 0, cnt = 0; 
+    while(k < n) {
+        if(arr[k] - arr[j] <= d) { cnt += (k - j); ++k; } else ++j;
+    } /* for(int i = 0; i < n; ++i) {
         for(int j = i + 1; j < n; ++j) {
-            if(arr[j] - arr[i] > k) break;
-            cnt++;
+            if(arr[j] - arr[i] <= d) ++cnt; else break;
         }
-    } */
-    for(int i = 0; i < n; ++i) {
-        while(j < n && arr[j] - arr[i] <= k) ++j;
+    } *//* for(int i = 0; i < n; ++i) {
+        while(j < n && arr[j] - arr[i] <= d) ++j;
         cnt += max(0, j - i - 1);
-    } cout << cnt * 2;
+    } */ cout << cnt * 2;
 }
 https://codeforces.com/problemset/problem/32/B
 // 32B. Borze
