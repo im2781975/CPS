@@ -2,136 +2,21 @@ https://codeforces.com/problemset/problem/34/A
 // A. Reconnaissance 2
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector<int> heights(n);
-    for (int& h : heights)
-        cin >> h;
-    int min_diff = numeric_limits<int>::max();
-    int idx1 = 0, idx2 = 1;
-    for (int i = 0; i < n; ++i) {
-        int next = (i + 1) % n;  
-        int diff = abs(heights[i] - heights[next]);
-        if (diff < min_diff) {
-            min_diff = diff;
-            idx1 = i;
-            idx2 = next;
-        }
-    }
-    cout << idx1 + 1 << " " << idx2 + 1 << endl;
-    return 0;
-}
-using namespace std;
-int main(){
-    int n, a1; cin >> n >> a1;
-    int prev(a1), cur, rec(1000), index1, index2;
-    for (int i = 2; i <= n; ++i) {
-        cin >> cur;
-        int diff = abs(cur - prev);
-        if (diff < rec) {
-            rec = diff;
-            index1 = i - 1;
-            index2 = i;
-        }
-        prev = cur;
-    }
-    int diff = abs(a1 - prev);
-    if (diff < rec){
-        index1 = n;
-        index2 = 1;
-    }
-    cout << index1 << " " << index2 << endl;
-}
-using namespace std;
-int main(){
-    int a[101], b[101];
-    int n; cin >> n;
-    for(int i = 0; i < n; i++)    cin >> a[i];
-    int m = 1001, d = 0;
-    d = abs(a[0] - a[n-1]);
-    m = min(m,d);
-    int idx1 = 1,idx2 = n;
-    for(int i=0; i<n; i++){
-        d = abs(a[i] - a[i+1]);
-        if(m > d){
-            m = d;
-            idx1 = i+1;
-            idx2 = i+2;
-        }
-    }
-    cout << idx1 << " " << idx2 << endl;
-    return 0;
-}
-using namespace std;
-int main() {
-    int n; cin >> n;
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
-        cin >> a[i];
-    int min_diff = abs(a[0] - a[n - 1]);
-    int idx1 = 1, idx2 = n;
-    for (int i = 0; i < n - 1; i++) {
-        int diff = abs(a[i] - a[i + 1]);
-        if (diff < min_diff) {
-            min_diff = diff;
-            idx1 = i + 1;
-            idx2 = i + 2;
-        }
-    }
-    cout << idx1 << " " << idx2 << '\n';
-    return 0;
-}
-using namespace std;
-int main(){
-    int n; cin >> n;
-    int arr[2 * n];
-    for(int i = 0; i < n; i++){
-        cin >> arr[i];
-        arr[i + n] = arr[i];
-    }
-    int mindiff = INT_MAX, a1, a2;
-    for(int i = 0; i < 2 * n; i++){
-        if (abs(arr[i] - arr[i + 1]) < mindiff){
-            mindiff = abs(arr[i] - arr[i + 1]);
-            a1 = i;
-            a2 = i + 1;
-        }
-    }
-    a1 = (a1 + 1) % n, a2 = (a2 + 1) % n;
-    if (a1 == 0)    a1 = n;
-    if (a2 == 0)    a2 = n;
-    cout << a1 << " " << a2;
-    return 0;
-}
-using namespace std;
-int main()
-{
-    int n;
-    cin>>n;
-    int heights[n];
-    for(int i=0;i<n;i++)
-    {
-        cin>>heights[i];
-    }
-    vector<pair<int,int>> ans;
-    for(int j=0;j<n-1;j++)
-    {
-        int diff=abs(heights[j]-heights[j+1]);
-        ans.push_back(make_pair(diff,j));
-    }
-    int lastfirstdiff=abs(heights[n-1]-heights[0]);
-    sort(ans.begin(),ans.end());
-    if(lastfirstdiff<ans[0].first)
-    cout<<n<<" "<<1<<endl;
-    else
-    cout<<ans[0].second+1<<" "<<ans[0].second+2<<endl;    
-}
-    
-
-
-
-
-
-
+    int n; cin >> n; vector <int> arr(n);
+    for(int i = 0; i < n; i++) cin >> arr[i]; 
+    /* int res = abs(arr[n - 1] - arr[0]);
+    int idx1 = n, idx2 = 1;
+    for(int i = 0; i < n - 1; ++i) {
+        int diff = abs(arr[i] - arr[i + 1]);
+        if(diff < res) { res = diff; idx1 = i + 1; idx2 = i + 2;}
+    } cout << idx1 << " " << idx2; */
+    int res = INT_MAX, idx1 = 0, idx2 = 1;
+    for(int i = 0; i < n; ++i) {
+        int nxt = (i + 1) % n;
+        int diff = abs(arr[i] - arr[nxt]);
+        if(diff < res) { res = diff; idx1 = i; idx2 = nxt; }
+    } cout << idx1 + 1 << " " << idx2 + 1 << endl;
+} 
 https://codeforces.com/problemset/problem/34/B
 // B. Sale
 using namespace std;
