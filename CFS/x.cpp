@@ -428,17 +428,26 @@ int main() {
         cnt += max(0, j - i - 1);
     } */ cout << cnt * 2;
 }
-https://codeforces.com/problemset/problem/32/B
+http://codeforces.com/problemset/problem/32/B
 // 32B. Borze
 using namespace std;
 int main() {
-    string str; cin >> str;
-    for(int i = 0; i < str.size(); i++) {
-        if(str[i] == '.') cout << '0';
-        else {
-            cout << (str[i + 1] == '.' ? '1' : '2'); ++i;
-        }
-    }
+    string str, res = ""; cin >> str; /*
+    for(size_t i = 0; i < str.size();) {
+        if(str[i] == '.') { res += "0"; i += 1; }
+        else if(str.substr(i, 2) == "-.") { res += "1"; i += 2; }
+        else { res += "2"; i += 2; } /*
+        if(str[i] == '.') { res += '0'; i += 1;}
+        else if(str[i + 1] == '.') { res += '1'; i += 2;}
+        else { res += '2'; i += 2;} 
+    } */ for(int i = 0; i < str.size(); ++i) {
+        /* if(str[i] == '.') cout << '0';
+        else { cout << (str[i + 1] == '.' ? '1' : '2'); ++i;} */
+        if(str[i] == '-') {
+            if(i + 1 < str.length() && str[i + 1] == '-') { res.push_back('2'); i++; }
+            else { res.push_back('1'); i++;}
+        } else res.push_back('0');
+    } cout << res; 
 }
 https://codeforces.com/problemset/problem/34/B
 // 34B. Sale
