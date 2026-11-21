@@ -20,31 +20,20 @@ int main() {
 https://codeforces.com/problemset/problem/37/A
 // A. Towers
 using namespace std;
-int main(){
-    int n, l, h[1001] = {0};
-    cin >> n;
-    while (n--){
-        cin >> l;
-        h[l] += 1;
-    }
-    int height = *max_element(h, h + 1001);
-    int number = 1001 - count(h, h + 1001, 0);
-    cout << height << " " << number << endl;
-}
-using namespace std;
 int main() {
-    const int MAX_HEIGHT = 1001;
-    array<int, MAX_HEIGHT> heightFrequency{};
-    int n; cin >> n;
-    for (int i = 0, l; i < n; ++i) {
-        cin >> l;
-        ++heightFrequency[l];
-    }
-    int tallestTower = *max_element(heightFrequency.begin(), heightFrequency.end());
-    int numberOfTowers = count_if(heightFrequency.begin(), heightFrequency.end(), [](int h) {
-        return h > 0;
-    });
-    cout << tallestTower << " " << numberOfTowers << '\n';
+    int n, maxheight = 0, cnt = 0; cin >> n;
+    /* int freq[1001] = {};
+    for(int i = 0; i < n; ++i) {
+        int len; cin >> len;
+        if(++freq[len] == 1) ++cnt;
+        maxheight = max(maxheight, freq[len]);
+    } cout << maxheight << " " << cnt; */
+    unordered_map <int, int> freq;
+    for(int i = 0; i < n; ++i) {
+        int len; cin >> len;
+        int curr = ++freq[len];
+        maxheight = max(maxheight, curr);
+    } cout << maxheight << " " << freq.size() << endl;
 }
 https://codeforces.com/problemset/problem/38/A
 // A. Army
