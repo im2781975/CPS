@@ -18,108 +18,15 @@ int main() {
     } cout << idx1 + 1 << " " << idx2 + 1 << endl;
 } 
 https://codeforces.com/problemset/problem/34/B
-// B. Sale
-using namespace std;
-int main(){
-    int n, m, a[100];
-    cin >> n >> m;
-    for (int i = 0; i < n; ++i)    cin >> a[i];
-    sort(a, a + n);
-    int s = 0;
-    for (int i = 0; i < m; ++i){
-        if (a[i] >= 0)    break;
-        s += a[i];
-    }
-    cout << -s << endl;
-}
-int main() {
-    int n, m; cin >> n >> m;
-    vector<int> prices(n);
-    for (int& price : prices)
-        cin >> price;
-    sort(prices.begin(), prices.end());
-    int savings = 0;
-    for (int i = 0; i < m && prices[i] < 0; ++i)
-        savings -= prices[i];
-    cout << savings << endl;
-    return 0;
-}
-using namespace std;
-int main(){
-    int a, n, m; cin >> n >> m;
-    vector <int> v;
-    for(int i = 0; i < n; i++){
-        cin >> a;
-        if(a < 0)    v.push_back(a);
-    }
-    sort(v.begin(), v.end());
-    n = v.size();
-    if(n > m)    swap(n, m);
-    int sum = 0;
-    for(int i = 0; i < n; i++)
-        sum += (v[i] * -1);
-    cout << sum << endl;
-    return 0;
-}
+// 34B. Sale
 using namespace std;
 int main() {
-    int n, m; cin >> n >> m;
-    vector<int> negative_values;
-    for (int i = 0; i < n; i++) {
-        int a; cin >> a;
-        if (a < 0) negative_values.push_back(a);
-    }
-    sort(negative_values.begin(), negative_values.end()); 
-    int sum = 0;
-    int take = min((int)negative_values.size(), m);
-    for (int i = 0; i < take; i++) {
-        sum -= negative_values[i];
-    }
-    cout << sum << '\n';
-}
-
-using namespace std;
-#define ll long long
-#define endl '\n'
-#define debug(n) cout<<(n)<<endl;
-const ll INF = 2e18 + 99;
-int main(){
-    int n, m; cin >> n >> m;
-    int arr[n];
-    for(int i = 0; i < n; i++)    cin >> arr[i];
-    sort(arr, arr + n);
-    int count = 0;
-    for(int i = 0; i < m; i++){
-        if(arr[i] < 0)    count -= arr[i];
-    }
-    cout << count << endl;
-}
-using namespace std;
-int main() {
-    int n, m; cin >> n >> m;
-    vector<int> arr(n);
-    for (int &x : arr) cin >> x;
-    sort(arr.begin(), arr.end());
-    int total = 0;
-    for (int i = 0; i < m && arr[i] < 0; i++) 
-        total -= arr[i];
-    cout << total << '\n';
-    return 0;
-}
-using namespace std;
-int main(){
-    int n, m; cin >> n >> m;
-    vector <int> arr;
-    for(int i = 0; i < n; i++) {
-        int num; cin >> num;
-        if (num < 0)    arr.push_back(num);
-    }
-    sort(arr.begin(), arr.end());
-    int sum = 0;
-    int len = arr.size();
-    for (int i = 0; i < min(len, m); i++)
-        sum -= arr[i];
-    cout << sum << '\n';
+    int n, m; cin >> n >> m; vector <int> arr(n); 
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    sort(arr.begin(), arr.end()); int res = 0;
+    for(int i = 0; i < m; ++i) { if(arr[i] >= 0) break; res += arr[i]; }
+   // for(int i = 0; i < m && arr[i] <= 0; i++) res -= arr[i];
+    cout << abs(res);
 }
 https://codeforces.com/problemset/problem/34/C
 // C. Page Numbers
