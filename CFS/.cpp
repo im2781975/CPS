@@ -1,32 +1,22 @@
 https://codeforces.com/problemset/problem/35/A
 // A. Shell Game
 using namespace std;
-int main(){
-    int x, a, b, cup[4] = {0};
-    cin >> x;
-    cup[x] = 1;
-    cin >> a >> b; swap(cup[a], cup[b]);
-    cin >> a >> b; swap(cup[a], cup[b]);
-    cin >> a >> b; swap(cup[a], cup[b]);
-    printf("%d\n", find(cup + 1, cup + 3 + 1, 1) - cup);
-}
-using namespace std;
 int main() {
-    array <int, 4> cup{};
-    int x, a, b; cin >> x;
-    cup[x] = 1;
-    for (int i = 0; i < 3; ++i){
-        cin >> a >> b;
-        swap(cup[a], cup[b]);
-    }
-    for (int i = 1; i <= 3; ++i) {
-        if (cup[i] == 1) {
-            cout << i << endl;
-            break;
-        }
-    }
+    int pos; cin >> pos;
+    for(int i = 0; i < 3; ++i) {
+        int a, b; cin >> a >> b;
+        if(pos == a) pos = b;
+        else if(pos == b) pos = a;
+    } cout << pos; /*
+    array <int, 4> arr{};
+    int x; cin >> x; arr[x] = 1;
+    for(int i = 0; i < 3; ++i) {
+        int a, b; cin >> a >> b;
+        swap(arr[a], arr[b]);
+    } for(int i = 1; i <= 3; ++i) {
+        if(arr[i] == 1) { cout << i; break;}
+    } // cout << find(arr.begin() + 1, arr.end(), 1) - arr.begin(); */
 }
-
 https://codeforces.com/problemset/problem/37/A
 // A. Towers
 using namespace std;
