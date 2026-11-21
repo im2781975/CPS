@@ -449,17 +449,35 @@ int main() {
         } else res.push_back('0');
     } cout << res; 
 }
+https://codeforces.com/problemset/problem/34/A
+// A. Reconnaissance 2
+using namespace std;
+int main() {
+    int n; cin >> n; vector <int> arr(n);
+    for(int i = 0; i < n; i++) cin >> arr[i]; 
+    /* int res = abs(arr[n - 1] - arr[0]);
+    int idx1 = n, idx2 = 1;
+    for(int i = 0; i < n - 1; ++i) {
+        int diff = abs(arr[i] - arr[i + 1]);
+        if(diff < res) { res = diff; idx1 = i + 1; idx2 = i + 2;}
+    } cout << idx1 << " " << idx2; */
+    int res = INT_MAX, idx1 = 0, idx2 = 1;
+    for(int i = 0; i < n; ++i) {
+        int nxt = (i + 1) % n;
+        int diff = abs(arr[i] - arr[nxt]);
+        if(diff < res) { res = diff; idx1 = i; idx2 = nxt; }
+    } cout << idx1 + 1 << " " << idx2 + 1 << endl;
+} 
 https://codeforces.com/problemset/problem/34/B
 // 34B. Sale
 using namespace std;
 int main() {
-    int n, m; cin >> n >> m;
-    vector <int> prices(n);
-    for(int i = 0; i < n; i++) cin >> prices[i];
-    sort(prices.begin(), prices.end());
-    int total = 0;
-    for(int i = 0; i < m && prices[i] < 0; i++) total -= prices[i];
-    cout << total;
+    int n, m; cin >> n >> m; vector <int> arr(n); 
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    sort(arr.begin(), arr.end()); int res = 0;
+    for(int i = 0; i < m; ++i) { if(arr[i] >= 0) break; res += arr[i]; }
+   // for(int i = 0; i < m && arr[i] <= 0; i++) res -= arr[i];
+    cout << abs(res);
 }
 https://codeforces.com/problemset/problem/40/A
 // 40A. Find Color
