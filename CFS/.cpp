@@ -1,5 +1,5 @@
 https://codeforces.com/problemset/problem/35/A
-// A. Shell Game
+// 35A. Shell Game
 using namespace std;
 int main() {
     int pos; cin >> pos;
@@ -18,7 +18,7 @@ int main() {
     } // cout << find(arr.begin() + 1, arr.end(), 1) - arr.begin(); */
 }
 https://codeforces.com/problemset/problem/37/A
-// A. Towers
+// 37A. Towers
 using namespace std;
 int main() {
     int n, maxheight = 0, cnt = 0; cin >> n;
@@ -36,61 +36,16 @@ int main() {
     } cout << maxheight << " " << freq.size() << endl;
 }
 https://codeforces.com/problemset/problem/38/A
-// A. Army
-using namespace std;
-int main(){
-    int n, d[100] = {0}, a, b;
-    cin >> n;
-    for (int i = 1; i < n; ++i)
-        cin >> d[i];
-    cin >> a >> b;
-    cout << accumulate(d + a, d + b, 0) << endl;
-    return 0;
-}
-using namespace std;
-int main()
-{
-    int n;
-    cin>>n;
-    int arr[n-1];
-    for(int i=0;i<n-1;i++)
-    {
-        cin>>arr[i];
-    }
-    int a,b;
-    cin>>a>>b;
-    int ans=0;
-    for(int i=a-1;i<b-1;i++)
-    {
-        ans+=arr[i];
-    }
-    cout<<ans<<endl;
-}
-using namespace std;
-int main(){
-    int sum = 0, n; cin >> n;
-    int p[n];
-    for(int i = 0; i < n - 1; i++)    cin >> p[i];
-    int a, b; cin >> a >> b;
-    a--;
-    b--;
-    for(int i = a; i < b; i++)    sum += p[i];
-    cout << sum << endl;
-}
+// 38A. Army
 using namespace std;
 int main() {
-    int n, a, b; cin >> n;
-    vector<int> p(n - 1);
-    for (int i = 0; i < n - 1; i++)
-        cin >> p[i];
-    cin >> a >> b;
-    int sum = 0;
-    for (int i = a - 1; i < b - 1; i++)
-        sum += p[i];
-    cout << sum << endl;
-    return 0;
+    int n; cin >> n; vector <int> d(n + 1, 0);
+    for(int i = 1; i < n; ++i) cin >> d[i];
+    int a, b, total = 0; cin >> a >> b;
+    // cout << accumulate(d + a, d + b, 0) << endl;
+    for(int i = a; i < b; ++i) total += d[i];
+    cout << total;
 }
-
 https://codeforces.com/problemset/problem/40/A
 // A. Find Color
 using namespace std;
