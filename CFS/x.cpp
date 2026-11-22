@@ -479,6 +479,54 @@ int main() {
    // for(int i = 0; i < m && arr[i] <= 0; i++) res -= arr[i];
     cout << abs(res);
 }
+https://codeforces.com/problemset/problem/35/A
+// 35A. Shell Game
+using namespace std;
+int main() {
+    int pos; cin >> pos;
+    for(int i = 0; i < 3; ++i) {
+        int a, b; cin >> a >> b;
+        if(pos == a) pos = b;
+        else if(pos == b) pos = a;
+    } cout << pos; /*
+    array <int, 4> arr{};
+    int x; cin >> x; arr[x] = 1;
+    for(int i = 0; i < 3; ++i) {
+        int a, b; cin >> a >> b;
+        swap(arr[a], arr[b]);
+    } for(int i = 1; i <= 3; ++i) {
+        if(arr[i] == 1) { cout << i; break;}
+    } // cout << find(arr.begin() + 1, arr.end(), 1) - arr.begin(); */
+}
+https://codeforces.com/problemset/problem/37/A
+// 37A. Towers
+using namespace std;
+int main() {
+    int n, maxheight = 0, cnt = 0; cin >> n;
+    /* int freq[1001] = {};
+    for(int i = 0; i < n; ++i) {
+        int len; cin >> len;
+        if(++freq[len] == 1) ++cnt;
+        maxheight = max(maxheight, freq[len]);
+    } cout << maxheight << " " << cnt; */
+    unordered_map <int, int> freq;
+    for(int i = 0; i < n; ++i) {
+        int len; cin >> len;
+        int curr = ++freq[len];
+        maxheight = max(maxheight, curr);
+    } cout << maxheight << " " << freq.size() << endl;
+}
+https://codeforces.com/problemset/problem/38/A
+// 38A. Army
+using namespace std;
+int main() {
+    int n; cin >> n; vector <int> d(n + 1, 0);
+    for(int i = 1; i < n; ++i) cin >> d[i];
+    int a, b, total = 0; cin >> a >> b;
+    // cout << accumulate(d + a, d + b, 0) << endl;
+    for(int i = a; i < b; ++i) total += d[i];
+    cout << total;
+}
 https://codeforces.com/problemset/problem/40/A
 // 40A. Find Color
 using namespace std;
