@@ -1,30 +1,13 @@
-
 https://codeforces.com/problemset/problem/44/A
-// A. Indian Summer
+// 44A. Indian Summer
 using namespace std;
-int main(){
+int main() {
     int n; cin >> n;
-    string a, b, c;
-    set <string> s;
-    while(n--){
-        cin >> a >> b;
-        c = b + a;
-        s.insert(c);
-    }
-    cout << s.size() << endl;
+    set <pair <string, string>> st; // set <string> et;
+    while(n--) {
+        string a, b; cin >> a >> b; st.insert({a, b}); // et.insert(b + a);
+    } cout << st.size();
 }
-using namespace std;
-int main(){
-    int n; cin >> n;
-    set<string> uniquePairs;
-    while (n--) {
-        string first, second; cin >> first >> second;
-        uniquePairs.insert(second + first);
-    }
-    cout << uniquePairs.size() << "\n";
-    return 0;
-}
-
 https://codeforces.com/problemset/problem/46/A
 // A. Ball Game
 using namespace std;
