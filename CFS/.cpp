@@ -68,31 +68,6 @@ int main() {
     } /* double x, y; cin >> x >> y;
     cout << (isBlack(x, y) ? "black" : "white"); */
 }
-https://codeforces.com/problemset/problem/40/A
-// A. Find Color
-using namespace std;
-int main(){
-    int x, y; cin >> x >> y;
-    int r2 = x * x + y * y;
-    int r = floor(sqrt(static_cast<double>(r2)));
-    if (r * r < r2 && (r + 1) * (r + 1) > r2
-        && (r % 2 == 1 && x * y > 0 || r % 2 == 0 && x * y < 0))    cout << "white";
-    else    cout << "black";
-}
-using namespace std;
-int main() {
-    int x, y;
-    cin >> x >> y;
-    int r2 = x * x + y * y;
-    int r = static_cast<int>(floor(sqrt(r2)));
-    bool isBetweenCircles = (r * r < r2 && (r + 1) * (r + 1) > r2);
-    bool isWhite = (r % 2 == 1 && x * y > 0) || (r % 2 == 0 && x * y < 0);
-    if (isBetweenCircles && isWhite)
-        cout << "white\n";
-    else
-        cout << "black\n";
-}
-
 using namespace std;
 http://codeforces.com/contest/41/problem/A
 // A. Translation
