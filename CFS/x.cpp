@@ -549,6 +549,81 @@ int main() {
     } /* double x, y; cin >> x >> y;
     cout << (isBlack(x, y) ? "black" : "white"); */
 }
+https://codeforces.com/contest/41/problem/A
+// 41A. Translation
+using namespace std;
+int main() {
+    string str, ing; cin >> str >> ing;
+    int len = str.length();
+    for(int i = 0; i < len; ++i) {
+        if(str[i] != ing[len - i - 1]) { cout << "NO"; return 0;}
+    } cout << "YES"; /*
+    reverse(str.begin(), str.end());
+    cout << (str == ing? "YES" : "NO"); */
+}
+https://codeforces.com/problemset/problem/41/C
+// 41C. Email address
+using namespace std;
+int main() {
+    string str, res = ""; cin >> str;
+    int len = str.length(), i = 1;
+    res += str[0]; bool used_at = false;
+    while(i < len - 1) {
+        if(!used_at && i + 2 <= len - 1 && str.substr(i, 2) == "at") {
+            res += '@'; used_at = true; i += 2;
+        } else if(i + 3 <= len - 1 && str.substr(i, 3) == "dot") {
+            res += '.'; i += 3;
+        } else { res += str[i]; i++; }
+    } if(i == len - 1) res += str[len - 1]; cout << res;
+}
+https://codeforces.com/contest/43/problem/A
+// 43A.Football
+using namespace std;
+int main() {
+    int n; cin >> n;/*
+    map <string, int> mp;
+    for(int i = 0; i < n; ++i) {
+        string str; cin >> str; ++mp[str];
+    } auto x = max_element(mp.begin(), mp.end(), [](const auto &a, const auto &b) 
+                           { return a.second < b.second;}); cout << x -> first; */
+    string team, winner; int maxgoal = 0;
+    /* while(n--) {
+        cin >> team;
+        if(goal == 0) winner = team;
+        maxgoal += (team == winner) ? 1 : -1;
+    } */
+    unordered_map <string, int> goal;
+    for(int i = 0; i < n; ++i) {
+        cin >> team;
+        int cnt = ++goal[team];
+        if(maxgoal < cnt) { maxgoal = cnt; winner = team; }
+    } cout << winner;
+}
+https://codeforces.com/problemset/problem/43/B
+// 43B. Letter
+using namespace std;
+int main() {
+    string str, ing; getline(cin, str); getline(cin, ing); /*
+    map <char, int> mp;
+    for(char ch : str) {
+        if(ch != ' ') mp[ch]++;
+    }
+    for(char ch : ing) {
+        if(ch == ' ') continue;
+        if(mp[ch] == 0) { cout << "NO"; return 0;} mp[ch]--;
+    } */ unordered_map <char, int> freq;
+    for(char ch : str) freq[ch]++;
+    for(char ch : ing) {
+        if(ch == ' ') continue;
+        if(freq[ch] > 0) freq[ch]--;
+        else { cout << "NO"; return 0;}
+    } /* int cnt1[58] = {0}, cnt2[58] = {0};
+    for(char ch : str) { if(ch != ' ') cnt1[ch - 65]++; }
+    for(char ch : ing) { if(ch != ' ') cnt2[ch - 65]++; }
+    for(int i = 0; i < 58; ++i) {
+        if(cnt1[i] < cnt2[i]) { cout << " NO"; return 0;}
+    } */cout << "YES";
+}
 // 61A
 using namespace std;
 void ultraFast(){
