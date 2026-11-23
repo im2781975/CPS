@@ -72,7 +72,7 @@ int main() {
         if(isalpha(str[i])) {
             char ch = tolower(str[i]);
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') cout << "YES";
-            else cout << "NO";
+            else cout << "NO"; break;
         }
     }
 }
