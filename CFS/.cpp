@@ -11,37 +11,19 @@ int main() {
     cout << (str == ing? "YES" : "NO"); */
 }
 https://codeforces.com/problemset/problem/41/C
-// C. Email address
+// 41C. Email address
 using namespace std;
 int main() {
-    string s, res; cin >> res;
-    cin >> s;
-    // Replace "dot" with "."
-    s = regex_replace(s, regex("dot"), ".");
-    // Replace first "at" with "@"
-    size_t pos = s.find("at");
-    if (pos != string::npos) {
-        s.replace(pos, 2, "@");
-    }
-    // Special handling if starts with "@"
-    if (!s.empty() && s[0] == '@') {
-        s = s.substr(1);
-        pos = s.find("at");
-        if (pos != string::npos) {
-            s.replace(pos, 2, "@");
-        }
-        s = "at" + s;
-    }
-    // Handle special cases with leading/trailing '.'
-    if (!s.empty() && s.front() == '.' && s.back() == '.')
-        res = "dot" + s.substr(1, s.size() - 2) + "dot";
-    else if (!s.empty() && s.front() == '.')
-        res = "dot" + s.substr(1);
-    else if (!s.empty() && s.back() == '.')
-        res = s.substr(0, s.size() - 1) + "dot";
-    else    res = s;
-        res = s;
-    cout << res << '\n';
+    string str, res = ""; cin >> str;
+    int len = str.length(), i = 1;
+    res += str[0]; bool used_at = false;
+    while(i < len - 1) {
+        if(!used_at && i + 2 <= len - 1 && str.substr(i, 2) == "at") {
+            res += '@'; used_at = true; i += 2;
+        } else if(i + 3 <= len - 1 && str.substr(i, 3) == "dot") {
+            res += '.'; i += 3;
+        } else { res += str[i]; i++; }
+    } if(i == len - 1) res += str[len - 1]; cout << res;
 }
 using namespace std;
 https://codeforces.com/contest/43/problem/B
