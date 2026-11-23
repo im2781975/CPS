@@ -25,6 +25,29 @@ int main() {
         } else { res += str[i]; i++; }
     } if(i == len - 1) res += str[len - 1]; cout << res;
 }
+http://codeforces.com/contest/43/problem/A
+// 43A.Football
+using namespace std;
+int main() {
+    int n; cin >> n;/*
+    map <string, int> mp;
+    for(int i = 0; i < n; ++i) {
+        string str; cin >> str; ++mp[str];
+    } auto x = max_element(mp.begin(), mp.end(), [](const auto &a, const auto &b) 
+                           { return a.second < b.second;}); cout << x -> first; */
+    string team, winner; int maxgoal = 0;
+    /* while(n--) {
+        cin >> team;
+        if(goal == 0) winner = team;
+        maxgoal += (team == winner) ? 1 : -1;
+    } */
+    unordered_map <string, int> goal;
+    for(int i = 0; i < n; ++i) {
+        cin >> team;
+        int cnt = ++goal[team];
+        if(maxgoal < cnt) { maxgoal = cnt; winner = team; }
+    } cout << winner;
+}
 using namespace std;
 https://codeforces.com/contest/43/problem/B
 // 43B. Letter
