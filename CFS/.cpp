@@ -22,64 +22,17 @@ int main() {
     } */
 }
 https://codeforces.com/problemset/problem/47/A
-// 47A - Triangular numbers
+// 47A. Triangular numbers
 using namespace std;
+using ll = long long;
 int main() {
-    int n; cin >> n;
-    int triangular = 1, i = 1;
-    while (triangular < n) {
-        ++i;
-        triangular += i;
-    }
-    if (triangular == n)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
-
-    return 0;
+	int n, k = 1; cin >> n;
+    for(int i = 2; k < n; i++) k += i;
+    cout << (k == n ? "YES" : "NO");  /*
+    while (k * (k + 1) / 2 < n) k++;
+    cout << ((k * (k + 1) / 2 == n) ? "YES" : "NO"); *//* ll val = 8LL * n + 1, root = sqrt(val);
+    cout << (root * root == val ? "YES" : "NO"); */
 }
-using namespace std;
-bool integer(double k)
-    {
-        if( k == (int) k) 
-        return true;
-        return false;
-    }
-int main()
-{
-    int n;
-    cin>>n;
-    double x=sqrt(1-(4*1*-(2*n)));
-    if(integer(-1+x) || integer(-1-x))
-    cout<<"YES"<<endl;
-    else
-    cout<<"NO"<<endl;    
-}
-using namespace std;
-bool isTriangular(int num){
-    if (num < 0)    return false;
-    int sum = 0;
-    for (int n = 1; sum <= num; n++){
-        sum = sum + n;
-        if (sum == num)    return true;
-    }
-    return false;
-}
-int main(){
-    int n; cin >> n;
-    cout << (isTriangular(n))? "YES" : "NO";
-}
-using namespace std;
-bool isTriangular(int num) {
-    int val = 8 * num + 1;
-    int root = sqrt(val);
-    return (root * root == val);
-}
-int main() {
-    int n; cin >> n;
-    cout << (isTriangular(n) ? "YES" : "NO") << endl;
-}
-
 using namespace std;
 http://codeforces.com/contest/47/problem/B
 // 47B. Coins;
