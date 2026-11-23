@@ -59,70 +59,22 @@ int main() {
     for(int i = 0; i < 3; ++i) res[wins[i]] = 'A' + i;
     cout << res; */
 }
-#include <iostream>
-#include <string>
-#include <cctype>
 https://codeforces.com/problemset/problem/49/A
-// A. Sleuth
-using namespace std;
-bool isVowel(char ch) {
-    ch = tolower(ch);
-    return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y';
-}
-int main() {
-    string s; getline(cin, s);
-    char lastAlpha = '\0';
-    for (int i = s.size() - 1; i >= 0; --i) {
-        if (isalpha(s[i])) {
-            lastAlpha = s[i];
-            break;
-        }
-    }
-    cout << (isVowel(lastAlpha) ? "YES" : "NO") << endl;
-}
-using namespace std;
-int main()
-{
-    char s[110];
-    cin.getline(s, sizeof(s) / sizeof(s[0]), '\n');
-    bool vowel(true);
-    char* p = s;
-    while (*p != '\0')
-    {
-        if (*p >= 'a' && *p <= 'z' || *p >= 'A' && *p <= 'Z')
-        {
-            if (*p == 'a' ||*p == 'e' ||*p == 'i' ||*p == 'o' ||*p == 'u' ||*p == 'y' ||
-                *p == 'A' ||*p == 'E' ||*p == 'I' ||*p == 'O' ||*p == 'U' ||*p == 'Y')
-            {
-                vowel = true;
-            }
-            else
-            {
-                vowel = false;
-            }
-        }
-        ++p;
-    }
-    cout << (vowel ? "YES" : "NO") << endl;
-    return 0;
-}
-#include <bits/stdc++.h>
+// 49A. Sleuth
 using namespace std;
 int main() {
-    string s;
-    getline(cin, s);
-    for (int i = s.size() - 1; i >= 0; i--) {
-        if (isalpha(s[i])) {
-            char ch = tolower(s[i]);
-            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y')
-                cout << "YES" << endl;
-            else
-                cout << "NO" << endl;
-            return 0;
+    string str; getline(cin, str); /*
+    string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string vowels = "aeiouyAEIOUY";
+    size_t pos = str.find_last_of(letters);
+    cout << (pos == string::npos || vowels.find(str[pos]) != string::npos ? "YES" : "NO") << ' '; */
+    for(int i = str.size() - 1; i >= 0; --i) {
+        if(isalpha(str[i])) {
+            char ch = tolower(str[i]);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') cout << "YES";
+            else cout << "NO";
         }
     }
-
-    return 0;
 }
 #include <bits/stdc++.h>
 https://codeforces.com/problemset/problem/49/B
