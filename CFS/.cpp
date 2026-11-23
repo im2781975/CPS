@@ -9,49 +9,18 @@ int main() {
     } cout << st.size();
 }
 https://codeforces.com/problemset/problem/46/A
-// A. Ball Game
-using namespace std;
-int main(){
-    int n, c = 2;
-    cin >> n;
-    cout << c;
-    for (int i = 2; i < n; ++i){
-        c += i;
-        if (c > n)    c -= n;
-        cout << " " << c;
-    }
-    cout << endl;
-    return 0;
-}
-using namespace std;
-int main(){
-    int n; cin >> n;
-    int N = n;
-    n -= 1;
-    int go = 1, i = 1;
-    while(n--){
-        go += i;
-        if(go % N == 0) go = go;
-        else    go %= N;
-        cout << go << " ";
-        i++;
-    }
-    cout << endl;
-    return 0;
-}
+// 46A. Ball Game
 using namespace std;
 int main() {
-    int n; cin >> n;
-    int pos = 1;
-    for (int step = 1; step < n; ++step) {
-        pos += step;
-        pos %= n;
-        if (pos == 0) pos = n;
-        cout << pos << " ";
-    }
-    cout << "\n";
+    int n, pos = 0; cin >> n;
+    for(int step = 1; step < n; ++step) {
+        pos = (pos + step) % n; cout << pos + 1 << " "; 
+    } /* int c = 2; cout << c;
+    for(int i = 2; i < n; ++i) {
+        c += i; if(c > n) c -= n;
+        cout << " " << c;
+    } */
 }
-
 https://codeforces.com/problemset/problem/47/A
 // 47A - Triangular numbers
 using namespace std;
