@@ -33,108 +33,31 @@ int main() {
     cout << ((k * (k + 1) / 2 == n) ? "YES" : "NO"); *//* ll val = 8LL * n + 1, root = sqrt(val);
     cout << (root * root == val ? "YES" : "NO"); */
 }
-using namespace std;
 http://codeforces.com/contest/47/problem/B
-// 47B. Coins;
-int main() {
-	string arr[3] = {};
-	for(int i = 0; i < 3; i++)
-	    cin >> arr[i];
-	map <char, int> mp;
-	mp['A'] = 0; mp['B'] = 0; mp['C'] = 0;
-    for (int i = 0; i < 3; i++) {
-        char a = arr[i][0];
-        char b = arr[i][2];
-        if (arr[i][1] == '>') {
-            mp[a]++;
-            mp[b]--;
-        } else {
-            mp[a]--;
-            mp[b]++;
-        }
-    }
-	if(mp['A'] > mp['B'] && mp['B'] > mp['C']) cout << "CBA";
-    else if(mp['A'] > mp['C'] && mp['C'] > mp['B']) cout << "BCA";
-	else if(mp['B'] > mp['C'] && mp['C'] > mp['A']) cout << "ACB";
-    else if(mp['B'] > mp['A'] && mp['A'] > mp['C']) cout << "CAB";
-	else if(mp['C'] > mp['B'] && mp['B'] > mp['A']) cout << "ABC";
-    else if(mp['C'] > mp['A'] && mp['A'] > mp['B']) cout << "BAC";
-	else cout << "IMPOSSIBLE";
-}
+// 47B. Coins
 using namespace std;
 int main() {
-    string arr[3];
-    for (int i = 0; i < 3; i++)
-        cin >> arr[i];
-    map<char, int> weight;
-    weight['A'] = 0;
-    weight['B'] = 0;
-    weight['C'] = 0;
-    for (int i = 0; i < 3; i++) {
-        char a = arr[i][0];
-        char b = arr[i][2];
-        if (arr[i][1] == '>')
-            weight[a]++;
-        else
-            weight[b]++;
+    map <char, int> score = {{'A', 0}, {'B', 0}, {'C', 0}};
+    for(int i = 0; i < 3; ++i) {
+        string str; cin >> str;
+        if(str[1] == '>') score[str[0]]++;
+        else score[str[2]]++;
+    } if (score['A'] == score['B'] || score['B'] == score['C'] || score['A'] == score['C']) {
+        cout << "Impossible"; return 0;
+    } char res[3];
+    for(char ch : {'A', 'B', 'C'}) res[score[ch]] = ch;
+    cout << res[0] << res[1] << res[2]; /*
+    int wins[3] = {};
+    for(int i = 0; i < 3; ++i) {
+        string str; cin >> str;
+        if(str[1] == '>') wins[str[0] - 'A']++;
+        else wins[str[2] - 'A']++;
     }
-    vector<pair<int, char>> result;
-    for (auto& p : weight)
-        result.push_back({p.second, p.first});
-    sort(result.begin(), result.end());
-    if (result[0].first == result[1].first || result[1].first == result[2].first) {
-        cout << "Impossible" << endl;
-    } else {
-        for (auto& p : result)
-            cout << p.second;
-        cout << endl;
-    }
-}
-using namespace std;
-int main(){
-	string s;
-	string a[3];
-	vector <string> ans;
-	for (int i = 0; i < 3; i++){
-		cin >> s;
-		a[i] = string(1, s[0]) + s[2];
-		if (s[1] == '>')
-			reverse(a[i].begin(), a[i].end());
-	}
-	for (int i = 0; i < 2; i++){
-		for (int j = i + 1; j < 3; j++){
-			if (a[i][0] == a[j][1])
-				ans.push_back(string(1, a[j][0]) + a[i]);
-			else if (a[i][1] == a[j][0])
-				ans.push_back(string(1, a[i][0]) + a[j]);
-		}
-	}
-	cout << (ans.size() > 1 ? "Impossible" : ans[0]);
-}
-using namespace std;
-int main() {
-    string a[3];
-    vector<string> ans;
-    for (int i = 0; i < 3; i++) {
-        string s; cin >> s;
-        a[i] = string(1, s[0]) + s[2];
-        if (s[1] == '>') {
-            reverse(a[i].begin(), a[i].end());
-        }
-    }
-    for (int i = 0; i < 2; i++) {
-        for (int j = i + 1; j < 3; j++) {
-            if (a[i][0] == a[j][1]) {
-                ans.push_back(string(1, a[j][0]) + a[i]);
-            } else if (a[i][1] == a[j][0]) {
-                ans.push_back(string(1, a[i][0]) + a[j]);
-            }
-        }
-    }
-    if (ans.size() != 1)
-        cout << "Impossible\n";
-    else
-        cout << ans[0] << '\n';
+    if (wins[0] == wins[1] || wins[1] == wins[2] || wins[0] == wins[2]) {
+        cout << "Impossible"; return 0;
+    } string res = "";
+    for(int i = 0; i < 3; ++i) res[wins[i]] = 'A' + i;
+    cout << res; */
 }
 #include <iostream>
 #include <string>
