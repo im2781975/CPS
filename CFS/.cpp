@@ -1,3 +1,15 @@
+http://codeforces.com/contest/41/problem/A
+// 41A. Translation
+using namespace std;
+int main() {
+    string str, ing; cin >> str >> ing;
+    int len = str.length();
+    for(int i = 0; i < len; ++i) {
+        if(str[i] != ing[len - i - 1]) { cout << "NO"; return 0;}
+    } cout << "YES"; /*
+    reverse(str.begin(), str.end());
+    cout << (str == ing? "YES" : "NO"); */
+}
 using namespace std;
 http://codeforces.com/contest/41/problem/A
 // A. Translation
