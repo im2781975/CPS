@@ -624,6 +624,84 @@ int main() {
         if(cnt1[i] < cnt2[i]) { cout << " NO"; return 0;}
     } */cout << "YES";
 }
+https://codeforces.com/problemset/problem/44/A
+// 44A. Indian Summer
+using namespace std;
+int main() {
+    int n; cin >> n;
+    set <pair <string, string>> st; // set <string> et;
+    while(n--) {
+        string a, b; cin >> a >> b; st.insert({a, b}); // et.insert(b + a);
+    } cout << st.size();
+}
+https://codeforces.com/problemset/problem/46/A
+// 46A. Ball Game
+using namespace std;
+int main() {
+    int n, pos = 0; cin >> n;
+    for(int step = 1; step < n; ++step) {
+        pos = (pos + step) % n; cout << pos + 1 << " "; 
+    } /* int c = 2; cout << c;
+    for(int i = 2; i < n; ++i) {
+        c += i; if(c > n) c -= n;
+        cout << " " << c;
+    } */
+}
+https://codeforces.com/problemset/problem/47/A
+// 47A. Triangular numbers
+using namespace std;
+using ll = long long;
+int main() {
+	int n, k = 1; cin >> n;
+    for(int i = 2; k < n; i++) k += i;
+    cout << (k == n ? "YES" : "NO");  /*
+    while (k * (k + 1) / 2 < n) k++;
+    cout << ((k * (k + 1) / 2 == n) ? "YES" : "NO"); *//* ll val = 8LL * n + 1, root = sqrt(val);
+    cout << (root * root == val ? "YES" : "NO"); */
+}
+http://codeforces.com/contest/47/problem/B
+// 47B. Coins
+using namespace std;
+int main() {
+    map <char, int> score = {{'A', 0}, {'B', 0}, {'C', 0}};
+    for(int i = 0; i < 3; ++i) {
+        string str; cin >> str;
+        if(str[1] == '>') score[str[0]]++;
+        else score[str[2]]++;
+    } if (score['A'] == score['B'] || score['B'] == score['C'] || score['A'] == score['C']) {
+        cout << "Impossible"; return 0;
+    } char res[3];
+    for(char ch : {'A', 'B', 'C'}) res[score[ch]] = ch;
+    cout << res[0] << res[1] << res[2]; /*
+    int wins[3] = {};
+    for(int i = 0; i < 3; ++i) {
+        string str; cin >> str;
+        if(str[1] == '>') wins[str[0] - 'A']++;
+        else wins[str[2] - 'A']++;
+    }
+    if (wins[0] == wins[1] || wins[1] == wins[2] || wins[0] == wins[2]) {
+        cout << "Impossible"; return 0;
+    } string res = "";
+    for(int i = 0; i < 3; ++i) res[wins[i]] = 'A' + i;
+    cout << res; */
+}
+https://codeforces.com/problemset/problem/49/A
+// 49A. Sleuth
+using namespace std;
+int main() {
+    string str; getline(cin, str); /*
+    string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string vowels = "aeiouyAEIOUY";
+    size_t pos = str.find_last_of(letters);
+    cout << (pos == string::npos || vowels.find(str[pos]) != string::npos ? "YES" : "NO") << ' '; */
+    for(int i = str.size() - 1; i >= 0; --i) {
+        if(isalpha(str[i])) {
+            char ch = tolower(str[i]);
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') cout << "YES";
+            else cout << "NO"; break;
+        }
+    }
+}
 // 61A
 using namespace std;
 void ultraFast(){
