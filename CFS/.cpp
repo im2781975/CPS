@@ -10,56 +10,6 @@ int main() {
     reverse(str.begin(), str.end());
     cout << (str == ing? "YES" : "NO"); */
 }
-using namespace std;
-http://codeforces.com/contest/41/problem/A
-// A. Translation
-int main(){
-    string str, ing; cin >> str >> ing;
-    reverse(str.begin(), str.end());
-    (str == ing) ? cout << "Yes" : cout << "No";
-}
-using namespace std;
-int main(){
-    string s, t; cin >> s >> t;
-    int len = s.length();
-    for (int i = 0; i < len; i++).{
-        if (s[i] != t[len - i - 1]) {
-            cout << "NO";
-            return 0;
-        }
-    }
-    cout << "YES";
-}
-using namespace std;
-int main() {
-    string s, t;
-    cin >> s >> t;
-    reverse(t.begin(), t.end());
-    if (s == t)
-        cout << "YES";
-    else
-        cout << "NO";
-
-    return 0;
-}
-using namespace std;
-int main(){
-    int tag = 0;
-    string x, y; cin >> x >> y;
-    cin >> x >> y;
-    int len = x.length();
-    int len2 = y.length();
-    for(int i = 0, j = len2 - 1; i < len, j >= 0; i++, j--){
-        if(x[i] == y[j])    tag = 1;
-        else{
-            tag = 0;
-            break;
-        }
-    }
-    if(tag == 1)    cout << "YES" << endl;
-    else    cout << "NO" << endl;
-}
-#include <bits/stdc++.h>
 https://codeforces.com/problemset/problem/41/C
 // C. Email address
 using namespace std;
