@@ -1,16 +1,8 @@
 https://codeforces.com/problemset/problem/50/A
-// A. Domino piling
+// 50A. Domino piling
 using namespace std;
-int main(){
-    int M, N; cin >> M >> N;
-    cout << M * N / 2 << endl;
-}
-using namespace std;
-// A. Domino piling
-// problemset/problem/50/A
-int main(){
-    int m, n; cin >> m >> n;
-    cout << (m * n) / 2;
+int main() {
+    int m, n; cin >> m >> n; cout << (m * n) / 2;
 }
 https://codeforces.com/problemset/problem/52/A
 // A. 123-sequence
