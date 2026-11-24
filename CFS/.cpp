@@ -5,40 +5,17 @@ int main() {
     int m, n; cin >> m >> n; cout << (m * n) / 2;
 }
 https://codeforces.com/problemset/problem/52/A
-// A. 123-sequence
+// 52A. 123-sequence
 using namespace std;
-int main(){
-    int n, a; cin >> n;
-    int one = 0, two = 0, three = 0;
-    for(int i = 0; i < n; i++){
-        cin >> a;
-        if(a == 1)    one++;
-        else if(a == 2)    two++;
-        else    three++;
-    }
-    int m = 0, ans = 0;
-    m = max(one, max(two,three));
-    ans = (one + two + three);
-    ans = abs(m - ans);
-    cout << ans << endl;
+int main() {
+    int n; cin >> n;
+    int c1 = 0, c2 = 0, c3 = 0;
+    for(int i = 0; i < n; ++i) {
+        int x; cin >> x; 
+        if(x == 1) ++c1; else if(x == 2) ++c2; else if(x == 3) ++c3;
+    } int max_freq = max({c1, c2, c3});
+    cout << (n - max_freq);
 }
-using namespace std;
-int main(){
-    int n, x; cin >> n;
-    int one = 0, two = 0, three = 0;
-    for (int i = 0; i < n; i++) {
-        cin >> x;
-        if (x == 1) one++;
-        else if (x == 2) two++;
-        else if (x == 3) three++;
-    }
-    int teams = min({one, two, three});
-    cout << teams << endl;
-    return 0;
-}
-
-
-
 https://codeforces.com/problemset/problem/53/A
 // A. Autocomplete
 using namespace std;
