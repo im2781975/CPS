@@ -17,59 +17,27 @@ int main() {
     cout << (n - max_freq);
 }
 https://codeforces.com/problemset/problem/53/A
-// A. Autocomplete
+// 53A. Autocomplete
 using namespace std;
-int main(){
-	string s, str;
-	int n;
-	cin >> s >> n;
-	vector<string> v;
-	for (int i = 0; i < n; i++){
-		cin >> str;
-		if (str.find(s) == 0)
-			v.push_back(str);
-	}
-	cout << (v.size() > 0 ? *min_element(v.begin(), v.end()) : s);
-}
-
-using namespace std;
-int main(){
-    string s; cin >> s;
-    int n; cin >> n;
-    vector<string> vec(n);
-    for(int i = 0; i < n; i++) cin >> vec[i];
-    sort(vec.begin(), vec.end());
-    for(int i = 0; i < n; i++){
-        if (vec[i].substr(0, s.length()) == s){
-            cout << vec[i];
-            return 0;
-        }
-    }
-    cout << s;
-}
-using namespace std;
-using ll = long long;
-void solve() {
-    string s; cin >> s;
-    ll n; cin >> n;
-    vector<string> vec(n);
-    for (ll i = 0; i < n; i++) cin >> vec[i];
-    sort(vec.begin(), vec.end());
-    for (const auto& word : vec) {
-        if (word.compare(0, s.size(), s) == 0) {
-            cout << word << '\n';
-            return;
-        }
-    }
-    cout << s << '\n';
-}
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    solve();
-
-    return 0;
+    int n; string str, best = ""; cin >> str >> n;
+    vector <string> vec(n);
+    /* for(int i = 0; i < n; ++i) {
+        string page; cin >> page;
+        if(page.find(str) == 0) vec.push_back(page);
+    } cout << (!vec.empty() ? *min_element(vec.begin(), vec.end()) : str);
+    */ /* bool found = false;
+    for(int i = 0; i < n; ++i) {
+        string page; cin >> page;
+        if(page.size() >= str.size() && page.compare(0, str.size(), str) == 0) {
+            if(!found || page < best) { best = page; found = true; }
+        }
+    } cout << (found ? best : str); */
+    for(int i = 0; i < n; ++i) cin >> vec[i];
+    sort(vec.begin(), vec.end());
+    for(int i = 0; i < n; ++i) {
+        if(vec[i].substr(0, str.length()) == str) { cout << vec[i]; return 0;}
+    } cout << str;
 }
 https://codeforces.com/problemset/problem/57/A
 using namespace std;
