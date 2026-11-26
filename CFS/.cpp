@@ -40,97 +40,15 @@ int main() {
     } cout << str;
 }
 https://codeforces.com/problemset/problem/57/A
+// 57A. Square Earth?
 using namespace std;
-using ll = int64_t;
-ll n;
-vector<vector<bool>> vis;
-vector<vector<ll>> dis;
-bool valid(ll x, ll y) {
-    if (x < 0 || y < 0 || x > n || y > n) return false;
-    if (vis[x][y]) return false;  // if already visited or empty
-    return true;
-}
-// graph moves - 4 directions
-ll dx[] = {1, 0, -1, 0};
-ll dy[] = {0, 1, 0, -1};
-
-void Solution() {
-    ll x1, y1, x2, y2;
-    cin >> n >> x1 >> y1 >> x2 >> y2;
-    dis.resize(n + 1, vector<ll>(n + 1, 0));
-    queue<pair<ll, ll>> bfs;
-    vis.resize(n + 1, vector<bool>(n + 1, false));
-    bfs.emplace(x1, y1);
-    vis[x1][y1] = true;
-    while (!bfs.empty()) {
-        ll x = bfs.front().first;
-        ll y = bfs.front().second;
-        bfs.pop();
-        if (x == x2 && y == y2) break;
-        if (x == 0 || x == n || y == 0 || y == n) {
-            for (ll i = 0; i < 4; ++i) {  // 4 directions
-                ll X = x + dx[i];
-                ll Y = y + dy[i];
-                if (valid(X, Y)) {
-                    vis[X][Y] = true;
-                    bfs.emplace(X, Y);
-                    dis[X][Y] = dis[x][y] + 1;
-                }
-            }
-        }
-    }
-    cout << dis[x2][y2] << '\n';
-}
-
 int main() {
-    Solution();
-    cerr << fixed << setprecision(4) << (double)clock() / CLOCKS_PER_SEC << " secs" << endl;
-    return 0;
+    int n, x1, y1, x2, y2, res; cin >> n >> x1 >> y1 >> x2 >> y2;
+    if((x1 == 0 && x2 == n) || (x1 == n && x2 == 0)) res = n + min(y1 + y2, 2 * n - y1 - y2);
+    else if((y1 == 0 && y2 == n) || (y1 == n && y2 == 0)) res = n + min(x1 + x2, 2 * n - x1 - x2);
+    else res = abs(x1 - x2) + abs(y1 - y2);
+    cout << res;
 }
-using namespace std;
-using ll = int64_t;
-ll n;
-vector<vector<bool>> visited;
-vector<vector<ll>> dist;
-
-bool valid(ll x, ll y) {
-    return x >= 0 && y >= 0 && x <= n && y <= n && !visited[x][y];
-}
-
-const ll dx[] = {1, 0, -1, 0};
-const ll dy[] = {0, 1, 0, -1};
-
-int main() {
-    ll x1, y1, x2, y2;
-    cin >> n >> x1 >> y1 >> x2 >> y2;
-
-    visited.assign(n + 1, vector<bool>(n + 1, false));
-    dist.assign(n + 1, vector<ll>(n + 1, 0));
-
-    queue<pair<ll, ll>> q;
-    q.emplace(x1, y1);
-    visited[x1][y1] = true;
-
-    while (!q.empty()) {
-        auto [x, y] = q.front(); q.pop();
-        if (x == x2 && y == y2) break;
-
-        // Only move if currently on boundary
-        if (x == 0 || x == n || y == 0 || y == n) {
-            for (int i = 0; i < 4; ++i) {
-                ll nx = x + dx[i], ny = y + dy[i];
-                if (valid(nx, ny)) {
-                    visited[nx][ny] = true;
-                    dist[nx][ny] = dist[x][y] + 1;
-                    q.emplace(nx, ny);
-                }
-            }
-        }
-    }
-
-    cout << dist[x2][y2] << '\n';
-}
-
 http://codeforces.com/problemset/problem/58/A
 // Chat_room.cpp
 using namespace std;
