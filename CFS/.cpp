@@ -63,6 +63,24 @@ int main() {
         if(idx < trg.size() && ch == trg[idx]) ++idx;
     } cout << (idx == (int)trg.size() ? "YES" : "NO"); */
 }
+https://codeforces.com/problemset/problem/58/B
+// 58B. Coins
+using namespace std;
+int main() {
+    int n; cin >> n; /* cout << n;
+    while(n > 1) {
+        for(int d = 2; d <= n; ++d) {
+            if(n % d == 0) { n /= d; cout << " " << n; break; }
+        }
+    } */ while (n != 1) {
+        cout << n << " ";
+        for (int i = 2; i <= n; ++i) {
+            if (n % i == 0) { n /= i; break;
+            }
+        }
+    } cout << 1 << endl;
+    // for(int i = n; i >= 1; --i) { if(n % i == 0) cout << i << " "; }
+}
 http://codeforces.com/problemset/problem/58/A
 // Chat_room.cpp
 using namespace std;
