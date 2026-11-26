@@ -50,6 +50,20 @@ int main() {
     cout << res;
 }
 http://codeforces.com/problemset/problem/58/A
+// 58A. Chat room
+using namespace std;
+int main() {
+    string str, trg = "hello"; cin >> str;
+    int idx = 0; bool valid = true;
+    for(char ch : trg) {
+        idx = str.find(ch, idx);
+        if(idx == string::npos) { valid = false; break;} ++idx;
+    } cout << (valid ? "YES" : "NO"); /*
+    for(char ch : str) {
+        if(idx < trg.size() && ch == trg[idx]) ++idx;
+    } cout << (idx == (int)trg.size() ? "YES" : "NO"); */
+}
+http://codeforces.com/problemset/problem/58/A
 // Chat_room.cpp
 using namespace std;
 bool valid(string s){
