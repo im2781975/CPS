@@ -1,3 +1,15 @@
+http://codeforces.com/problemset/problem/61/A
+// 61A. Ultra-Fast Mathematician
+using namespace std;
+int main() {
+    string str, ing, res = ""; cin >> str >> ing;
+    for(size_t i = 0; i < str.size(); ++i) {
+        // cout << (str[i] != ing[i] ? '1' : '0');
+        // res += (s1[i] == s2[i]) ? '0' : '1';
+        if ((str[i] == '1' && ing[i] == '0') || (str[i] == '0' && ing[i] == '1')) res += '1'; else res += '0';
+        // res += ((str[i] - '0') ^ (ing[i] - '0')) + '0';
+    } cout << res;
+}
 using namespace std;
 http://codeforces.com/problemset/problem/61/A
 // Ultra-Fast Mathematician
