@@ -81,6 +81,22 @@ int main() {
     } cout << 1 << endl;
     // for(int i = n; i >= 1; --i) { if(n % i == 0) cout << i << " "; }
 }
+http://codeforces.com/contest/59/problem/A
+// 59A. Word
+using namespace std;
+int main() {
+    string str; cin >> str; int upper = 0; /*
+    for(int i = 0; i < str.length(); ++i) {
+        if(str[i] >= 'A' && str[i] <= 'Z') upper++; else lower++; 
+    } */ for(char ch : str) { if(isupper(ch)) upper++; }
+    /* if(upper > (str.length() / 2)) transform(str.begin(), str.end(), str.begin(), ::toupper);
+    else transform(s.begin(), s.end(), s.begin(), ::tolower); */
+    int lower = str.length() - upper;
+    if(upper > lower) { for(char &ch : str) ch = toupper(ch); } /*
+    if(upper > lower) { for(int i = 0; i < str.length(); ++i) str[i] = toupper(str[i]); }
+    else { for(int i = 0; i < str.length(); ++i) str[i] = tolower(str[i]); } */
+    else { for(char &ch : str) ch = tolower(ch); } cout << str;
+}
 http://codeforces.com/problemset/problem/58/A
 // Chat_room.cpp
 using namespace std;
