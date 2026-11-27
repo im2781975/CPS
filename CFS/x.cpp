@@ -450,7 +450,7 @@ int main() {
     } cout << res; 
 }
 https://codeforces.com/problemset/problem/34/A
-// A. Reconnaissance 2
+// 34A. Reconnaissance 2
 using namespace std;
 int main() {
     int n; cin >> n; vector <int> arr(n);
@@ -701,6 +701,105 @@ int main() {
             else cout << "NO"; break;
         }
     }
+}
+https://codeforces.com/problemset/problem/50/A
+// 50A. Domino piling
+using namespace std;
+int main() {
+    int m, n; cin >> m >> n; cout << (m * n) / 2;
+}
+https://codeforces.com/problemset/problem/52/A
+// 52A. 123-sequence
+using namespace std;
+int main() {
+    int n; cin >> n;
+    int c1 = 0, c2 = 0, c3 = 0;
+    for(int i = 0; i < n; ++i) {
+        int x; cin >> x; 
+        if(x == 1) ++c1; else if(x == 2) ++c2; else if(x == 3) ++c3;
+    } int max_freq = max({c1, c2, c3});
+    cout << (n - max_freq);
+}
+https://codeforces.com/problemset/problem/53/A
+// 53A. Autocomplete
+using namespace std;
+int main() {
+    int n; string str, best = ""; cin >> str >> n;
+    vector <string> vec(n);
+    /* for(int i = 0; i < n; ++i) {
+        string page; cin >> page;
+        if(page.find(str) == 0) vec.push_back(page);
+    } cout << (!vec.empty() ? *min_element(vec.begin(), vec.end()) : str);
+    */ /* bool found = false;
+    for(int i = 0; i < n; ++i) {
+        string page; cin >> page;
+        if(page.size() >= str.size() && page.compare(0, str.size(), str) == 0) {
+            if(!found || page < best) { best = page; found = true; }
+        }
+    } cout << (found ? best : str); */
+    for(int i = 0; i < n; ++i) cin >> vec[i];
+    sort(vec.begin(), vec.end());
+    for(int i = 0; i < n; ++i) {
+        if(vec[i].substr(0, str.length()) == str) { cout << vec[i]; return 0;}
+    } cout << str;
+}
+https://codeforces.com/problemset/problem/57/A
+// 57A. Square Earth?
+using namespace std;
+int main() {
+    int n, x1, y1, x2, y2, res; cin >> n >> x1 >> y1 >> x2 >> y2;
+    if((x1 == 0 && x2 == n) || (x1 == n && x2 == 0)) res = n + min(y1 + y2, 2 * n - y1 - y2);
+    else if((y1 == 0 && y2 == n) || (y1 == n && y2 == 0)) res = n + min(x1 + x2, 2 * n - x1 - x2);
+    else res = abs(x1 - x2) + abs(y1 - y2);
+    cout << res;
+}
+http://codeforces.com/problemset/problem/58/A
+// 58A. Chat room
+using namespace std;
+int main() {
+    string str, trg = "hello"; cin >> str;
+    int idx = 0; bool valid = true;
+    for(char ch : trg) {
+        idx = str.find(ch, idx);
+        if(idx == string::npos) { valid = false; break;} ++idx;
+    } cout << (valid ? "YES" : "NO"); /*
+    for(char ch : str) {
+        if(idx < trg.size() && ch == trg[idx]) ++idx;
+    } cout << (idx == (int)trg.size() ? "YES" : "NO"); */
+}
+https://codeforces.com/problemset/problem/58/B
+// 58B. Coins
+using namespace std;
+int main() {
+    int n; cin >> n; /* cout << n;
+    while(n > 1) {
+        for(int d = 2; d <= n; ++d) {
+            if(n % d == 0) { n /= d; cout << " " << n; break; }
+        }
+    } */ while (n != 1) {
+        cout << n << " ";
+        for (int i = 2; i <= n; ++i) {
+            if (n % i == 0) { n /= i; break;
+            }
+        }
+    } cout << 1 << endl;
+    // for(int i = n; i >= 1; --i) { if(n % i == 0) cout << i << " "; }
+}
+http://codeforces.com/contest/59/problem/A
+// 59A. Word
+using namespace std;
+int main() {
+    string str; cin >> str; int upper = 0; /*
+    for(int i = 0; i < str.length(); ++i) {
+        if(str[i] >= 'A' && str[i] <= 'Z') upper++; else lower++; 
+    } */ for(char ch : str) { if(isupper(ch)) upper++; }
+    /* if(upper > (str.length() / 2)) transform(str.begin(), str.end(), str.begin(), ::toupper);
+    else transform(s.begin(), s.end(), s.begin(), ::tolower); */
+    int lower = str.length() - upper;
+    if(upper > lower) { for(char &ch : str) ch = toupper(ch); } /*
+    if(upper > lower) { for(int i = 0; i < str.length(); ++i) str[i] = toupper(str[i]); }
+    else { for(int i = 0; i < str.length(); ++i) str[i] = tolower(str[i]); } */
+    else { for(char &ch : str) ch = tolower(ch); } cout << str;
 }
 // 61A
 using namespace std;
