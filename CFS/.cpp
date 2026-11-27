@@ -1,5 +1,3 @@
-http
-#include <bits/stdc++.h>
 https://codeforces.com/problemset/problem/59/C
 // C. Title
 using namespace std;
