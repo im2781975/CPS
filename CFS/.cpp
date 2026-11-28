@@ -17,7 +17,7 @@ using pr = pair <int, string>;
 int main() {
     int n, order; cin >> n; vector <pr> crew(n);
     // vector <string> groups[4];
-    // vector <string> rats, womans, mans, capt;
+    // vector <string> rats, womans, mans, caps;
     for(int i = 0; i < n; ++i) {
         string name, status; cin >> name >> status;
         if(status == "rat") order = 1; // rats.push_back(name); 
@@ -35,7 +35,6 @@ int main() {
     for(const auto &p : mans) cout << p << endl;
     for(const auto &p : caps) cout << p << endl; */
 }
-
 using namespace std;
 http://codeforces.com/problemset/problem/61/A
 // Ultra-Fast Mathematician
