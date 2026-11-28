@@ -10,6 +10,32 @@ int main() {
         // res += ((str[i] - '0') ^ (ing[i] - '0')) + '0';
     } cout << res;
 }
+https://codeforces.com/problemset/problem/63/A
+// 63A. Sinking Ship
+using namespace std;
+using pr = pair <int, string>;
+int main() {
+    int n, order; cin >> n; vector <pr> crew(n);
+    // vector <string> groups[4];
+    // vector <string> rats, womans, mans, capt;
+    for(int i = 0; i < n; ++i) {
+        string name, status; cin >> name >> status;
+        if(status == "rat") order = 1; // rats.push_back(name); 
+        else if(status == "woman" || status == "child") order = 2; // womans.push_back(name);
+        else if(status == "man") order = 3; // mans.push_back(name);
+        else order = 4; // caps.push_back(name);
+        crew[i] = {order, name};
+        // groups[order].push_back(name);
+    } stable_sort(crew.begin(), crew.end(), [](const pr &a, const pr &b) { return a.first < b.first; });
+    for(const auto &val : crew) cout << val.second << endl; /*
+    for(auto &g : groups) {
+        for(auto &name : g) cout << name << endl;
+    } */ /* for(const auto &p : rats) cout << p << endl;
+    for(const auto &p : womans) cout << p << endl;
+    for(const auto &p : mans) cout << p << endl;
+    for(const auto &p : caps) cout << p << endl; */
+}
+
 using namespace std;
 http://codeforces.com/problemset/problem/61/A
 // Ultra-Fast Mathematician
